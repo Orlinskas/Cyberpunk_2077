@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_widget_sr"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAlphaBackground">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_widget_sv">
+
+    <RelativeLayout
+        android:id="@+id/fragment_widget_rl_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorEmpty">
+
+        <RelativeLayout
+            android:id="@+id/fragment_widget_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp">
+
+            <ProgressBar
+                android:id="@+id/fragment_widget_pb"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fragment_widget_tv_description"
+                android:indeterminate="true"
+                android:visibility="invisible" />
+
+            <RelativeLayout
+                android:id="@+id/fragment_widget_rl_icons_case"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_below="@+id/fragment_widget_tv_description" />
+
+            <RelativeLayout
+                android:id="@+id/fragment_widget_rl_chart_case"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_below="@+id/fragment_widget_rl_icons_case" />
+
+            <RelativeLayout
+                android:id="@+id/fragment_widget_rl_control_bar_bot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fragment_widget_rl_chart_case"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:id="@+id/fragment_widget_iv_left"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/left_button"
+                    android:tint="@color/colorControlBarTintButton"
+                    app:srcCompat="@drawable/ic_left_shew" />
+
+                <ImageView
+                    android:id="@+id/fragment_widget_iv_right"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="5dp"
+                    android:contentDescription="@string/right_button"
+                    android:tint="@color/colorControlBarTintButton"
+                    app:srcCompat="@drawable/ic_right_shew" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_tv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fragment_widget_iv_left"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/back"
+                    android:textColor="@color/colorControlBarTextScroll"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_tv_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fragment_widget_iv_right"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/next"
+                    android:textColor="@color/colorControlBarTextScroll"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:maxLines="1"
+                    android:text="@string/tv_date"
+                    android:textColor="@color/colorChartDate"
+                    android:textSize="16sp"
+                    tools:ignore="RelativeOverlap"
+                    tools:layout_centerHorizontal="true" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/fragment_widget_tv_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="false"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:maxLines="1"
+                android:shadowColor="@color/colorWidgetShadow"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/loading_2"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextLabel"
+                android:textSize="18sp"
+                tools:layout_centerHorizontal="true" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fragment_widget_rl_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fragment_widget_rl"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_background">
+
+            <TextView
+                android:id="@+id/fragment_widget_rl_info_head_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="false"
+                android:layout_centerHorizontal="false"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/priboru"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="18sp"
+                tools:ignore="RelativeOverlap" />
+
+            <View
+                android:id="@+id/fragmen_widget_view_line"
+                style="@style/Divider"
+                android:layout_below="@+id/fragment_widget_rl_info_head_tv"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp" />
+
+            <RelativeLayout
+                android:id="@+id/fragment_widget_rl_info_pressure_rl"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/fragmen_widget_view_line"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/fragment_widget_rl_info_pressure_iv"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/icon_info"
+                    app:srcCompat="@drawable/ic_info_presure" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_pressure_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_pressure_iv"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/pressure"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_pressure_tv_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_pressure_rl_center_tv"
+                    android:text="@string/value"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_pressure_tv_dimensions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_pressure_tv_value"
+                    android:text="@string/hpa"
+                    android:textColor="@color/colorInfoText"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    tools:ignore="RelativeOverlap" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_pressure_rl_center_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/long_tire"
+                    android:textColor="@color/colorInfoText"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_widget_rl_info_wind_rl"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/fragment_widget_rl_info_humidity_rl"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/fragment_widget_rl_info_wind_iv"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/icon_info"
+                    app:srcCompat="@drawable/oc_info_wind" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_wind_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_wind_iv"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/wind_speed"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_wind_tv_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_wind_rl_center_tv"
+                    android:maxLength="5"
+                    android:text="@string/value"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_wind_tv_dimensions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_wind_tv_value"
+                    android:text="@string/meter_sec"
+                    android:textColor="@color/colorInfoText"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    tools:ignore="RelativeOverlap" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_wind_rl_center_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/long_tire"
+                    android:textColor="@color/colorInfoText"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_widget_rl_info_humidity_rl"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/fragment_widget_rl_info_pressure_rl"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/fragment_widget_rl_info_humidity_iv"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/icon_info"
+                    app:srcCompat="@drawable/ic_info_humidity" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_humidity_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_humidity_iv"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/humidity"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_humidity_tv_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_humidity_rl_center_tv"
+                    android:text="@string/value"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_humidity_tv_dimensions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_humidity_tv_value"
+                    android:text="@string/persent"
+                    android:textColor="@color/colorInfoText"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    tools:ignore="RelativeOverlap" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_humidity_rl_center_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/long_tire"
+                    android:textColor="@color/colorInfoText"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_widget_rl_info_rain_rl"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/fragment_widget_rl_info_wind_rl"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/fragment_widget_rl_info_rain_iv"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/icon_info"
+                    app:srcCompat="@drawable/ic_info_rain" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_rain_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_rain_iv"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/rain_name"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_rain_tv_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_rain_rl_center_tv"
+                    android:maxLength="5"
+                    android:text="@string/value"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_rain_tv_dimensions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_rain_tv_value"
+                    android:text="@string/mm_day"
+                    android:textColor="@color/colorInfoText"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    tools:ignore="RelativeOverlap" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_rain_rl_center_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/long_tire"
+                    android:textColor="@color/colorInfoText"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_widget_rl_info_snow_rl"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/fragment_widget_rl_info_rain_rl"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/fragment_widget_rl_info_snow_iv"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/icon_info"
+                    app:srcCompat="@drawable/ic_info_snow" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_snow_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_snow_iv"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/snow"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_snow_tv_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_snow_rl_center_tv"
+                    android:maxLength="5"
+                    android:text="@string/value"
+                    android:textColor="@color/colorTextBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_snow_tv_dimensions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/fragment_widget_rl_info_snow_tv_value"
+                    android:text="@string/mm_day"
+                    android:textColor="@color/colorInfoText"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    tools:ignore="RelativeOverlap" />
+
+                <TextView
+                    android:id="@+id/fragment_widget_rl_info_snow_rl_center_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/long_tire"
+                    android:textColor="@color/colorInfoText"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/fragmen_widget_view_line_bot"
+                style="@style/Divider"
+                android:layout_below="@+id/fragment_widget_rl_info_snow_rl"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp" />
+
+            <TextView
+                android:id="@+id/fragment_widget_rl_info_bottom_discription_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fragmen_widget_view_line_bot"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/discriprion_rl_info"
+                android:textSize="12sp"
+                android:textStyle="italic" />
+
+            <ImageView
+                android:id="@+id/fragment_widget_rl_info_help_iv"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_below="@+id/fragment_widget_rl_info_bottom_discription_tv"
+                android:layout_alignParentEnd="false"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:contentDescription="@string/help"
+                app:srcCompat="@drawable/ic_help_2" />
+
+            <LinearLayout
+                android:id="@+id/fragment_widget_ll_buttons_bot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/fragment_widget_rl_info_help_iv"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/fragment_widget_rl_menu_refresh_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/secondary_button"
+                    android:text="@string/refresh"
+                    android:textColor="@color/colorTextButton"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/fragment_widget_rl_menu_delete_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/secondary_button"
+                    android:text="@string/delete_widget"
+                    android:textColor="@color/colorTextButton"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    </ScrollView>
+
+</android.support.v4.widget.SwipeRefreshLayout>

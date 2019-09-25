@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_help_sv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundListActivity">
+
+    <RelativeLayout
+        android:id="@+id/activity_help_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackgroundListActivity">
+
+        <RelativeLayout
+            android:id="@+id/activity_help_rl_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_background">
+
+            <TextView
+                android:id="@+id/activity_help_all_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/all"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorTextBlack" />
+
+            <TextView
+                android:id="@+id/activity_help_all_desc_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_help_all_tv"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/all_desc_1"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorInfoText"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/activity_help_all_view_line_top"
+                style="@style/Divider"
+                android:layout_below="@id/activity_help_all_tv"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/activity_help_rl_forecast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_help_rl_all"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_background">
+
+            <TextView
+                android:id="@+id/activity_help_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/forecast"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorTextBlack" />
+
+            <TextView
+                android:id="@+id/activity_help_desc_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_help_tv"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/desc_2"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorInfoText"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/activity_help_view_line_top"
+                style="@style/Divider"
+                android:layout_below="@id/activity_help_tv"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/activity_help_rl_widget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_help_rl_forecast"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_background">
+
+            <ImageView
+                android:id="@+id/activity_help_widget_iv"
+                android:layout_width="360dp"
+                android:layout_height="117dp"
+                android:layout_below="@id/activity_help_widget_tv"
+                android:layout_marginTop="15dp"
+                android:contentDescription="@string/widget_image"
+                app:srcCompat="@drawable/im_widget_help"
+                tools:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/activity_help_widget_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/widget"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorTextBlack" />
+
+            <TextView
+                android:id="@+id/activity_help_widget_desc_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_help_widget_iv"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/widget_desc_1"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorInfoText"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/activity_help_widget_desc_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_help_widget_desc_1"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/widget_desc_2"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorInfoText"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/activity_help_widget_desc_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_help_widget_desc_2"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/widget_desc_3"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorInfoText"
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:id="@+id/activity_help_widget_desc_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_help_widget_desc_3"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="60dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/widget_desc_4"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorInfoText"
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:id="@+id/activity_help_desc_tv_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/autor_group"
+                android:textAlignment="center"
+                android:textColor="@color/colorInfoText" />
+
+            <View
+                android:id="@+id/activity_help_widget_view_line_top"
+                style="@style/Divider"
+                android:layout_below="@id/activity_help_widget_tv"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</ScrollView>

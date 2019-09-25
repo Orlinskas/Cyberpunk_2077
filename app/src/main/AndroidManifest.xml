@@ -1,0 +1,99 @@
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.orlinskas.cyberpunk">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".ApplicationContext"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@drawable/logo_primary"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo_primary"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning"
+        android:hardwareAccelerated="false">
+
+        <activity
+            android:name=".ui.main.MainActivityGeneral"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.other.WidgetCreatorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.other.CountryListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.other.CityListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.other.HelpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.other.MessageToAuthorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.ConfigurationWidgetActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.main.MainActivity" />
+
+        <receiver
+            android:name=".ui.home.HomeWidget"
+            android:icon="@drawable/logo_primary"
+            android:label="Weather">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_metadata" />
+        </receiver>
+
+        <receiver android:name=".background.UpdateReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".background.WidgetUpdateService"
+            android:enabled="true"/>
+
+        <uses-library
+            android:name="android.test.runner"
+            android:required="false" />
+        <uses-library
+            android:name="android.test.base"
+            android:required="false" />
+        <uses-library
+            android:name="android.test.mock"
+            android:required="false" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>
+

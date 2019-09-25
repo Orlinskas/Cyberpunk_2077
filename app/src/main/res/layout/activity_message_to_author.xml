@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_message_rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundListActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/activity_message_rl_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_background">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="72dp"
+            android:layout_height="59dp"
+            android:layout_below="@id/textView8"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:srcCompat="@drawable/gmail"
+            android:contentDescription="@string/gmail_im" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="0dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:shadowDy="2"
+            android:shadowRadius="4"
+            android:text="@string/question"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView8"
+            android:layout_alignParentEnd="false"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_toEndOf="@+id/imageView5"
+            android:autoLink="email"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/gmail"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/activity_message_rl_head_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_message_rl_head"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_background">
+
+        <ImageView
+            android:id="@+id/imageView51"
+            android:layout_width="72dp"
+            android:layout_height="59dp"
+            android:layout_below="@id/imageView511"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/inst_im"
+            app:srcCompat="@drawable/inst" />
+
+        <ImageView
+            android:id="@+id/imageView511"
+            android:layout_width="72dp"
+            android:layout_height="59dp"
+            android:layout_below="@id/textView81"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/gmail_im"
+            app:srcCompat="@drawable/gmail" />
+
+        <TextView
+            android:id="@+id/textView161"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView81"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_toEndOf="@+id/imageView51"
+            android:autoLink="email"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/my_gmail"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView81"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:shadowDy="2"
+            android:shadowRadius="4"
+            android:text="@string/mail"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView1611"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView81"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="110dp"
+            android:layout_toEndOf="@+id/imageView511"
+            android:autoLink="web"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/inst"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

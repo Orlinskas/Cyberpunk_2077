@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_city_data_generator_sv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundListActivity">
+
+    <RelativeLayout
+        android:id="@+id/activity_city_data_generator_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/rounded_background">
+
+        <ProgressBar
+            android:id="@+id/activity_city_data_generator_pb"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/activity_city_data_generator_tv_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/fragment_city_data_generator_tv_head"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="24sp"
+            tools:ignore="RelativeOverlap" />
+
+        <RelativeLayout
+            android:id="@+id/activity_city_data_generator_conection_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_city_data_generator_tv_head"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="-10dp"
+            android:layout_marginEnd="10dp">
+
+            <TextView
+                android:id="@+id/activity_city_data_generator_tv_network_on"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:drawableEnd="@drawable/ic_green"
+                android:drawablePadding="5dp"
+                android:fontFamily="monospace"
+                android:text="@string/network"
+                android:textColor="@color/colorInfoText" />
+
+            <TextView
+                android:id="@+id/activity_city_data_generator_tv_network_off"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:drawableEnd="@drawable/ic_red"
+                android:drawablePadding="5dp"
+                android:fontFamily="monospace"
+                android:text="@string/network"
+                android:textColor="@color/colorInfoText" />
+
+            <TextView
+                android:id="@+id/activity_city_data_generator_tv_gps_on"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_city_data_generator_tv_network_on"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:drawableEnd="@drawable/ic_green"
+                android:drawablePadding="5dp"
+                android:fontFamily="monospace"
+                android:text="@string/gps"
+                android:textColor="@color/colorInfoText" />
+
+            <TextView
+                android:id="@+id/activity_city_data_generator_tv_gps_off"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_city_data_generator_tv_network_on"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:drawableEnd="@drawable/ic_red"
+                android:drawablePadding="5dp"
+                android:fontFamily="monospace"
+                android:text="@string/gps"
+                android:textColor="@color/colorInfoText" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/activity_city_data_generator_tv_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_city_data_generator_tv_head"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/country"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/activity_city_data_generator_tv_country_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_city_data_generator_tv_country"
+            android:layout_marginTop="5dp"
+            android:text="@string/fragment_city_data_generator_tv_country_name"
+            android:textAlignment="center"
+            android:textColor="@color/colorInfoText"
+            android:textSize="18sp" />
+
+        <View
+            android:id="@+id/activity_city_data_generator_view_line"
+            style="@style/Divider"
+            android:layout_below="@+id/activity_city_data_generator_tv_country_name"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:id="@+id/activity_city_data_generator_tv_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_city_data_generator_view_line"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/city"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/activity_city_data_generator_tv_city_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_city_data_generator_tv_city"
+            android:layout_marginTop="5dp"
+            android:text="@string/fragment_city_data_generator_tv_country_name"
+            android:textAlignment="center"
+            android:textColor="@color/colorInfoText"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/activity_city_data_generator_btn_gps"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/activity_city_data_generator_tv_city_name"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/secondary_button"
+            android:text="@string/fragment_city_data_generator_spn_country"
+            android:textColor="@color/colorTextButton"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/activity_city_data_generator_btn_open_list"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/activity_city_data_generator_btn_gps"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/secondary_button"
+            android:text="@string/fragment_city_data_generator_spn_city"
+            android:textColor="@color/colorTextButton"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/activity_city_data_generator_btn_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_city_data_generator_btn_open_list"
+            android:layout_alignParentBottom="false"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/main_button"
+            android:text="@string/fragment_city_data_generator_btn_start"
+            android:textColor="@color/colorTextButton"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+</ScrollView>
+

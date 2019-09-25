@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="colorCyberpunkWhite">#F2E205</color>
+    <color name="colorCyberpunkGreen">#63CEA5</color>
+    <color name="colorCyberpunkRed">#EF2F48</color>
+    <color name="colorCyberpunkOrange">#EFA439</color>
+    <color name="colorCyberpunkLowRed">#49383E</color>
+
+    <color name="colorGreyBackground">#2A2A2A</color>
+    <color name="colorBlackBackground">#000000</color>
+    <color name="colorGreenBackground">#DD050C0B</color>
+
+    <color name="colorBlack">#000000</color>
+
+    <color name="colorHeadBackground">#262626</color>
+    <color name="colorHeadAccent">#59343E</color>
+
+    <color name="colorEmpty">#00FFFFFF</color>
+    <color name="colorAlphaBackground">#793C3C3C</color>
+    <color name="colorRoundedBackground">#FFFFFF</color>
+
+    <color name="colorChartTemperature">#FFFFFF</color>
+    <color name="colorChartTimeX">#FFFFFF</color>
+    <color name="colorChartLine">#FFFFFF</color>
+    <color name="colorChartCircle">#FFFFFF</color>
+    <color name="colorChartCircleSmall">#000000</color>
+    <color name="colorChartDate">#FFFFFF</color>
+
+    <color name="colorControlBarTintButton">#FFFFFF</color>
+    <color name="colorControlBarTextScroll">#FFFFFF</color>
+
+    <color name="colorPrimary">#262626</color>
+    <color name="colorAccent">#59343E</color>
+    <color name="colorTextLabel">#FFB819</color>
+    <color name="colorTextBlack">#141414</color>
+    <color name="colorInfoText">#474747</color>
+    <color name="colorSecondaryButton">#A69F9B</color>
+    <color name="colorTextButton">#FFFFFF</color>
+
+    <color name="colorTextListActivity">#F6F3F3</color>
+    <color name="colorBackgroundListActivity">#C9C9C9</color>
+    <color name="colorRowHigh">#EFECEC</color>
+    <color name="colorRowLight">#F6F3F3</color>
+
+    <color name="colorWidgetTextDescription">#F3B03C</color>
+    <color name="colorWidgetTextDate">#ACABAB</color>
+    <color name="colorWidgetTextTemp">#ACABAB</color>
+    <color name="colorWidgetShadow">#141414</color>
+    <color name="colorWidgetBackground">#A5000000</color>
+
+</resources>
