@@ -20,8 +20,10 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.orlinskas.cyberpunk.City;
+import com.orlinskas.cyberpunk.FirstRunner;
 import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.ToastBuilder;
+import com.orlinskas.cyberpunk.preferences.FirstRunVerifier;
 import com.orlinskas.cyberpunk.request.Request;
 import com.orlinskas.cyberpunk.specification.WidgetEmptySpecification;
 import com.orlinskas.cyberpunk.ui.other.HelpActivity;
@@ -56,6 +58,7 @@ public class MainActivityGeneral extends AppCompatActivity {
         scrollView = findViewById(R.id.activity_main_general_create_sv);
 
         showAnimationsHead();
+        processFirstRun(getApplicationContext());
         loadAndShowWidgetsList();
     }
 
@@ -67,6 +70,19 @@ public class MainActivityGeneral extends AppCompatActivity {
             }
         };
         runnable.run();
+    }
+
+    private void processFirstRun(Context applicationContext) {
+        FirstRunVerifier firstRunVerifier = new FirstRunVerifier(applicationContext);
+
+        if(!firstRunVerifier.check()) {
+            ToastBuilder.createSnackBar(scrollView, "Wake the f*** Up Samurai");
+
+            FirstRunner firstRunner = new FirstRunner(applicationContext);
+            firstRunner.doFirstRun();
+
+            firstRunVerifier.setFirstRun(true);
+        }
     }
 
     private void loadAndShowWidgetsList() {
