@@ -15,10 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.orlinskas.cyberpunk.ActivityOpener;
@@ -38,20 +35,18 @@ import com.orlinskas.cyberpunk.widget.WidgetRepository;
 public class WidgetCreatorActivity extends AppCompatActivity {
     private TextView countryName, cityName;
     private TextView indicatorGpsOn, indicatorNetworkOn, indicatorGpsOff, indicatorNetworkOff;
-    private ProgressBar progressBar;
     private Country country;
     private City city;
     private final int REQUEST_CODE_PERMISSION_FINE_LOCATION = 1001;
     private final int REQUEST_CODE_PERMISSION_COARSE_LOCATION = 1002;
     private boolean permissionGPS;
     private boolean permissionNetwork;
-    private SearchLocationTask task;
+    private SearchLocationTask searchLocationTask;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_widget_creator);
-        progressBar = findViewById(R.id.activity_city_data_generator_pb);
         Button searchLocationBtn = findViewById(R.id.activity_city_data_generator_btn_gps);
         Button openListLocationsBtn = findViewById(R.id.activity_city_data_generator_btn_open_list);
         Button createWidgetButton = findViewById(R.id.activity_city_data_generator_btn_start);
@@ -67,12 +62,9 @@ public class WidgetCreatorActivity extends AppCompatActivity {
         checkGPSOn();
         checkNetworkOn();
 
-        final Animation buttonClickAnim = AnimationUtils.loadAnimation(this, R.anim.animation_button);
-
         searchLocationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.startAnimation(buttonClickAnim);
                 if(isSearchTaskRunning()){
                     ToastBuilder.create(getApplicationContext(), getString(R.string.search_working));
                 }
@@ -249,20 +241,20 @@ public class WidgetCreatorActivity extends AppCompatActivity {
     }
 
     private void runSearchLocationTask(String provider) {
-        task = new SearchLocationTask(provider);
-        task.execute();
+        searchLocationTask = new SearchLocationTask(provider);
+        searchLocationTask.execute();
     }
 
     private boolean isSearchTaskRunning() {
-        if(task == null){
+        if(searchLocationTask == null){
             return false;
         }
-        return task.getStatus() == AsyncTask.Status.RUNNING;
+        return searchLocationTask.getStatus() == AsyncTask.Status.RUNNING;
     }
 
     private void stopSearchLocationTask() {
-        task.cancel(true);
-        task = null;
+        searchLocationTask.cancel(true);
+        searchLocationTask = null;
     }
 
     @SuppressLint("StaticFieldLeak")
