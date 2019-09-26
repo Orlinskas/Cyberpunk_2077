@@ -1,55 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_main_create_sv"
+    android:id="@+id/activity_main_general_create_sv"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/im_background_2">
+    android:background="@drawable/im_background_3">
 
     <RelativeLayout
         android:id="@+id/activity_main_create_rl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RelativeLayout
-            android:id="@+id/activity_main_create_rl_head_anim"
-            android:layout_width="match_parent"
-            android:layout_height="130dp" />
-
-        <TextView
-            android:id="@+id/activity_main_general_tv_head"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/activity_main_create_rl_head_anim"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="-15dp"
-            android:fontFamily="@font/cyberpunk_eng"
-            android:text="WIDGET"
-            android:textColor="@color/colorCyberpunkWhite"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/activity_main_create_tv_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/activity_main_general_tv_head"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/cyberpunk_2"
-            android:text="MENU"
-            android:textColor="@color/colorCyberpunkRed"
-            android:textSize="14sp"
-            android:typeface="normal" />
+        android:layout_height="wrap_content"
+        android:background="@color/colorGreenBackground">
 
         <ImageView
             android:id="@+id/activity_main_general_im_progress_menu"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_above="@+id/activity_main_create_rl_create_window"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="3dp"
+            app:srcCompat="@drawable/im_progress_1" />
+
+        <ImageView
+            android:id="@+id/activity_main_general_im_progress_list"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_above="@+id/activity_main_create_rl_widget_list_window"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="3dp"
@@ -80,8 +59,8 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/im_create_btn_off"
-                    android:onClick="onClickMenu"/>
+                    android:onClick="onClickMenu"
+                    app:srcCompat="@drawable/im_create_btn_off" />
 
                 <ImageView
                     android:id="@+id/activity_main_general_iv_btn_options"
@@ -92,8 +71,8 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/im_settings_btn_off"
-                    android:onClick="onClickMenu"/>
+                    android:onClick="onClickMenu"
+                    app:srcCompat="@drawable/im_settings_btn_off" />
 
             </LinearLayout>
 
@@ -113,8 +92,8 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/im_help_btn_off"
-                    android:onClick="onClickMenu"/>
+                    android:onClick="onClickMenu"
+                    app:srcCompat="@drawable/im_help_btn_off" />
 
                 <ImageView
                     android:id="@+id/activity_main_general_iv_btn_share"
@@ -125,11 +104,32 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/im_share_btn_off"
-                    android:onClick="onClickMenu"/>
+                    android:onClick="onClickMenu"
+                    app:srcCompat="@drawable/im_share_btn_off" />
 
             </LinearLayout>
 
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/activity_main_create_rl_head_anim"
+            android:layout_width="match_parent"
+            android:layout_height="130dp" />
+
+        <RelativeLayout
+            android:id="@+id/activity_main_create_rl_widget_list_window"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/activity_main_create_tv_widgets_list"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="70dp"
+            android:background="@drawable/grey_background">
+
+            <ListView
+                android:id="@+id/activity_main_general_lv_widgets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </RelativeLayout>
 
         <TextView
@@ -147,40 +147,40 @@
             android:textSize="14sp"
             android:typeface="normal" />
 
-        <ImageView
-            android:id="@+id/activity_main_general_im_progress_list"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_above="@+id/activity_main_create_rl_widget_list_window"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="3dp"
-            app:srcCompat="@drawable/im_progress_1" />
+        <TextView
+            android:id="@+id/activity_main_general_tv_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_main_create_rl_head_anim"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-15dp"
+            android:fontFamily="@font/cyberpunk_eng"
+            android:text="WIDGET"
+            android:textColor="@color/colorCyberpunkWhite"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-        <RelativeLayout
-            android:id="@+id/activity_main_create_rl_widget_list_window"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@+id/activity_main_create_tv_widgets_list"
-            android:layout_marginStart="10dp"
+        <TextView
+            android:id="@+id/activity_main_create_tv_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_main_general_tv_head"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/grey_background">
-
-            <ListView
-                android:id="@+id/activity_main_general_lv_widgets"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </RelativeLayout>
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/cyberpunk_2"
+            android:text="MENU"
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="14sp"
+            android:typeface="normal" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/activity_main_create_rl_widget_list_window"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
             android:fontFamily="@font/cyberpunk_eng"
             android:text="orlinskas development "
             android:textColor="@color/colorCyberpunkRed"

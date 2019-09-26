@@ -23,14 +23,19 @@
         android:hardwareAccelerated="false">
 
         <activity
+            android:name=".ui.main.SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".ui.main.MainActivityGeneral"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
@@ -55,7 +60,10 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.MainActivity" />
+
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:screenOrientation="portrait"/>
 
         <receiver
             android:name=".ui.home.HomeWidget"

@@ -12,7 +12,7 @@ public class Request implements Serializable {
     private String unitsType;
     private String apiKey;
 
-    Request(String date, City city, String source, String forecastType, String unitsType, String apiKey) {
+    public Request(String date, City city, String source, String forecastType, String unitsType, String apiKey) {
         this.date = date;
         this.city = city;
         this.source = source;
