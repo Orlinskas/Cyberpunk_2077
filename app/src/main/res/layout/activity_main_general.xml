@@ -63,7 +63,7 @@
                     app:srcCompat="@drawable/im_create_btn_off" />
 
                 <ImageView
-                    android:id="@+id/activity_main_general_iv_btn_options"
+                    android:id="@+id/activity_main_general_iv_btn_author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -72,7 +72,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     android:onClick="onClickMenu"
-                    app:srcCompat="@drawable/im_settings_btn_off" />
+                    app:srcCompat="@drawable/im_author_btn_off" />
 
             </LinearLayout>
 
@@ -156,9 +156,8 @@
             android:layout_marginTop="-15dp"
             android:fontFamily="@font/cyberpunk_eng"
             android:text="WIDGET"
-            android:textColor="@color/colorCyberpunkWhite"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textColor="@color/colorCyberpunkOrange"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/activity_main_create_tv_menu"

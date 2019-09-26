@@ -32,8 +32,9 @@ import com.orlinskas.cyberpunk.widget.WidgetRepository;
 
 import java.util.ArrayList;
 
+@SuppressLint("StaticFieldLeak")
 public class MainActivityGeneral extends AppCompatActivity {
-    private ImageView btnCreate, btnOptions, btnHelp, btnShare;
+    private ImageView btnCreate, btnAuthor, btnHelp, btnShare;
     private ImageView progressMenu, progressList;
     private ListView listView;
     private OpenActivityTask openActivityTask;
@@ -46,7 +47,7 @@ public class MainActivityGeneral extends AppCompatActivity {
         setContentView(R.layout.activity_main_general);
 
         btnCreate = findViewById(R.id.activity_main_general_iv_btn_create);
-        btnOptions = findViewById(R.id.activity_main_general_iv_btn_options);
+        btnAuthor = findViewById(R.id.activity_main_general_iv_btn_author);
         btnHelp = findViewById(R.id.activity_main_general_iv_btn_help);
         btnShare = findViewById(R.id.activity_main_general_iv_btn_share);
         progressMenu = findViewById(R.id.activity_main_general_im_progress_menu);
@@ -56,8 +57,6 @@ public class MainActivityGeneral extends AppCompatActivity {
 
         showAnimationsHead();
         loadAndShowWidgetsList();
-
-
     }
 
     private void showAnimationsHead() {
@@ -94,125 +93,14 @@ public class MainActivityGeneral extends AppCompatActivity {
 
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private class LoadWidgetsListTask extends AsyncTask<Void, Void, Void> {
-        private final int IC_PROGRESS_1 = R.drawable.im_progress_1;
-        private final int IC_PROGRESS_2 = R.drawable.im_progress_2;
-        private final int IC_PROGRESS_3 = R.drawable.im_progress_3;
-        private final int IC_PROGRESS_4 = R.drawable.im_progress_4;
-        private final int[] progressImage = {IC_PROGRESS_1, IC_PROGRESS_2, IC_PROGRESS_3, IC_PROGRESS_4};
-        private int imageCount = 1;
-        private ArrayList<Widget> widgets;
-        private Context context;
-
-        LoadWidgetsListTask(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            int roundCount = 0;
-            WidgetRepository repository = new WidgetRepository(context);
-            try {
-                widgets = repository.query(new WidgetEmptySpecification());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            if (widgets == null || widgets.size() == 0) {
-                addEmptyWidgetElement();
-            }
-            do {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        int imageId = progressImage[imageCount];
-                        progressList.setImageResource(imageId);
-                    }
-                });
-                imageCount++;
-                roundCount++;
-                if(imageCount == 4) {
-                    imageCount = 0;
-                }
-                if (isCancelled()) {
-                    break;
-                }
-            }
-            while (roundCount < 20);
-
-            return null;
-        }
-
-        private void addEmptyWidgetElement() {
-            City emptyCity = new City(1, "Not found","Need to create",1.0,1.0);
-            Widget emptyWidget = new Widget(0, emptyCity, new Request("n/a", emptyCity, "n/a", "n/a" , "n/a", "n/a"));
-            widgets.add(emptyWidget);
-            ToastBuilder.createSnackBar(scrollView,"Create widget");
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-            progressList.setImageResource(IC_PROGRESS_1);
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            progressList.setImageResource(IC_PROGRESS_1);
-            showWidgetsList(widgets);
-        }
-
-        private void showWidgetsList(ArrayList<Widget> widgets) {
-            ArrayAdapter<Widget> adapter = new WidgetListAdapter(getApplicationContext(), R.layout.widget_list_view_row, widgets);
-            listView.setAdapter(adapter);
-        }
-    }
-
-    private class WidgetListAdapter extends ArrayAdapter<Widget> {
-        private ArrayList<Widget> widgets;
-
-        WidgetListAdapter(Context applicationContext, int widget_list_view_row, ArrayList<Widget> widgets) {
-            super(applicationContext, widget_list_view_row, widgets);
-            this.widgets = widgets;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater inflater = getLayoutInflater();
-            @SuppressLint("ViewHolder")
-            View row = inflater.inflate(R.layout.widget_list_view_row, parent, false);
-            TextView widgetId = row.findViewById(R.id.widget_list_view_row_tv_id);
-            TextView widgetCityName = row.findViewById(R.id.widget_list_view_row_tv_name);
-            TextView widgetCountryCode = row.findViewById(R.id.widget_list_view_row_tv_code);
-
-            String id = String.valueOf(widgets.get(position).getId());
-            String name = widgets.get(position).getCity().getName();
-            String code = widgets.get(position).getCity().getCountryCode();
-
-            widgetId.setText(id);
-            widgetCityName.setText(name);
-            widgetCountryCode.setText(code);
-
-            return row;
-        }
-    }
-
-
     public void onClickMenu(View view) {
         switch (view.getId()) {
             case R.id.activity_main_general_iv_btn_create:
                 btnCreate.setImageResource(R.drawable.im_create_btn_on);
                 startOpenActivityTask(WidgetCreatorActivity.class);
                 break;
-            case R.id.activity_main_general_iv_btn_options:
-                btnOptions.setImageResource(R.drawable.im_options_btn_on);
+            case R.id.activity_main_general_iv_btn_author:
+                btnAuthor.setImageResource(R.drawable.im_author_btn_on);
                 startOpenActivityTask(WidgetCreatorActivity.class);
                 break;
             case R.id.activity_main_general_iv_btn_help:
@@ -269,7 +157,115 @@ public class MainActivityGeneral extends AppCompatActivity {
 
     }
 
-    @SuppressLint("StaticFieldLeak")
+    private class LoadWidgetsListTask extends AsyncTask<Void, Void, Void> {
+        private final int IC_PROGRESS_1 = R.drawable.im_progress_1;
+        private final int IC_PROGRESS_2 = R.drawable.im_progress_2;
+        private final int IC_PROGRESS_3 = R.drawable.im_progress_3;
+        private final int IC_PROGRESS_4 = R.drawable.im_progress_4;
+        private final int[] progressImage = {IC_PROGRESS_1, IC_PROGRESS_2, IC_PROGRESS_3, IC_PROGRESS_4};
+        private int imageCount = 1;
+        private ArrayList<Widget> widgets;
+        private Context context;
+
+        LoadWidgetsListTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            int roundCount = 0;
+            WidgetRepository repository = new WidgetRepository(context);
+            try {
+                widgets = repository.query(new WidgetEmptySpecification());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (widgets == null || widgets.size() == 0) {
+                addEmptyWidgetElement();
+            }
+            do {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int imageId = progressImage[imageCount];
+                        progressList.setImageResource(imageId);
+                    }
+                });
+                imageCount++;
+                roundCount++;
+                if(imageCount == 4) {
+                    imageCount = 0;
+                }
+                if (isCancelled()) {
+                    break;
+                }
+            }
+            while (roundCount < 20);
+
+            return null;
+        }
+
+        private void addEmptyWidgetElement() {
+            City emptyCity = new City(404, "Not found","Need to create",1.0,1.0);
+            Widget emptyWidget = new Widget(0, emptyCity, new Request("n/a", emptyCity, "n/a", "n/a" , "n/a", "n/a"));
+            widgets.add(emptyWidget);
+            ToastBuilder.createSnackBar(scrollView,"Create widget");
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            progressList.setImageResource(IC_PROGRESS_1);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressList.setImageResource(IC_PROGRESS_1);
+            showWidgetsList(widgets);
+        }
+
+        private void showWidgetsList(ArrayList<Widget> widgets) {
+            ArrayAdapter<Widget> adapter = new WidgetListAdapter(getApplicationContext(), R.layout.widget_list_view_row, widgets);
+            listView.setAdapter(adapter);
+        }
+    }
+
+    private class WidgetListAdapter extends ArrayAdapter<Widget> {
+        private ArrayList<Widget> widgets;
+
+        WidgetListAdapter(Context applicationContext, int widget_list_view_row, ArrayList<Widget> widgets) {
+            super(applicationContext, widget_list_view_row, widgets);
+            this.widgets = widgets;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            LayoutInflater inflater = getLayoutInflater();
+            @SuppressLint("ViewHolder")
+            View row = inflater.inflate(R.layout.widget_list_view_row, parent, false);
+            TextView widgetId = row.findViewById(R.id.widget_list_view_row_tv_id);
+            TextView widgetCityName = row.findViewById(R.id.widget_list_view_row_tv_name);
+            TextView widgetCountryCode = row.findViewById(R.id.widget_list_view_row_tv_code);
+
+            String id = String.valueOf(widgets.get(position).getId());
+            String name = widgets.get(position).getCity().getName();
+            String code = widgets.get(position).getCity().getCountryCode();
+
+            widgetId.setText(id);
+            widgetCityName.setText(name);
+            widgetCountryCode.setText(code);
+
+            return row;
+        }
+    }
+
     private class OpenActivityTask extends AsyncTask<Void, Void, Void> {
         private final int IC_PROGRESS_1 = R.drawable.im_progress_1;
         private final int IC_PROGRESS_2 = R.drawable.im_progress_2;
@@ -336,45 +332,9 @@ public class MainActivityGeneral extends AppCompatActivity {
         super.onRestart();
         btnShare.setImageResource(R.drawable.im_share_btn_off);
         btnHelp.setImageResource(R.drawable.im_help_btn_off);
-        btnOptions.setImageResource(R.drawable.im_settings_btn_off);
+        btnAuthor.setImageResource(R.drawable.im_author_btn_off);
         btnCreate.setImageResource(R.drawable.im_create_btn_off);
     }
-
-    private void stopListProgressTask() {
-        if(loadWidgetsListTask != null) {
-            switch (loadWidgetsListTask.getStatus()) {
-                case FINISHED:
-                case RUNNING:
-                case PENDING:
-                    loadWidgetsListTask.cancel(true);
-            }
-        }
-    }
-
-    private void stopOpenActivityTask() {
-        if(openActivityTask != null) {
-            switch (openActivityTask.getStatus()) {
-                case FINISHED:
-                case RUNNING:
-                case PENDING:
-                    openActivityTask.cancel(true);
-            }
-        }
-    }
-
-    //@Override
-    //protected void onDestroy() {
-    //    super.onDestroy();
-    //    stopOpenActivityTask();
-    //    stopListProgressTask();
-    //}
-//
-    //@Override
-    //protected void onPause() {
-    //    super.onPause();
-    //    stopOpenActivityTask();
-    //    stopListProgressTask();
-    //}
 }
 
 
