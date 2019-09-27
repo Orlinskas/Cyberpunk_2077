@@ -2,7 +2,6 @@ package com.orlinskas.cyberpunk.ui.other;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -16,7 +15,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -28,15 +26,10 @@ import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.location.CityFinder;
 import com.orlinskas.cyberpunk.post.CountryNameWriter;
-import com.orlinskas.cyberpunk.request.Request;
-import com.orlinskas.cyberpunk.specification.WidgetEmptySpecification;
-import com.orlinskas.cyberpunk.ui.main.MainActivityGeneral;
 import com.orlinskas.cyberpunk.widget.Widget;
 import com.orlinskas.cyberpunk.widget.WidgetCopyChecker;
 import com.orlinskas.cyberpunk.widget.WidgetCreator;
 import com.orlinskas.cyberpunk.widget.WidgetRepository;
-
-import java.util.ArrayList;
 
 @SuppressLint("MissingPermission")
 public class WidgetCreatorActivity extends AppCompatActivity {
@@ -347,7 +340,7 @@ public class WidgetCreatorActivity extends AppCompatActivity {
             WidgetRepository widgetRepository = new WidgetRepository(getApplicationContext());
             Widget widget = widgetCreator.create(city);
             WidgetCopyChecker checker = new WidgetCopyChecker(getApplicationContext(), widget);
-            if(checker.check()){
+            if(checker.isHasCopy()){
                 return null;
             }
             else {

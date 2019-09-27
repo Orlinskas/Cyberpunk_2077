@@ -15,7 +15,7 @@ public class WidgetCopyChecker {
         this.widget = widget;
     }
 
-    public boolean check() throws Exception {
+    public boolean isHasCopy() throws Exception {
         WidgetRepository repository = new WidgetRepository(context);
         ArrayList<Widget> widgets = repository.query(new WidgetEmptySpecification());
 

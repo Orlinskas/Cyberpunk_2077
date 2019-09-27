@@ -61,7 +61,10 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.other.WidgetCreatorView" />
+
+        <activity
+            android:name=".ui.other.WidgetCreatorView"
+            android:screenOrientation="portrait"/>
 
         <receiver
             android:name=".ui.home.HomeWidget"
