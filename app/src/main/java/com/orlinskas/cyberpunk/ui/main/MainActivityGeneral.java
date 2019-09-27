@@ -28,6 +28,7 @@ import com.orlinskas.cyberpunk.request.Request;
 import com.orlinskas.cyberpunk.specification.WidgetEmptySpecification;
 import com.orlinskas.cyberpunk.ui.other.HelpActivity;
 import com.orlinskas.cyberpunk.ui.other.WidgetCreatorActivity;
+import com.orlinskas.cyberpunk.ui.other.WidgetCreatorView;
 import com.orlinskas.cyberpunk.ui.widget.AnimatedBackgroundView;
 import com.orlinskas.cyberpunk.widget.Widget;
 import com.orlinskas.cyberpunk.widget.WidgetRepository;
@@ -113,7 +114,7 @@ public class MainActivityGeneral extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.activity_main_general_iv_btn_create:
                 btnCreate.setImageResource(R.drawable.im_create_btn_on);
-                startOpenActivityTask(WidgetCreatorActivity.class);
+                startOpenActivityTask(WidgetCreatorView.class);
                 break;
             case R.id.activity_main_general_iv_btn_author:
                 btnAuthor.setImageResource(R.drawable.im_author_btn_on);

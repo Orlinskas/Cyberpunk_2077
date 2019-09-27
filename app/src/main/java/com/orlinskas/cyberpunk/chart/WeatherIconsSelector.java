@@ -174,7 +174,7 @@ public class WeatherIconsSelector {
                 }
             case 804:
                 return IC_022_ID;
-                default:return R.drawable.ic_red;
+                default:return R.drawable.im_circle_off;
         }
     }
 }
