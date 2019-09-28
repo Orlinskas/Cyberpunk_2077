@@ -31,6 +31,7 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter, 
     private Thread progressBarThread;
     private boolean isCanceledThread = false;
     private LocationManager locationManager;
+    private LocationListener locationListener;
 
     WidgetCreatorPresenter(Context context, WidgetCreatorContract.View view, LocationManager locationManager) {
         this.view = view;
@@ -57,7 +58,6 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter, 
         };
     }
 
-    @SuppressLint("HandlerLeak")
     @Override
     public void onClickChooseLocation() {
         new Thread(new Runnable() {
@@ -108,7 +108,7 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter, 
     @Override
     public void onResult(Widget widget) {
         if(widget != null && widget.getId() != EMPTY_WIDGET) {
-            view.openWidgetActivity(MainActivity.class);
+            view.openActivity(MainActivity.class);
         }
         else {
             view.doSnackBar("Some data is incorrect");
@@ -118,12 +118,21 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter, 
     @Override
     public void startSearchLocation() {
         startProgressBar();
-        LocationListener locationListener = this;
+        locationListener = this;
         locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, locationListener, null);
         locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, locationListener, null);
+        if (!isGPSEnable()) {
+            view.doSnackBar("Turn on GPS!");
+        }
     }
 
-    @SuppressLint("HandlerLeak")
+    @Override
+    public void stopSearchLocation() {
+        if(locationManager != null && locationListener != null) {
+            locationManager.removeUpdates(locationListener);
+        }
+    }
+
     @Override
     public void startProgressBar() {
         if(progressBarThread == null || progressBarThread.getState() == Thread.State.NEW
@@ -215,11 +224,13 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter, 
     }
 
     private void readLocation(Location lastKnownLocation) {
-        City city = findCity(lastKnownLocation);
-        Country country = findCountry(city);
-        view.setCity(city);
-        view.setCountry(country);
-        stopProgressBar();
+        if (lastKnownLocation != null) {
+            City city = findCity(lastKnownLocation);
+            Country country = findCountry(city);
+            view.setCity(city);
+            view.setCountry(country);
+            stopProgressBar();
+        }
     }
 
     private City findCity(Location lastKnownLocation) {
@@ -232,7 +243,7 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter, 
         return new Country(city.getCountryCode(), nameWriter.findNameWith(city.getCountryCode()));
     }
 
-    private boolean checkGPSEnable() {
+    private boolean isGPSEnable() {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 
@@ -241,5 +252,6 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter, 
         context = null;
         model = null;
         stopProgressBar();
+        startSearchLocation();
     }
 }

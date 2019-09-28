@@ -10,6 +10,8 @@ import com.orlinskas.cyberpunk.widget.WidgetCopyChecker;
 import com.orlinskas.cyberpunk.widget.WidgetCreator;
 import com.orlinskas.cyberpunk.widget.WidgetRepository;
 
+import static com.orlinskas.cyberpunk.ui.other.WidgetCreatorContract.EMPTY_WIDGET;
+
 public class WidgetCreatorModel implements WidgetCreatorContract.Model {
     private Context context;
     private WidgetCreatorContract.Presenter presenter;
@@ -19,7 +21,7 @@ public class WidgetCreatorModel implements WidgetCreatorContract.Model {
         this.context = context;
         this.presenter = presenter;
         City emptyCity = new City(404, "Not found", "Need to create", 1.0, 1.0);
-        emptyWidget = new Widget(0, emptyCity, new Request("n/a", emptyCity, "n/a", "n/a" , "n/a", "n/a"));
+        emptyWidget = new Widget(EMPTY_WIDGET, emptyCity, new Request("n/a", emptyCity, "n/a", "n/a" , "n/a", "n/a"));
     }
 
     @Override

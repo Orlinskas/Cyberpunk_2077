@@ -20,10 +20,8 @@ public interface WidgetCreatorContract {
         void setButtonStatus(int BUTTON, int STATUS);
         void setProgressImage(int KEY);
         void openActivityForResult(Class activity);
-        void openWidgetActivity(Class activity);
+        void openActivity(Class activity);
         void toAskGPSPermission();
-        void toAskEnableGPS();
-        void doToast(String message);
         void doSnackBar(String message);
     }
 
@@ -32,10 +30,11 @@ public interface WidgetCreatorContract {
         void onClickChooseLocation();
         void onClickSearchLocation();
         void onClickCreateWidget(Country country, City city);
-        void onResult(Widget widget);
         void startSearchLocation();
+        void stopSearchLocation();
         void startProgressBar();
         void stopProgressBar();
+        void onResult(Widget widget);
         void destroy();
     }
 

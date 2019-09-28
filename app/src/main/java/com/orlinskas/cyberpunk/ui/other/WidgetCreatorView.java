@@ -101,32 +101,28 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
 
     @Override
     public void setButtonStatus(int BUTTON, int STATUS) {
-            switch (BUTTON){
-                case BUTTON_CREATE_WIDGET:
-                    if(STATUS == STATUS_ON) {
-                        createWidgetBtn.setBackground(getResources().getDrawable(R.drawable.im_create_big_btn_on));
-                    }
-                    else {
-                        createWidgetBtn.setBackground(getResources().getDrawable(R.drawable.im_create_big_btn_off));
-                    }
-                    break;
-                case BUTTON_OPEN_LIST_ACTIVITY:
-                    if(STATUS == STATUS_ON) {
-                        chooseLocationBtn.setBackground(getResources().getDrawable(R.drawable.im_choose_btn_on));
-                    }
-                    else {
-                        chooseLocationBtn.setBackground(getResources().getDrawable(R.drawable.im_shoose_btn_off));
-                    }
-                    break;
-                case BUTTON_START_SEARCH_LOCATION:
-                    if(STATUS == STATUS_ON) {
-                        searchLocationBtn.setBackground(getResources().getDrawable(R.drawable.im_location_btn_on));
-                    }
-                    else {
-                        searchLocationBtn.setBackground(getResources().getDrawable(R.drawable.im_location_btn_off));
-                    }
-                    break;
-            }
+        switch (BUTTON){
+            case BUTTON_CREATE_WIDGET:
+                if(STATUS == STATUS_ON) {
+                    createWidgetBtn.setBackground(getResources().getDrawable(R.drawable.im_create_big_btn_on));
+                }
+                else {
+                    createWidgetBtn.setBackground(getResources().getDrawable(R.drawable.im_create_big_btn_off));
+                }
+                break;case BUTTON_OPEN_LIST_ACTIVITY: if(STATUS == STATUS_ON) {
+                    chooseLocationBtn.setBackground(getResources().getDrawable(R.drawable.im_choose_btn_on));
+                }
+                else {
+                    chooseLocationBtn.setBackground(getResources().getDrawable(R.drawable.im_shoose_btn_off));
+                }
+                break;case BUTTON_START_SEARCH_LOCATION: if(STATUS == STATUS_ON) {
+                    searchLocationBtn.setBackground(getResources().getDrawable(R.drawable.im_location_btn_on));
+                }
+                else {
+                    searchLocationBtn.setBackground(getResources().getDrawable(R.drawable.im_location_btn_off));
+                }
+                break;
+        }
     }
 
     @Override
@@ -157,7 +153,6 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
                 indicatorGpsOn.setVisibility(View.INVISIBLE);
                 break;
         }
-
     }
 
     @Override
@@ -172,7 +167,6 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
                 indicatorNetworkOn.setVisibility(View.INVISIBLE);
                 break;
         }
-
     }
 
     @Override
@@ -182,7 +176,7 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
     }
 
     @Override
-    public void openWidgetActivity(Class activity) {
+    public void openActivity(Class activity) {
         Intent intent = new Intent(getApplicationContext(), activity);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -190,36 +184,33 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
 
     @Override
     public void toAskGPSPermission() {
-        int permissionStatus = ContextCompat.checkSelfPermission(getApplicationContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int permissionStatus = ContextCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.ACCESS_FINE_LOCATION);
 
-        if (permissionStatus != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    REQUEST_CODE_PERMISSION_FINE_LOCATION);
-        }
-        else {
-            presenter.startSearchLocation();
-        }
+                if (permissionStatus != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(getParent(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                            REQUEST_CODE_PERMISSION_FINE_LOCATION);
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            presenter.startSearchLocation();
+                        }
+                    });
+                }
+            }
+        }).start();
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == REQUEST_CODE_PERMISSION_FINE_LOCATION) {
-            //if(!checkGPSEnable()) {
-            //    toAskEnableGPS();
-            //    presenter.startSearchLocation();
-            //}
             presenter.startSearchLocation();
         }
-    }
-
-   
-
-    @Override
-    public void toAskEnableGPS() {
-        //код вопроса
-        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
     }
 
     @Override
@@ -234,13 +225,14 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
     }
 
     @Override
-    public void doToast(String message) {
-        ToastBuilder.create(getApplicationContext(),message);
+    public void doSnackBar(String message) {
+        ToastBuilder.createSnackBar(scrollView, message);
     }
 
     @Override
-    public void doSnackBar(String message) {
-        ToastBuilder.createSnackBar(scrollView, message);
+    protected void onStop() {
+        super.onStop();
+        presenter.stopSearchLocation();
     }
 
     @Override
