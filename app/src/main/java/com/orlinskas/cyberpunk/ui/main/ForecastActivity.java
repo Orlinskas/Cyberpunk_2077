@@ -1,0 +1,98 @@
+package com.orlinskas.cyberpunk.ui.main;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
+import com.orlinskas.cyberpunk.ActivityOpener;
+import com.orlinskas.cyberpunk.R;
+import com.orlinskas.cyberpunk.specification.WidgetEmptySpecification;
+import com.orlinskas.cyberpunk.ui.other.HelpActivity;
+import com.orlinskas.cyberpunk.ui.other.ContactsActivity;
+import com.orlinskas.cyberpunk.ui.other.WidgetCreatorView;
+import com.orlinskas.cyberpunk.widget.Widget;
+import com.orlinskas.cyberpunk.widget.WidgetRepository;
+
+import java.util.ArrayList;
+
+public class ForecastActivity extends AppCompatActivity {
+    private ArrayList<Widget> widgets;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ForecastSectionsPagerAdapter forecastSectionsPagerAdapter = new ForecastSectionsPagerAdapter(this, getSupportFragmentManager());
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(forecastSectionsPagerAdapter);
+        final TabLayout tabs = findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);
+        FloatingActionButton fab = findViewById(R.id.fab);
+
+        int position = 0;
+
+        if(getIntent().hasExtra("widgetID")) {
+            int currentWidgetID = getIntent().getIntExtra("widgetID", 0);
+            WidgetRepository widgetRepository = new WidgetRepository(this);
+            try {
+                widgets = widgetRepository.query(new WidgetEmptySpecification());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            for(Widget widget : widgets) {
+                if(widget.getId() == currentWidgetID) {
+                    position = widgets.indexOf(widget);
+                }
+            }
+        }
+        viewPager.setCurrentItem(position);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityOpener.openActivity(getApplicationContext(), WidgetCreatorView.class);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        this.finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.action_repost:
+                Intent sendIntent = new Intent();
+                sendIntent.setType("text/plain");
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,  "\"Cyberpunk 2077\" - Wake the f*** Up Android. https://play.google.com/store/apps/developer?id=Orlinskas.Development");
+                startActivity(Intent.createChooser(sendIntent,"Share"));
+                return true;
+            case R.id.action_help_pls:
+                ActivityOpener.openActivity(getApplicationContext(), HelpActivity.class);
+                return true;
+            case R.id.action_message:
+                ActivityOpener.openActivity(getApplicationContext(), ContactsActivity.class);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+}

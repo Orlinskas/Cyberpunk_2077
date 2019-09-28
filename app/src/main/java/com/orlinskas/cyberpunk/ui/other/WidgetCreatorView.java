@@ -13,13 +13,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ScrollView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.orlinskas.cyberpunk.City;
 import com.orlinskas.cyberpunk.Country;
 import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.ToastBuilder;
+import com.orlinskas.cyberpunk.ui.main.ForecastActivity;
 
 import static com.orlinskas.cyberpunk.ui.other.WidgetCreatorContract.*;
 
@@ -28,7 +29,7 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
     private Button searchLocationBtn, chooseLocationBtn, createWidgetBtn;
     private TextView indicatorGpsOn, indicatorNetworkOn, indicatorGpsOff, indicatorNetworkOff;
     private ImageView progressBarImage;
-    private ScrollView scrollView;
+    private RelativeLayout relativeLayout;
     private Country country;
     private City city;
     private WidgetCreatorContract.Presenter presenter;
@@ -48,7 +49,7 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
         indicatorGpsOff = findViewById(R.id.activity_city_data_generator_tv_gps_off);
         indicatorNetworkOn = findViewById(R.id.activity_city_data_generator_tv_network_on);
         indicatorNetworkOff = findViewById(R.id.activity_city_data_generator_tv_network_off);
-        scrollView = findViewById(R.id.activity_city_data_generator_sv);
+        relativeLayout = findViewById(R.id.activity_city_data_generator_rl);
 
         presenter = new WidgetCreatorPresenter(getApplicationContext(), this,
                 (LocationManager) getSystemService(LOCATION_SERVICE));
@@ -176,9 +177,10 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
     }
 
     @Override
-    public void openActivity(Class activity) {
-        Intent intent = new Intent(getApplicationContext(), activity);
+    public void openForecastActivity(int myWidgetID) {
+        Intent intent = new Intent(getApplicationContext(), ForecastActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("myWidgetID", myWidgetID);
         startActivity(intent);
     }
 
@@ -226,7 +228,7 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
 
     @Override
     public void doSnackBar(String message) {
-        ToastBuilder.createSnackBar(scrollView, message);
+        ToastBuilder.createSnackBar(relativeLayout, message);
     }
 
     @Override

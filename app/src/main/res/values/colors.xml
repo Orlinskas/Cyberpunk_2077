@@ -9,7 +9,7 @@
 
     <color name="colorGreyBackground">#2A2A2A</color>
     <color name="colorBlackBackground">#000000</color>
-    <color name="colorGreenBackground">#DD050C0B</color>
+    <color name="colorBackground">#BE000000</color>
 
     <color name="colorBlack">#000000</color>
 

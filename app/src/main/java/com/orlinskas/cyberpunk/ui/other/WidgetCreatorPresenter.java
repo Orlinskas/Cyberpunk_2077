@@ -14,7 +14,7 @@ import com.orlinskas.cyberpunk.City;
 import com.orlinskas.cyberpunk.Country;
 import com.orlinskas.cyberpunk.location.CityFinder;
 import com.orlinskas.cyberpunk.post.CountryNameWriter;
-import com.orlinskas.cyberpunk.ui.main.MainActivity;
+import com.orlinskas.cyberpunk.ui.main.ForecastActivity;
 import com.orlinskas.cyberpunk.widget.Widget;
 
 import java.util.concurrent.TimeUnit;
@@ -108,7 +108,7 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter, 
     @Override
     public void onResult(Widget widget) {
         if(widget != null && widget.getId() != EMPTY_WIDGET) {
-            view.openActivity(MainActivity.class);
+            view.openForecastActivity(widget.getId());
         }
         else {
             view.doSnackBar("Some data is incorrect");

@@ -40,7 +40,7 @@ public class HelpActivity extends AppCompatActivity {
                 ToastBuilder.create(getApplicationContext(), "Уже здесь");
                 return true;
             case R.id.action_message:
-                ActivityOpener.openActivity(getApplicationContext(), MessageToAuthorActivity.class);
+                ActivityOpener.openActivity(getApplicationContext(), ContactsActivity.class);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

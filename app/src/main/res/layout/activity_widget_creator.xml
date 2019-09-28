@@ -1,49 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_city_data_generator_sv"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/im_background_3">
-
     <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/activity_city_data_generator_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorGreenBackground">
-
-        <TextView
-            android:id="@+id/activity_city_data_generator_tv_head"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/cyberpunk_2"
-            android:text="Create widget"
-            android:textColor="@color/colorCyberpunkRed"
-            android:textSize="14sp"
-            android:typeface="normal" />
-
-        <ImageView
-            android:id="@+id/activity_city_data_generator_progress_bar"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_above="@+id/activity_city_data_rl_create_window"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="3dp"
-            app:srcCompat="@drawable/im_progress_1" />
+        android:background="@drawable/im_background_3">
 
         <RelativeLayout
             android:id="@+id/activity_city_data_rl_create_window"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/activity_city_data_generator_tv_head"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/grey_background">
@@ -54,7 +24,7 @@
                 android:layout_height="40dp"
                 android:layout_below="@+id/activity_city_data_generator_tv_city_name"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="40dp"
                 android:background="@drawable/im_shoose_btn_off" />
 
@@ -64,26 +34,37 @@
                 android:layout_height="40dp"
                 android:layout_below="@+id/activity_city_data_generator_btn_open_list"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="40dp"
                 android:background="@drawable/im_location_btn_off" />
 
             <Button
                 android:id="@+id/activity_city_data_generator_btn_start"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/activity_city_data_generator_btn_gps"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="50dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/im_create_big_btn_off" />
+
+            <ImageView
+                android:id="@+id/activity_city_data_generator_progress_bar"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5dp"
+                android:layout_marginEnd="367dp"
+                android:layout_marginBottom="3dp"
+                app:srcCompat="@drawable/im_progress_1" />
 
             <RelativeLayout
                 android:id="@+id/activity_city_data_generator_conection_rl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_below="@+id/activity_city_data_generator_progress_bar"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp">
 
                 <TextView
@@ -134,6 +115,21 @@
                     android:text="@string/network"
                     android:textColor="@color/colorInfoText" />
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/activity_city_data_generator_tv_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/cyberpunk_2"
+                android:text="Create widget"
+                android:textColor="@color/colorCyberpunkRed"
+                android:textSize="14sp"
+                android:typeface="normal" />
 
             <TextView
                 android:id="@+id/activity_city_data_generator_tv_city"
@@ -190,19 +186,16 @@
         </RelativeLayout>
 
 
-        <TextView
-            android:id="@+id/activity_city_data_tv_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/activity_city_data_rl_create_window"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="350dp"
-            android:fontFamily="@font/cyberpunk_eng"
-            android:text="orlinskas development "
-            android:textColor="@color/colorCyberpunkRed"
-            android:textSize="10sp" />
+    <TextView
+        android:id="@+id/activity_city_data_tv_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/cyberpunk_eng"
+        android:text="orlinskas development "
+        android:textColor="@color/colorCyberpunkRed"
+        android:textSize="10sp" />
 
     </RelativeLayout>
-</ScrollView>
 

@@ -1,62 +1,82 @@
 package com.orlinskas.cyberpunk.ui.main;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import com.orlinskas.cyberpunk.ActivityOpener;
+import com.orlinskas.cyberpunk.City;
 import com.orlinskas.cyberpunk.FirstRunner;
 import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.preferences.FirstRunVerifier;
+import com.orlinskas.cyberpunk.request.Request;
+import com.orlinskas.cyberpunk.specification.WidgetEmptySpecification;
 import com.orlinskas.cyberpunk.ui.other.HelpActivity;
-import com.orlinskas.cyberpunk.ui.other.MessageToAuthorActivity;
-import com.orlinskas.cyberpunk.ui.other.WidgetCreatorActivity;
-import com.orlinskas.cyberpunk.ui.widget.AnimatedBackgroundView;
+import com.orlinskas.cyberpunk.ui.other.ContactsActivity;
+import com.orlinskas.cyberpunk.ui.other.WidgetCreatorView;
+import com.orlinskas.cyberpunk.widget.Widget;
+import com.orlinskas.cyberpunk.widget.WidgetRepository;
 
+import java.util.ArrayList;
+
+@SuppressLint("StaticFieldLeak")
 public class MainActivity extends AppCompatActivity {
-    private ViewPager viewPager;
-    private boolean haveFirstRun;
-    private FirstRunVerifier firstRunVerifier;
+    private ImageView btnCreate, btnAuthor, btnHelp, btnShare;
+    private ImageView progressMenu, progressList;
+    private ListView listView;
+    private OpenActivityTask openActivityTask;
+    private LoadWidgetsListTask loadWidgetsListTask;
+    private RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        final TabLayout tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        setContentView(R.layout.activity_main_general);
 
-        firstRunVerifier = new FirstRunVerifier(getApplicationContext());
-        haveFirstRun = firstRunVerifier.check();
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityOpener.openActivity(getApplicationContext(), WidgetCreatorActivity.class);
-                finish();
+        btnCreate = findViewById(R.id.activity_main_general_iv_btn_create);
+        btnAuthor = findViewById(R.id.activity_main_general_iv_btn_author);
+        btnHelp = findViewById(R.id.activity_main_general_iv_btn_help);
+        btnShare = findViewById(R.id.activity_main_general_iv_btn_share);
+        progressMenu = findViewById(R.id.activity_main_general_im_progress_menu);
+        progressList = findViewById(R.id.activity_main_general_im_progress_list);
+        listView = findViewById(R.id.activity_main_general_lv_widgets);
+        relativeLayout = findViewById(R.id.activity_main_general_create_rl);
+
+        showAnimationsHead();
+        processFirstRun(getApplicationContext());
+        loadAndShowWidgetsList();
+    }
+
+    private void showAnimationsHead() {
+        Runnable runnable = new Runnable() {
+            public void run() {
+                RelativeLayout relativeLayout = findViewById(R.id.activity_main_create_rl_head_anim);
+                relativeLayout.addView(new AnimatedBackgroundView(getApplicationContext()));
             }
-        });
-
-        RelativeLayout relativeLayout = findViewById(R.id.activity_main_rl_background_anim);
-        relativeLayout.addView(new AnimatedBackgroundView(this));
-
-        processFirstRun(getBaseContext());
+        };
+        runnable.run();
     }
 
     private void processFirstRun(Context applicationContext) {
-        if(!haveFirstRun) {
-            ToastBuilder.createSnackBar(viewPager, getString(R.string.open_data));
+        FirstRunVerifier firstRunVerifier = new FirstRunVerifier(applicationContext);
+
+        if(!firstRunVerifier.check()) {
+            ToastBuilder.createSnackBar(relativeLayout, "Wake the f*** Up Samurai");
 
             FirstRunner firstRunner = new FirstRunner(applicationContext);
             firstRunner.doFirstRun();
@@ -65,37 +85,281 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        this.finish();
+    private void loadAndShowWidgetsList() {
+        if(loadWidgetsListTask != null) {
+            switch (loadWidgetsListTask.getStatus()) {
+                case PENDING:
+                case RUNNING:
+                    if(!loadWidgetsListTask.isCancelled()){
+                        loadWidgetsListTask.cancel(true);
+                    }
+                    loadWidgetsListTask = new LoadWidgetsListTask(getApplicationContext());
+                    loadWidgetsListTask.execute();
+                    break;
+                case FINISHED:
+                    loadWidgetsListTask = new LoadWidgetsListTask(getApplicationContext());
+                    loadWidgetsListTask.execute();
+                    break;
+            }
+        }
+        else {
+            loadWidgetsListTask = new LoadWidgetsListTask(getApplicationContext());
+            loadWidgetsListTask.execute();
+        }
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
+    public void onClickMenu(View view) {
+        switch (view.getId()) {
+            case R.id.activity_main_general_iv_btn_create:
+                btnCreate.setImageResource(R.drawable.im_create_btn_on);
+                startOpenActivityTask(WidgetCreatorView.class);
+                break;
+            case R.id.activity_main_general_iv_btn_author:
+                btnAuthor.setImageResource(R.drawable.im_author_btn_on);
+                startOpenActivityTask(ContactsActivity.class);
+                break;
+            case R.id.activity_main_general_iv_btn_help:
+                btnHelp.setImageResource(R.drawable.im_help_btn_on);
+                startOpenActivityTask(HelpActivity.class);
+                break;
+            case R.id.activity_main_general_iv_btn_share:
+                btnShare.setImageResource(R.drawable.im_share_btn_on);
+                startSharing();
+                break;
+        }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.action_repost:
+    private void startSharing() {
+        new Thread(new Runnable() {
+            public void run() {
                 Intent sendIntent = new Intent();
                 sendIntent.setType("text/plain");
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT,  "\"Weather\" - удобный виджет погоды. Присоединяйся https://play.google.com/store/apps/developer?id=Orlinskas.Development");
-                startActivity(Intent.createChooser(sendIntent,"Поделиться"));
-                return true;
-            case R.id.action_help_pls:
-                ActivityOpener.openActivity(getApplicationContext(), HelpActivity.class);
-                return true;
-            case R.id.action_message:
-                ActivityOpener.openActivity(getApplicationContext(), MessageToAuthorActivity.class);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,  "\"Cyberpunk 2077\" - Wake the f*** Up Android. https://play.google.com/store/apps/developer?id=Orlinskas.Development");
+                startActivity(Intent.createChooser(sendIntent,"Share"));
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        btnShare.setImageResource(R.drawable.im_share_btn_off);
+                    }
+                });
+            }
+        }).start();
+    }
+
+    private void startOpenActivityTask(Class activity) {
+        if(openActivityTask != null) {
+            switch (openActivityTask.getStatus()) {
+                case PENDING:
+                case RUNNING:
+                    if(!openActivityTask.isCancelled()){
+                        openActivityTask.cancel(true);
+                    }
+                    openActivityTask = new OpenActivityTask(activity);
+                    openActivityTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    break;
+                case FINISHED:
+                    openActivityTask = new OpenActivityTask(activity);
+                    openActivityTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    break;
+            }
+        }
+        else {
+            openActivityTask = new OpenActivityTask(activity);
+            openActivityTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        }
+
+    }
+
+    private class LoadWidgetsListTask extends AsyncTask<Void, Void, Void> {
+        private final int IC_PROGRESS_1 = R.drawable.im_progress_1;
+        private final int IC_PROGRESS_2 = R.drawable.im_progress_2;
+        private final int IC_PROGRESS_3 = R.drawable.im_progress_3;
+        private final int IC_PROGRESS_4 = R.drawable.im_progress_4;
+        private final int[] progressImage = {IC_PROGRESS_1, IC_PROGRESS_2, IC_PROGRESS_3, IC_PROGRESS_4};
+        private int imageCount = 1;
+        private ArrayList<Widget> widgets;
+        private Context context;
+
+        LoadWidgetsListTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            int roundCount = 0;
+            WidgetRepository repository = new WidgetRepository(context);
+            try {
+                widgets = repository.query(new WidgetEmptySpecification());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (widgets == null || widgets.size() == 0) {
+                addEmptyWidgetElement();
+            }
+            do {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int imageId = progressImage[imageCount];
+                        progressList.setImageResource(imageId);
+                    }
+                });
+                imageCount++;
+                roundCount++;
+                if(imageCount == 4) {
+                    imageCount = 0;
+                }
+                if (isCancelled()) {
+                    break;
+                }
+            }
+            while (roundCount < 20);
+
+            return null;
+        }
+
+        private void addEmptyWidgetElement() {
+            City emptyCity = new City(404, "Not found","Need to create",1.0,1.0);
+            Widget emptyWidget = new Widget(0, emptyCity, new Request("n/a", emptyCity, "n/a", "n/a" , "n/a", "n/a"));
+            widgets.add(emptyWidget);
+            ToastBuilder.createSnackBar(relativeLayout,"Create widget");
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            progressList.setImageResource(IC_PROGRESS_1);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressList.setImageResource(IC_PROGRESS_1);
+            showWidgetsList(widgets);
+        }
+
+        private void showWidgetsList(final ArrayList<Widget> widgets) {
+            ArrayAdapter<Widget> adapter = new WidgetListAdapter(getApplicationContext(), R.layout.widget_list_view_row, widgets);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(context, ForecastActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("myWidgetID", widgets.get(position).getId());
+                    startActivity(intent);
+                }
+            });
         }
     }
+
+    private class WidgetListAdapter extends ArrayAdapter<Widget> {
+        private ArrayList<Widget> widgets;
+
+        WidgetListAdapter(Context applicationContext, int widget_list_view_row, ArrayList<Widget> widgets) {
+            super(applicationContext, widget_list_view_row, widgets);
+            this.widgets = widgets;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            LayoutInflater inflater = getLayoutInflater();
+            @SuppressLint("ViewHolder")
+            View row = inflater.inflate(R.layout.widget_list_view_row, parent, false);
+            TextView widgetId = row.findViewById(R.id.widget_list_view_row_tv_id);
+            TextView widgetCityName = row.findViewById(R.id.widget_list_view_row_tv_name);
+            TextView widgetCountryCode = row.findViewById(R.id.widget_list_view_row_tv_code);
+
+            String id = String.valueOf(widgets.get(position).getId());
+            String name = widgets.get(position).getCity().getName();
+            String code = widgets.get(position).getCity().getCountryCode();
+
+            widgetId.setText(id);
+            widgetCityName.setText(name);
+            widgetCountryCode.setText(code);
+
+            return row;
+        }
+    }
+
+    private class OpenActivityTask extends AsyncTask<Void, Void, Void> {
+        private final int IC_PROGRESS_1 = R.drawable.im_progress_1;
+        private final int IC_PROGRESS_2 = R.drawable.im_progress_2;
+        private final int IC_PROGRESS_3 = R.drawable.im_progress_3;
+        private final int IC_PROGRESS_4 = R.drawable.im_progress_4;
+        private final int[] progressImage = {IC_PROGRESS_1, IC_PROGRESS_2, IC_PROGRESS_3, IC_PROGRESS_4};
+        private int imageCount = 1;
+        private Class activity;
+
+        OpenActivityTask(Class activity) {
+            this.activity = activity;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            int roundCount = 0;
+            do {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int imageId = progressImage[imageCount];
+                        progressMenu.setImageResource(imageId);
+                    }
+                });
+                imageCount++;
+                roundCount++;
+                if(imageCount == 4) {
+                    imageCount = 0;
+                }
+                if (isCancelled())
+                    break;
+            }
+            while (roundCount < 10);
+            return null;
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            progressMenu.setImageResource(IC_PROGRESS_1);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressMenu.setImageResource(IC_PROGRESS_1);
+            openActivity(activity);
+        }
+
+        private void openActivity(final Class activityClass) {
+            Intent intent = new Intent(getApplicationContext(), activityClass);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            ContextCompat.startActivity(getApplicationContext(), intent, null);
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        btnShare.setImageResource(R.drawable.im_share_btn_off);
+        btnHelp.setImageResource(R.drawable.im_help_btn_off);
+        btnAuthor.setImageResource(R.drawable.im_author_btn_off);
+        btnCreate.setImageResource(R.drawable.im_create_btn_off);
+    }
 }
+
+

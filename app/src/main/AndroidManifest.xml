@@ -30,14 +30,11 @@
         </activity>
 
         <activity
-            android:name=".ui.main.MainActivityGeneral"
+            android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
-        <activity
-            android:name=".ui.other.WidgetCreatorActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.other.CountryListActivity"
             android:screenOrientation="portrait" />
@@ -48,7 +45,7 @@
             android:name=".ui.other.HelpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.other.MessageToAuthorActivity"
+            android:name=".ui.other.ContactsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.ConfigurationWidgetActivity"
@@ -59,7 +56,7 @@
         </activity>
 
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.main.ForecastActivity"
             android:screenOrientation="portrait"/>
 
         <activity

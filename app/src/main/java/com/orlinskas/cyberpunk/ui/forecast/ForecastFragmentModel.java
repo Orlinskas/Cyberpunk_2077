@@ -1,4 +1,4 @@
-package com.orlinskas.cyberpunk.ui.widget;
+package com.orlinskas.cyberpunk.ui.forecast;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,10 +15,10 @@ import com.orlinskas.cyberpunk.widget.WidgetRepository;
 import static com.orlinskas.cyberpunk.preferences.Preferences.SETTINGS;
 import static com.orlinskas.cyberpunk.preferences.Preferences.WIDGET_LAST_UPDATE;
 
-public class WidgetModel implements WidgetContract.WidgetModel {
-    private WidgetUpdateListener presenter;
+public class ForecastFragmentModel implements ForecastContract.WidgetModel {
+    private ForecastUpdateListener presenter;
 
-    WidgetModel(WidgetUpdateListener presenter) {
+    ForecastFragmentModel(ForecastUpdateListener presenter) {
         this.presenter = presenter;
     }
 
@@ -32,11 +32,11 @@ public class WidgetModel implements WidgetContract.WidgetModel {
     private class UpdateWidgetTask extends AsyncTask<Void, Void, Void> {
         private Context context;
         private int widgetID;
-        private WidgetUpdateListener presenter;
+        private ForecastUpdateListener presenter;
         private Throwable error;
         private Widget widget;
 
-        UpdateWidgetTask(Context context, int widgetID, WidgetUpdateListener presenter) {
+        UpdateWidgetTask(Context context, int widgetID, ForecastUpdateListener presenter) {
             this.context = context;
             this.widgetID = widgetID;
             this.presenter = presenter;

@@ -1,4 +1,4 @@
-package com.orlinskas.cyberpunk.ui.widget;
+package com.orlinskas.cyberpunk.ui.forecast;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -19,9 +19,9 @@ import com.orlinskas.cyberpunk.widget.Widget;
 import com.orlinskas.cyberpunk.widget.WidgetRemover;
 import com.orlinskas.cyberpunk.widget.WidgetRepository;
 
-public class WidgetPresenter implements WidgetContract.Presenter, WidgetUpdateListener {
-    private WidgetContract.View view;
-    private WidgetContract.WidgetModel model;
+public class ForecastFragmentPresenter implements ForecastContract.Presenter, ForecastUpdateListener {
+    private ForecastContract.View view;
+    private ForecastContract.WidgetModel model;
     private int widgetID;
     private Widget widget;
     private Context viewContext;
@@ -29,7 +29,7 @@ public class WidgetPresenter implements WidgetContract.Presenter, WidgetUpdateLi
     private int dayNumber;
     private int dayCount;
 
-    WidgetPresenter(WidgetContract.View view, int widgetID, Context viewContext, Context appContext) {
+    ForecastFragmentPresenter(ForecastContract.View view, int widgetID, Context viewContext, Context appContext) {
         this.viewContext = viewContext;
         this.appContext = appContext;
         this.view = view;
@@ -39,7 +39,7 @@ public class WidgetPresenter implements WidgetContract.Presenter, WidgetUpdateLi
     @Override
     public void startWork() {
         widget = findWidgetInRepo(widgetID);
-        model = new WidgetModel(this);
+        model = new ForecastFragmentModel(this);
 
         if(widget.getDaysForecast() == null) {
             goWithEmptyData(widgetID, viewContext);

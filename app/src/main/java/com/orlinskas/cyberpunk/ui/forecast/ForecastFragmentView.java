@@ -1,4 +1,4 @@
-package com.orlinskas.cyberpunk.ui.widget;
+package com.orlinskas.cyberpunk.ui.forecast;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -27,7 +27,7 @@ import com.orlinskas.cyberpunk.forecast.InstrumentPerformance;
 
 import java.util.Objects;
 
-public class WidgetFragment extends Fragment implements WidgetContract.View {
+public class ForecastFragmentView extends Fragment implements ForecastContract.View {
     private int widgetID;
     private ProgressBar progressBar;
     private RelativeLayout iconsLayoutCase;
@@ -35,7 +35,7 @@ public class WidgetFragment extends Fragment implements WidgetContract.View {
     private ImageView leftBtn;
     private ImageView rightBtn;
     private TextView currentDateTV, chartDescriptionTV, pressureValTV, humidityValTV, windSpeedValTV, rainValTV, snowValTV;
-    private WidgetContract.Presenter presenter;
+    private ForecastContract.Presenter presenter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -138,7 +138,7 @@ public class WidgetFragment extends Fragment implements WidgetContract.View {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter = new WidgetPresenter(this, widgetID,
+        presenter = new ForecastFragmentPresenter(this, widgetID,
                 getContext(), Objects.requireNonNull(getActivity()).getBaseContext());
         presenter.startWork();
     }

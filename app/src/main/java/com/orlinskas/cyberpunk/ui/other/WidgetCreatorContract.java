@@ -20,7 +20,7 @@ public interface WidgetCreatorContract {
         void setButtonStatus(int BUTTON, int STATUS);
         void setProgressImage(int KEY);
         void openActivityForResult(Class activity);
-        void openActivity(Class activity);
+        void openForecastActivity(int myWidgetID);
         void toAskGPSPermission();
         void doSnackBar(String message);
     }

@@ -1,4 +1,4 @@
-package com.orlinskas.cyberpunk.ui.widget;
+package com.orlinskas.cyberpunk.ui.main;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

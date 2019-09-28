@@ -1,4 +1,4 @@
-package com.orlinskas.cyberpunk.ui.widget;
+package com.orlinskas.cyberpunk.ui.forecast;
 
 import android.content.Context;
 import android.widget.LinearLayout;
@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import com.github.mikephil.charting.charts.LineChart;
 import com.orlinskas.cyberpunk.forecast.InstrumentPerformance;
 
-public interface WidgetContract {
+public interface ForecastContract {
 
     interface View {
         void setChart(LineChart chart);
