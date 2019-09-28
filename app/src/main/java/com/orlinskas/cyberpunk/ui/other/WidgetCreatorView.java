@@ -1,10 +1,14 @@
 package com.orlinskas.cyberpunk.ui.other;
 
-import android.annotation.SuppressLint;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +21,6 @@ import com.orlinskas.cyberpunk.Country;
 import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.ToastBuilder;
 
-import java.util.concurrent.TimeUnit;
-
 import static com.orlinskas.cyberpunk.ui.other.WidgetCreatorContract.*;
 
 public class WidgetCreatorView extends AppCompatActivity implements WidgetCreatorContract.View {
@@ -30,8 +32,8 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
     private Country country;
     private City city;
     private WidgetCreatorContract.Presenter presenter;
+    private static final int REQUEST_CODE_PERMISSION_FINE_LOCATION = 1312;
 
-    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +50,8 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
         indicatorNetworkOff = findViewById(R.id.activity_city_data_generator_tv_network_off);
         scrollView = findViewById(R.id.activity_city_data_generator_sv);
 
-        presenter = new WidgetCreatorPresenter(getApplicationContext(), this);
+        presenter = new WidgetCreatorPresenter(getApplicationContext(), this,
+                (LocationManager) getSystemService(LOCATION_SERVICE));
         presenter.startWork();
 
         chooseLocationBtn.setOnClickListener(new View.OnClickListener() {
@@ -183,6 +186,40 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
         Intent intent = new Intent(getApplicationContext(), activity);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    @Override
+    public void toAskGPSPermission() {
+        int permissionStatus = ContextCompat.checkSelfPermission(getApplicationContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION);
+
+        if (permissionStatus != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_CODE_PERMISSION_FINE_LOCATION);
+        }
+        else {
+            presenter.startSearchLocation();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == REQUEST_CODE_PERMISSION_FINE_LOCATION) {
+            //if(!checkGPSEnable()) {
+            //    toAskEnableGPS();
+            //    presenter.startSearchLocation();
+            //}
+            presenter.startSearchLocation();
+        }
+    }
+
+   
+
+    @Override
+    public void toAskEnableGPS() {
+        //код вопроса
+        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
     }
 
     @Override

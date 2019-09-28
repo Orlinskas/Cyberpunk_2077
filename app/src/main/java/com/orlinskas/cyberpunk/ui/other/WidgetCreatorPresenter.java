@@ -2,11 +2,18 @@ package com.orlinskas.cyberpunk.ui.other;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationProvider;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
 import com.orlinskas.cyberpunk.City;
 import com.orlinskas.cyberpunk.Country;
+import com.orlinskas.cyberpunk.location.CityFinder;
+import com.orlinskas.cyberpunk.post.CountryNameWriter;
 import com.orlinskas.cyberpunk.ui.main.MainActivity;
 import com.orlinskas.cyberpunk.widget.Widget;
 
@@ -14,7 +21,8 @@ import java.util.concurrent.TimeUnit;
 
 import static com.orlinskas.cyberpunk.ui.other.WidgetCreatorContract.*;
 
-public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter {
+@SuppressLint({"HandlerLeak", "MissingPermission"})
+public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter, LocationListener{
     private Context context;
     private WidgetCreatorContract.Model model;
     private WidgetCreatorContract.View view;
@@ -22,13 +30,14 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter {
     private Handler viewProgressBarHandler;
     private Thread progressBarThread;
     private boolean isCanceledThread = false;
+    private LocationManager locationManager;
 
-    WidgetCreatorPresenter(Context context, WidgetCreatorContract.View view) {
+    WidgetCreatorPresenter(Context context, WidgetCreatorContract.View view, LocationManager locationManager) {
         this.view = view;
         this.context = context;
+        this.locationManager = locationManager;
     }
 
-    @SuppressLint("HandlerLeak")
     @Override
     public void startWork() {
         model = new WidgetCreatorModel(context, this);
@@ -72,7 +81,7 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter {
 
     @Override
     public void onClickSearchLocation() {
-        model.startSearchLocation();
+        view.toAskGPSPermission();
     }
 
     @Override
@@ -104,6 +113,14 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter {
         else {
             view.doSnackBar("Some data is incorrect");
         }
+    }
+
+    @Override
+    public void startSearchLocation() {
+        startProgressBar();
+        LocationListener locationListener = this;
+        locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, locationListener, null);
+        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, locationListener, null);
     }
 
     @SuppressLint("HandlerLeak")
@@ -148,9 +165,80 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter {
     }
 
     @Override
+    public void onLocationChanged(Location location) {
+        readLocation(location);
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        checkProviderStatus(provider, status);
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        checkProviderStatus(provider, STATUS_ON);
+        readLocation(locationManager.getLastKnownLocation(provider));
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        checkProviderStatus(provider, STATUS_OFF);
+    }
+
+    private void checkProviderStatus(String provider, int STATUS) {
+        if(provider.equals(LocationManager.GPS_PROVIDER)) {
+            switch (STATUS) {
+                case STATUS_ON:
+                case LocationProvider.AVAILABLE:
+                    view.setStatusIndicatorGPS(STATUS_ON);
+                    break;
+                case STATUS_OFF:
+                case LocationProvider.OUT_OF_SERVICE:
+                case LocationProvider.TEMPORARILY_UNAVAILABLE:
+                    view.setStatusIndicatorGPS(STATUS_OFF);
+                    break;
+            }
+        }
+        if(provider.equals(LocationManager.NETWORK_PROVIDER)) {
+            switch (STATUS) {
+                case STATUS_ON:
+                case LocationProvider.AVAILABLE:
+                    view.setStatusIndicatorINTERNET(STATUS_ON);
+                    break;
+                case STATUS_OFF:
+                case LocationProvider.OUT_OF_SERVICE:
+                case LocationProvider.TEMPORARILY_UNAVAILABLE:
+                    view.setStatusIndicatorINTERNET(STATUS_OFF);
+                    break;
+            }
+        }
+    }
+
+    private void readLocation(Location lastKnownLocation) {
+        City city = findCity(lastKnownLocation);
+        Country country = findCountry(city);
+        view.setCity(city);
+        view.setCountry(country);
+        stopProgressBar();
+    }
+
+    private City findCity(Location lastKnownLocation) {
+        CityFinder cityFinder = new CityFinder(context, lastKnownLocation);
+        return cityFinder.find();
+    }
+
+    private Country findCountry(City city) {
+        CountryNameWriter nameWriter = new CountryNameWriter();
+        return new Country(city.getCountryCode(), nameWriter.findNameWith(city.getCountryCode()));
+    }
+
+    private boolean checkGPSEnable() {
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+    }
+
+    @Override
     public void destroy() {
         context = null;
-        model.stopSearchLocation();
         model = null;
         stopProgressBar();
     }
