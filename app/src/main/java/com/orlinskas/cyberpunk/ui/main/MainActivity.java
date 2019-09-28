@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -182,6 +184,8 @@ public class MainActivity extends AppCompatActivity {
         private int imageCount = 1;
         private ArrayList<Widget> widgets;
         private Context context;
+        private final Animation animationClick = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.animation_list_item_click);
+        private final Animation animationOpenList = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.animation_list_open);
 
         LoadWidgetsListTask(Context context) {
             this.context = context;
@@ -249,9 +253,11 @@ public class MainActivity extends AppCompatActivity {
         private void showWidgetsList(final ArrayList<Widget> widgets) {
             ArrayAdapter<Widget> adapter = new WidgetListAdapter(getApplicationContext(), R.layout.widget_list_view_row, widgets);
             listView.setAdapter(adapter);
+            listView.startAnimation(animationOpenList);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    view.startAnimation(animationClick);
                     Intent intent = new Intent(context, ForecastActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("myWidgetID", widgets.get(position).getId());

@@ -37,8 +37,8 @@ public class ForecastActivity extends AppCompatActivity {
 
         int position = 0;
 
-        if(getIntent().hasExtra("widgetID")) {
-            int currentWidgetID = getIntent().getIntExtra("widgetID", 0);
+        if(getIntent().hasExtra("myWidgetID")) {
+            int currentWidgetID = getIntent().getIntExtra("myWidgetID", 0);
             WidgetRepository widgetRepository = new WidgetRepository(this);
             try {
                 widgets = widgetRepository.query(new WidgetEmptySpecification());
