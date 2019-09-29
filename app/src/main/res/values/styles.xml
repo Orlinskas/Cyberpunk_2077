@@ -2,8 +2,8 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorHeadBackground</item>
-        <item name="colorAccent">@color/colorHeadAccent</item>
+        <item name="colorPrimary">@color/colorBlack</item>
+        <item name="colorAccent">@color/colorCyberpunkRed</item>
         <item name="android:spinnerItemStyle">@style/mySpinnerItemSelectedStyle</item>
     </style>
 

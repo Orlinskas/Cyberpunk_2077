@@ -2,20 +2,17 @@ package com.orlinskas.cyberpunk.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.orlinskas.cyberpunk.ActivityOpener;
 import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.specification.WidgetEmptySpecification;
 import com.orlinskas.cyberpunk.ui.other.HelpActivity;
 import com.orlinskas.cyberpunk.ui.other.ContactsActivity;
-import com.orlinskas.cyberpunk.ui.other.WidgetCreatorView;
 import com.orlinskas.cyberpunk.widget.Widget;
 import com.orlinskas.cyberpunk.widget.WidgetRepository;
 
@@ -33,7 +30,6 @@ public class ForecastActivity extends AppCompatActivity {
         viewPager.setAdapter(forecastSectionsPagerAdapter);
         final TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = findViewById(R.id.fab);
 
         int position = 0;
 
@@ -52,14 +48,6 @@ public class ForecastActivity extends AppCompatActivity {
             }
         }
         viewPager.setCurrentItem(position);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityOpener.openActivity(getApplicationContext(), WidgetCreatorView.class);
-                finish();
-            }
-        });
     }
 
     @Override

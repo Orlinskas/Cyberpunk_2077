@@ -59,7 +59,6 @@ public class ForecastFragmentView extends Fragment implements ForecastContract.V
         ImageView helpBtn = root.findViewById(R.id.fragment_widget_rl_info_help_iv);
         final SwipeRefreshLayout swipeRefreshLayout = root.findViewById(R.id.fragment_widget_sr);
 
-
         widgetID = getWidgetIDArgument();
 
         final Animation buttonClickAnim = AnimationUtils.loadAnimation(getContext(), R.anim.animation_button);

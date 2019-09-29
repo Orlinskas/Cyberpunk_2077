@@ -75,10 +75,10 @@ public class ChartBuilder {
         Typeface typeface = Typeface.defaultFromStyle(Typeface.NORMAL);
         dataSet.setValueTypeface(typeface);
 
-        dataSet.setColor(context.getResources().getColor(R.color.colorChartLine));
-        dataSet.setCircleColor(context.getResources().getColor(R.color.colorChartCircle));
+        dataSet.setColor(context.getResources().getColor(R.color.colorCyberpunkRed));
+        dataSet.setCircleColor(context.getResources().getColor(R.color.colorCyberpunkRed));
         dataSet.setCircleHoleColor(context.getResources().getColor(R.color.colorChartCircleSmall));
-        dataSet.setValueTextColor(context.getResources().getColor(R.color.colorChartTemperature));
+        dataSet.setValueTextColor(context.getResources().getColor(R.color.colorCyberpunkRed));
 
         dataSet.setValueFormatter(new IValueFormatter() {
             @Override
@@ -115,9 +115,9 @@ public class ChartBuilder {
         xAxis.setTypeface(typeface);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextSize(12f);
-        xAxis.setTextColor(context.getResources().getColor(R.color.colorChartTimeX));
+        xAxis.setTextColor(context.getResources().getColor(R.color.colorCyberpunkRed));
         xAxis.setDrawAxisLine(true);
-        xAxis.setDrawGridLines(true);
+        xAxis.setDrawGridLines(false);
 
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
@@ -153,6 +153,7 @@ public class ChartBuilder {
                 return "";
             }
         });
+        yAxisRight.setEnabled(false);
 
         return chart;
     }

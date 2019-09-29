@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_country_list_rl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundListActivity">
+    android:background="@drawable/im_background_3">
 
     <RelativeLayout
         android:id="@+id/activity_country_list_rl_head"
@@ -15,20 +14,19 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/rounded_background">
+        android:background="@drawable/grey_background">
 
         <TextView
             android:id="@+id/activity_country_list_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="3dp"
-            android:layout_marginBottom="3dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:fontFamily="sans-serif-light"
             android:text="@string/fragment_country_list_tv"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="@color/colorCyberpunkRed"
             android:textSize="20sp" />
 
         <TextView
@@ -36,14 +34,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_margin="5dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="3dp"
-            android:layout_marginBottom="3dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:fontFamily="sans-serif-light"
             android:text="@string/fragment_country_list_tv_code"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="@color/colorCyberpunkRed"
             android:textSize="20sp"
             tools:ignore="RelativeOverlap" />
     </RelativeLayout>
@@ -58,7 +55,16 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_background" />
+        android:background="@drawable/grey_background" />
+
+    <ProgressBar
+        android:id="@+id/activity_country_list_pb"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:visibility="invisible" />
 
     <EditText
         android:id="@+id/activity_country_list_et"
@@ -68,20 +74,12 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_background"
+        android:background="@drawable/grey_background"
         android:hint="@string/search"
         android:inputType="textCapWords"
         android:padding="5dp"
-        android:textColor="@color/colorTextBlack"
-        android:textColorHint="@color/colorInfoText"
+        android:textColor="@color/colorCyberpunkRed"
+        android:textColorHint="@color/colorCyberpunkRed"
         tools:ignore="Autofill,LabelFor" />
 
-    <ProgressBar
-        android:id="@+id/activity_country_list_pb"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:indeterminate="true"
-        android:visibility="invisible"/>
 </RelativeLayout>

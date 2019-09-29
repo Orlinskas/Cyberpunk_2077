@@ -13,6 +13,8 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -54,6 +56,8 @@ public class CityListActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        final Animation animationClick =
+                AnimationUtils.loadAnimation(getApplicationContext(), R.anim.animation_list_item_click);
         searchCityField.addTextChangedListener(new TextWatcher(){
             @Override
             public void afterTextChanged(Editable s) {
@@ -73,7 +77,7 @@ public class CityListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                view.setBackgroundColor(getResources().getColor(R.color.colorBackgroundListActivity));
+                view.startAnimation(animationClick);
                 City city = cities.get(position);
                 resumeMainWidgetCreator(city);
             }
@@ -144,13 +148,6 @@ public class CityListActivity extends AppCompatActivity {
             String name = cities.get(position).getName();
             cityName.setText(name);
 
-            if (position%2 == 0) {
-                row.setBackgroundColor(getResources().getColor(R.color.colorRowHigh));
-            }
-            else {
-                row.setBackgroundColor(getResources().getColor(R.color.colorRowLight));
-            }
-
             return row;
         }
     }
@@ -168,7 +165,7 @@ public class CityListActivity extends AppCompatActivity {
             }
 
             if (currentCityNamePart != null ) {
-                if(currentCityNamePart.equals(desiredCityNamePart)) {
+                if(currentCityNamePart.toLowerCase().equals(desiredCityNamePart.toLowerCase())) {
                     try {
                         listView.setSelection(position);
                     } catch (Exception e) {
@@ -188,11 +185,5 @@ public class CityListActivity extends AppCompatActivity {
         intent.putExtra("city", city);
         setResult(RESULT_OK, intent);
         finish();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
     }
 }

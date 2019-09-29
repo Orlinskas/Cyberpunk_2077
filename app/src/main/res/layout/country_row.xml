@@ -20,7 +20,7 @@
         android:maxLines="1"
         android:text="@string/empty_row"
         android:textAlignment="viewStart"
-        android:textColor="@color/colorTextBlack"
+        android:textColor="@color/colorCyberpunkRed"
         android:textSize="18sp"
         android:textStyle="italic" />
 
@@ -36,7 +36,7 @@
         android:fontFamily="sans-serif-condensed"
         android:text="@string/empty_row"
         android:textAlignment="viewEnd"
-        android:textColor="@color/colorTextBlack"
+        android:textColor="@color/colorCyberpunkRed"
         android:textSize="18sp" />
 
 </RelativeLayout>

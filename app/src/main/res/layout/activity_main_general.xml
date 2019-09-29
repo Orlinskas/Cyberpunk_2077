@@ -11,7 +11,7 @@
         <RelativeLayout
         android:id="@+id/activity_main_create_rl_head_anim"
         android:layout_width="match_parent"
-        android:layout_height="130dp" />
+        android:layout_height="115dp" />
 
     <RelativeLayout
         android:id="@+id/activity_main_general_rl_head"
@@ -138,7 +138,7 @@
     <RelativeLayout
         android:id="@+id/activity_main_create_rl_widget_list_window"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/activity_main_create_rl_create_window"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"

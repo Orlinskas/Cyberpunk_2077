@@ -3,7 +3,6 @@ package com.orlinskas.cyberpunk.ui.other;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +13,8 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -50,6 +51,7 @@ public class CountryListActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        final Animation animationClick = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.animation_list_item_click);
         searchCountryField.addTextChangedListener(new TextWatcher(){
             @Override
             public void afterTextChanged(Editable s) {
@@ -69,7 +71,7 @@ public class CountryListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                view.setBackgroundColor(getResources().getColor(R.color.colorBackgroundListActivity));
+                view.startAnimation(animationClick);
                 country = countries.get(position);
                 openCityListActivity();
             }
@@ -139,17 +141,6 @@ public class CountryListActivity extends AppCompatActivity {
             countryName.setText(name);
             countryCode.setText(code);
 
-            if (position%2 == 0) {
-                try {
-                    row.setBackgroundColor(getResources().getColor(R.color.colorRowHigh));
-                } catch (Resources.NotFoundException e) {
-                    e.printStackTrace();
-                }
-            }
-            else{
-                row.setBackgroundColor(getResources().getColor(R.color.colorRowLight));
-            }
-
             return row;
         }
     }
@@ -167,7 +158,7 @@ public class CountryListActivity extends AppCompatActivity {
             }
 
             if (currentCountryNamePart != null ) {
-                if(currentCountryNamePart.equals(desiredCountryNamePart)) {
+                if(currentCountryNamePart.toLowerCase().equals(desiredCountryNamePart.toLowerCase())) {
                     try {
                         listView.setSelection(position);
                     } catch (Exception e) {
