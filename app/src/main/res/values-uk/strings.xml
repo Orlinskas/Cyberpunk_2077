@@ -10,7 +10,6 @@
     <string name="btn_config">Вибрати</string>
     <string name="cities">міст.</string>
     <string name="city">Місто:</string>
-    <string name="city_2">Місто</string>
     <string name="config_body_descr_1">* можливо ви ще не створили віджет, зробіть це у додатку</string>
     <string name="config_body_descr_2">* оновленя погоди автоматичні (на деяких пристроях Xiaomi, Meizu, Huawei і т.д. треба дозволити роботу у фоні)</string>
     <string name="config_body_descr_3">* додаток економить заряд батареї і не робить зайвих запитів</string>
@@ -25,7 +24,6 @@
     <string name="error_get_data">Помилка отримання даних</string>
     <string name="error_widget_create">Помилка створення віджета</string>
     <string name="forecast">Прогноз</string>
-    <string name="create">Створити</string>
     <string name="fragment_city_data_generator_spn_city">вибрати зі списку</string>
     <string name="fragment_city_data_generator_spn_country">визначити місцезнаходження</string>
     <string name="fragment_city_data_generator_tv_country_name">треба вибрати</string>
@@ -56,7 +54,6 @@
     <string name="search">Пошук…</string>
     <string name="search_working">Пошук вже розпочато, зачекайте..</string>
     <string name="snow">Сніг</string>
-    <string name="widget">Віджет</string>
     <string name="create">Створити</string>
     <string name="to">до</string>
     <string name="uncorrect_place">Не коректне місцезнаходження</string>

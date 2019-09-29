@@ -90,10 +90,6 @@
     <string name="almost_refresh">Already updated</string>
     <string name="open_settings">Open Settings</string>
     <string name="desc_5">* tapping in the middle of the widget updates the forecast, if it is possible</string>
-
-    <string-array name="spinner">
-        <item>выбрать…</item>
-    </string-array>
     <string name="all">General</string>
     <string name="share_text" translatable="false">\"Cyberpunk 2077\" - Wake the f*** Up Android. https://play.google.com/store/apps/developer?id=Orlinskas.Development</string>
     <string name="share" translatable="false">Share</string>
@@ -110,4 +106,8 @@
     <string name="orlinskas_development" translatable="false">orlinskas development</string>
     <string name="id" translatable="false">id</string>
     <string name="code" translatable="false">Code</string>
+
+    <string-array name="spinner">
+        <item>choose…</item>
+    </string-array>
 </resources>

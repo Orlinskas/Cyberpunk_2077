@@ -10,7 +10,6 @@
     <string name="btn_config">Выбрать</string>
     <string name="cities">городов.</string>
     <string name="city">Город:</string>
-    <string name="city_2">Город</string>
     <string name="country">Страна:</string>
     <string name="delete_widget">Удалить виджет</string>
     <string name="desc_2">1. Приборы показывают усредненное значение по текущим данным на графике!</string>
@@ -20,7 +19,6 @@
     <string name="error_get_data">Ошибка получения данных</string>
     <string name="error_widget_create">Ошибка создания виджета</string>
     <string name="forecast">Прогноз</string>
-    <string name="create">Создать</string>
     <string name="fragment_city_data_generator_spn_city">выбрать из списка</string>
     <string name="fragment_city_data_generator_spn_country">определить местоположение</string>
     <string name="fragment_city_data_generator_tv_country_name">нужно выбрать</string>
@@ -51,7 +49,6 @@
     <string name="search">Поиск…</string>
     <string name="search_working">Поиск уже начат, подождите..</string>
     <string name="snow">Снег</string>
-    <string name="widget">Виджет</string>
     <string name="create">Создать</string>
     <string name="to">до</string>
     <string name="uncorrect_place">Некорректное местоположение</string>

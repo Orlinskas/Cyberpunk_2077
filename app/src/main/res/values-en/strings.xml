@@ -10,7 +10,6 @@
     <string name="btn_config">Choose</string>
     <string name="cities">cities.</string>
     <string name="city">City:</string>
-    <string name="city_2">City</string>
     <string name="config_body_descr_1">* you may not have yet created a widget, please do it in the app</string>
     <string name="config_body_descr_2">* the weather update is automatic (on some devices like Xiaomi, Meizu, Huawei etc. You need to allow app to work on the background)</string>
     <string name="config_body_descr_3">* the app consumes low amount of energy resourses and makes no side/unnecessary requests</string>
@@ -25,7 +24,6 @@
     <string name="error_get_data">Error receiving data</string>
     <string name="error_widget_create">Error creating widget</string>
     <string name="forecast">Forecast</string>
-    <string name="create">Create</string>
     <string name="fragment_city_data_generator_spn_city">choose from the list</string>
     <string name="fragment_city_data_generator_spn_country">determine location</string>
     <string name="fragment_city_data_generator_tv_country_name">need to choose</string>
@@ -56,7 +54,6 @@
     <string name="search">Search…</string>
     <string name="search_working">The seach\'s already started, please wait..</string>
     <string name="snow">Snow</string>
-    <string name="widget">Widget</string>
     <string name="create">Create</string>
     <string name="to">to</string>
     <string name="uncorrect_place">Invalid location</string>
