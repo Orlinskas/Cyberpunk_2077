@@ -78,8 +78,6 @@ public class MainActivity extends AppCompatActivity {
         FirstRunVerifier firstRunVerifier = new FirstRunVerifier(applicationContext);
 
         if(!firstRunVerifier.check()) {
-            ToastBuilder.createSnackBar(relativeLayout, "Wake the f*** Up Samurai");
-
             FirstRunner firstRunner = new FirstRunner(applicationContext);
             firstRunner.doFirstRun();
 
@@ -232,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
 
         private void addEmptyWidgetElement() {
             City emptyCity = new City(404, "Not found","Need to create",1.0,1.0);
-            Widget emptyWidget = new Widget(0, emptyCity, new Request("n/a", emptyCity, "n/a", "n/a" , "n/a", "n/a"));
+            Widget emptyWidget = new Widget(404, emptyCity, new Request("n/a", emptyCity, "n/a", "n/a" , "n/a", "n/a"));
             widgets.add(emptyWidget);
             ToastBuilder.createSnackBar(relativeLayout,"Create widget");
         }
@@ -257,11 +255,16 @@ public class MainActivity extends AppCompatActivity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    view.startAnimation(animationClick);
-                    Intent intent = new Intent(context, ForecastActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("myWidgetID", widgets.get(position).getId());
-                    startActivity(intent);
+                    if(widgets.get(position).getId() == 404) {
+                        startOpenActivityTask(WidgetCreatorView.class);
+                    }
+                    else {
+                        view.startAnimation(animationClick);
+                        Intent intent = new Intent(context, ForecastActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("myWidgetID", widgets.get(position).getId());
+                        startActivity(intent);
+                    }
                 }
             });
         }

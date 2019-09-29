@@ -11,6 +11,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -34,6 +36,7 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
     private City city;
     private WidgetCreatorContract.Presenter presenter;
     private static final int REQUEST_CODE_PERMISSION_FINE_LOCATION = 1312;
+    private int backPressedCount;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,9 +54,27 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
         indicatorNetworkOff = findViewById(R.id.activity_city_data_generator_tv_network_off);
         relativeLayout = findViewById(R.id.activity_city_data_generator_rl);
 
+        final Animation animationClick = AnimationUtils.loadAnimation(this,R.anim.animation_button);
+
         presenter = new WidgetCreatorPresenter(getApplicationContext(), this,
                 (LocationManager) getSystemService(LOCATION_SERVICE));
         presenter.startWork();
+
+        countryName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                countryName.startAnimation(animationClick);
+                presenter.onClickChooseLocation();
+            }
+        });
+
+        cityName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cityName.startAnimation(animationClick);
+                presenter.onClickChooseLocation();
+            }
+        });
 
         chooseLocationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +96,8 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
                 presenter.onClickCreateWidget(country, city);
             }
         });
+
+        backPressedCount = 0;
     }
 
     @Override
@@ -186,25 +209,16 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
 
     @Override
     public void toAskGPSPermission() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int permissionStatus = ContextCompat.checkSelfPermission(getApplicationContext(),
-                        Manifest.permission.ACCESS_FINE_LOCATION);
+        int permissionStatus = ContextCompat.checkSelfPermission(getApplicationContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION);
 
-                if (permissionStatus != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(getParent(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                            REQUEST_CODE_PERMISSION_FINE_LOCATION);
-                } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            presenter.startSearchLocation();
-                        }
-                    });
-                }
-            }
-        }).start();
+        if (permissionStatus != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_CODE_PERMISSION_FINE_LOCATION);
+        }
+        else {
+            presenter.startSearchLocation();
+        }
     }
 
     @Override
@@ -232,9 +246,15 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        presenter.stopSearchLocation();
+    public void onBackPressed() {
+        if(backPressedCount == 0) {
+            backPressedCount++;
+            presenter.stopSearchLocation();
+        }
+        else {
+            backPressedCount++;
+            super.onBackPressed();
+        }
     }
 
     @Override

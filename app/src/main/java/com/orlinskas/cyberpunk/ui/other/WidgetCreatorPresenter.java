@@ -14,7 +14,6 @@ import com.orlinskas.cyberpunk.City;
 import com.orlinskas.cyberpunk.Country;
 import com.orlinskas.cyberpunk.location.CityFinder;
 import com.orlinskas.cyberpunk.post.CountryNameWriter;
-import com.orlinskas.cyberpunk.ui.main.ForecastActivity;
 import com.orlinskas.cyberpunk.widget.Widget;
 
 import java.util.concurrent.TimeUnit;
@@ -118,6 +117,7 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter, 
     @Override
     public void startSearchLocation() {
         startProgressBar();
+        view.setButtonStatus(BUTTON_START_SEARCH_LOCATION, STATUS_ON);
         locationListener = this;
         locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, locationListener, null);
         locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, locationListener, null);
@@ -130,6 +130,8 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter, 
     public void stopSearchLocation() {
         if(locationManager != null && locationListener != null) {
             locationManager.removeUpdates(locationListener);
+            view.setButtonStatus(BUTTON_START_SEARCH_LOCATION, STATUS_OFF);
+            stopProgressBar();
         }
     }
 
@@ -224,7 +226,7 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter, 
     }
 
     private void readLocation(Location lastKnownLocation) {
-        if (lastKnownLocation != null) {
+        if (context != null && lastKnownLocation != null) {
             City city = findCity(lastKnownLocation);
             Country country = findCountry(city);
             view.setCity(city);
@@ -249,9 +251,6 @@ public class WidgetCreatorPresenter implements WidgetCreatorContract.Presenter, 
 
     @Override
     public void destroy() {
-        context = null;
-        model = null;
-        stopProgressBar();
-        startSearchLocation();
+        stopSearchLocation();
     }
 }
