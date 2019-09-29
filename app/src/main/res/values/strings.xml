@@ -1,19 +1,16 @@
 <resources>
     <string name="app_name" translatable="false">Cyberpunk</string>
-    <string name="tab_text_1">Виджет</string>
-    <string name="tab_text_2">Создать</string>
-    <string name="fragment_city_data_generator_tv_head">Создание виджета</string>
-    <string name="fragment_city_data_generator_btn_start">Создать</string>
-    <string name="city">Город:</string>
+    <string name="fragment_city_data_generator_tv_head">Widget creation</string>
+    <string name="create">Create</string>
+    <string name="city">City:</string>
     <string name="alert_image" translatable="false">alert_image</string>
-    <string name="country">Страна:</string>
-    <string name="search">Поиск…</string>
-    <string name="fragment_city_list_tv">Город</string>
-    <string name="fragment_country_list_tv">Страна</string>
-    <string name="fragment_city_data_generator_spn_country">определить местоположение</string>
-    <string name="fragment_city_data_generator_spn_city">выбрать из списка</string>
-    <string name="fragment_city_data_generator_tv_country_name">нужно выбрать</string>
-    <string name="fragment_country_list_tv_code">Код</string>
+    <string name="country">A country:</string>
+    <string name="search">Search…</string>
+    <string name="fragment_country_list_tv">A country</string>
+    <string name="fragment_city_data_generator_spn_country">determine location</string>
+    <string name="fragment_city_data_generator_spn_city">choose from the list</string>
+    <string name="fragment_city_data_generator_tv_country_name">need to choose</string>
+    <string name="fragment_country_list_tv_code">The code</string>
     <string name="on" translatable="false">On</string>
     <string name="network" translatable="false">Network</string>
     <string name="gps" translatable="false">GPS</string>
@@ -22,100 +19,95 @@
     <string name="right_button" translatable="false">right button</string>
     <string name="loading" translatable="false">click to update</string>
     <string name="loading_2" translatable="false">Loading…</string>
-    <string name="pressure">Давление</string>
-    <string name="value">Значение</string>
-    <string name="priboru">Приборы</string>
+    <string name="pressure">Pressure</string>
+    <string name="value">Value</string>
+    <string name="priboru">Devices</string>
     <string name="dimensions" translatable="false">meter/sec</string>
     <string name="icon_info" translatable="false">icon info</string>
     <string name="long_tire" translatable="false">—</string>
     <string name="help" translatable="false">help</string>
     <string name="hpa" translatable="false">hPa</string>
-    <string name="wind_speed">Ветер</string>
+    <string name="wind_speed">Wind</string>
     <string name="meter_sec" translatable="false">meter/sec</string>
-    <string name="humidity">Влажность</string>
+    <string name="humidity">Humidity</string>
     <string name="persent" translatable="false">%</string>
-    <string name="rain_name">Дождь</string>
-    <string name="snow">Снег</string>
-    <string name="delete_widget">Удалить виджет</string>
+    <string name="rain_name">Rain</string>
+    <string name="snow">Snow</string>
+    <string name="delete_widget">Delete widget</string>
     <string name="mm_day" translatable="false">mm/day</string>
-    <string name="discriprion_rl_info">*указаны средние значения за сутки</string>
-    <string name="config_head">Выберите ваш виджет из списка</string>
-    <string name="config_body_descr_1">* возможно вы еще не создали виджет, сделайте это в приложении</string>
-    <string name="config_body_descr_2">* обновление погоды автоматическое (на некоторых устройствах Xiaomi, Meizu, Huawei и т.д. нужно разрешить работу в фоне)</string>
-    <string name="config_body_descr_3">* приложение экономит заряд батареи и не делает лишних запросов</string>
-    <string name="config_body_descr_4">* виджет предоставляет прогноз на несколько дней, просто тапайте по краям виджета</string>
-    <string name="btn_config">Выбрать</string>
+    <string name="discriprion_rl_info">* averaged data for every day is shown</string>
+    <string name="config_head">Select your widget from the list.</string>
+    <string name="config_body_descr_1">* you may not have yet created a widget, please do it in the app</string>
+    <string name="config_body_descr_2">* the weather update is automatic (on some devices like Xiaomi, Meizu, Huawei etc. You need to allow app to work on the background)</string>
+    <string name="config_body_descr_3">* the app consumes low amount of energy resourses and makes no side/unnecessary requests</string>
+    <string name="config_body_descr_4">* the widget affords forecast for close upcoming dates, just tap on the sides of the screen</string>
+    <string name="btn_config">Choose</string>
     <string name="autor_group" translatable="false">2019 Orlinskas Development</string>
-    <string name="empty_row" translatable="false">-</string>
-    <string name="back">вчера</string>
-    <string name="next">завтра</string>
-    <string name="greate_widget_in_app">Создайте виджет в приложении</string>
-    <string name="open_data">Добро пожаловать, добавьте город</string>
-    <string name="internet_is_off">Выключен интернет</string>
-    <string name="avialable_from">Доступно с</string>
-    <string name="to">до</string>
-    <string name="empty_data">Пока нет данных</string>
-    <string name="update"> - обновлено.</string>
-    <string name="error_get_data">Ошибка получения данных</string>
-    <string name="load_cities_for">Загрузка городов для -</string>
-    <string name="city_2">Город</string>
-    <string name="have">Доступно -</string>
-    <string name="cities">городов.</string>
-    <string name="search_working">Поиск уже начат, подождите..</string>
-    <string name="acces_permission">Разрешите доступ или включите GPS</string>
-    <string name="not_found">Не найдено</string>
-    <string name="almost_have">Уже создан</string>
-    <string name="error_widget_create">Ошибка создания виджета</string>
-    <string name="uncorrect_place">Некорректное местоположение</string>
-    <string name="not_writed_plase">Не указано местоположение</string>
-    <string name="warning">Подтверждение</string>
-    <string name="yes">Да</string>
-    <string name="no">Нет</string>
-    <string name="all_desc_1">1. Прогноз предоставлен сервисом OpenWeatherMap.</string>
-    <string name="forecast">Прогноз</string>
-    <string name="desc_2">1. Приборы показывают усредненное значение по текущим данным на графике!</string>
-    <string name="widget">Виджет</string>
+    <string name="back">yesterday</string>
+    <string name="next">tomorrow</string>
+    <string name="greate_widget_in_app">Create a widget in the app</string>
+    <string name="open_data">Welcome, add city</string>
+    <string name="internet_is_off">Internet is off</string>
+    <string name="avialable_from">Available from</string>
+    <string name="to">to</string>
+    <string name="empty_data">No data yet</string>
+    <string name="update">" - updated."</string>
+    <string name="error_get_data">Error receiving data</string>
+    <string name="load_cities_for">Loading cities for -</string>
+    <string name="city_2">City</string>
+    <string name="have">Available -</string>
+    <string name="cities">cities.</string>
+    <string name="search_working">The seach\'s already started, please wait..</string>
+    <string name="acces_permission">Allow access or turn on GPS</string>
+    <string name="not_found">Not found</string>
+    <string name="almost_have">Already created</string>
+    <string name="error_widget_create">Error creating widget</string>
+    <string name="uncorrect_place">Invalid location</string>
+    <string name="not_writed_plase">Location not specified</string>
+    <string name="warning">the confirmation</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="all_desc_1">1. The forecast is provided by OpenWeatherMap service.</string>
+    <string name="forecast">Forecast</string>
+    <string name="desc_2">1. Appliances show averaged numbers on current graph data!</string>
+    <string name="widget">Widget</string>
     <string name="widget_image" translatable="false">widget_image</string>
-    <string name="widget_desc_1">1. Виджет поделен на три зоны.</string>
-    <string name="widget_desc_2">2. Левая зона прокручивает день назад.</string>
-    <string name="widget_desc_3">3. Правая зона прокручивает день вперед.</string>
-    <string name="widget_desc_4">4. Центральная зона, по возможности, обновляет данные.</string>
-    <string name="repost">Поделиться</string>
-    <string name="help_pls">Помощь</string>
-    <string name="message">Связь с разработчиком</string>
-    <string name="question">Технические вопросы, баги</string>
+    <string name="widget_desc_1">1. The widget is divided into 3 zones.</string>
+    <string name="widget_desc_2">2. Left zone spins back one day.</string>
+    <string name="widget_desc_3">3. The right zone spins one day forward.</string>
+    <string name="widget_desc_4">4. The central zone updates data if it is possible.</string>
+    <string name="repost">Share</string>
+    <string name="help_pls">Help</string>
+    <string name="message">Developer Relations</string>
+    <string name="question">Technical issues, bugs</string>
     <string name="gmail" translatable="false">orlinskas.development@gmai.com</string>
     <string name="my_gmail" translatable="false">orlinskaslove@gmai.com</string>
-    <string name="mail">Личная почта</string>
+    <string name="mail">Personal mail</string>
     <string name="inst" translatable="false">http://www.instagram.com/orlinskas</string>
     <string name="gmail_im" translatable="false">gmail_im</string>
     <string name="inst_im" translatable="false">inst_im</string>
-    <string name="refresh">Обновить</string>
-    <string name="almost_refresh">Уже обновлено</string>
-    <string name="open_settings">Открыть настройки</string>
-    <string name="desc_5">* тап(нажатие) в центре виджета - обновляет прогноз, если это возможно</string>
+    <string name="refresh">Refresh</string>
+    <string name="almost_refresh">Already updated</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="desc_5">* tapping in the middle of the widget updates the forecast, if it is possible</string>
 
     <string-array name="spinner">
         <item>выбрать…</item>
     </string-array>
-    <string name="all">Общие</string>
-    <string name="share_text">\"Cyberpunk 2077\" - Wake the f*** Up Android. https://play.google.com/store/apps/developer?id=Orlinskas.Development</string>
-    <string name="share">Share</string>
-    <string name="image">image</string>
-    <string name="create_widget">Create widget</string>
-    <string name="city_with_double_pins">City:</string>
-    <string name="need_to_choose">need to choose</string>
-    <string name="country_with_double_pins">Country:</string>
-    <string name="need_to_choose">need to choose</string>
-    <string name="orlinskas_development">orlinskas development</string>
-    <string name="orlinskas_development">orlinskas development</string>
-    <string name="widgets">Widgets</string>
-    <string name="menu">MENU</string>
-    <string name="widget_head">WIDGET</string>
-    <string name="update_big">UPDATE</string>
-    <string name="delete_big">DELETE</string>
-    <string name="orlinskas_development">orlinskas development</string>
-    <string name="id">id</string>
-    <string name="tire">—</string>
-    <string name="code">Code</string>
+    <string name="all">General</string>
+    <string name="share_text" translatable="false">\"Cyberpunk 2077\" - Wake the f*** Up Android. https://play.google.com/store/apps/developer?id=Orlinskas.Development</string>
+    <string name="share" translatable="false">Share</string>
+    <string name="image" translatable="false">image</string>
+    <string name="create_widget" translatable="false">Create widget</string>
+    <string name="city_with_double_pins" translatable="false">City:</string>
+    <string name="country_with_double_pins" translatable="false">Country:</string>
+    <string name="need_to_choose" translatable="false">need to choose</string>
+    <string name="widgets" translatable="false">Widgets</string>
+    <string name="menu" translatable="false">MENU</string>
+    <string name="widget_head" translatable="false">WIDGET</string>
+    <string name="update_big" translatable="false">UPDATE</string>
+    <string name="delete_big" translatable="false">DELETE</string>
+    <string name="orlinskas_development" translatable="false">orlinskas development</string>
+    <string name="id" translatable="false">id</string>
+    <string name="code" translatable="false">Code</string>
 </resources>

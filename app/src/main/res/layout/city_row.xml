@@ -17,7 +17,7 @@
         android:layout_marginBottom="5dp"
         android:fontFamily="sans-serif-light"
         android:maxLines="1"
-        android:text="@string/empty_row"
+        android:text="@string/tv_date"
         android:textAlignment="viewStart"
         android:textColor="@color/colorCyberpunkRed"
         android:textSize="18sp"

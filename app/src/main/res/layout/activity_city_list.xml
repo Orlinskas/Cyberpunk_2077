@@ -25,7 +25,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="sans-serif-light"
-            android:text="@string/fragment_city_list_tv"
+            android:text="@string/city_2"
             android:textColor="@color/colorCyberpunkRed"
             android:textSize="20sp" />
     </RelativeLayout>

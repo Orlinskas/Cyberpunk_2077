@@ -33,7 +33,7 @@
         android:fontFamily="@font/gost"
         android:shadowColor="@color/colorBlack"
         android:shadowRadius="2"
-        android:text="@string/tire"
+        android:text="@string/long_tire"
         android:textColor="@color/colorCyberpunkRed"
         android:textSize="20sp" />
 

@@ -25,12 +25,12 @@
     <string name="error_get_data">Помилка отримання даних</string>
     <string name="error_widget_create">Помилка створення віджета</string>
     <string name="forecast">Прогноз</string>
-    <string name="fragment_city_data_generator_btn_start">Створити</string>
+    <string name="create">Створити</string>
     <string name="fragment_city_data_generator_spn_city">вибрати зі списку</string>
     <string name="fragment_city_data_generator_spn_country">визначити місцезнаходження</string>
     <string name="fragment_city_data_generator_tv_country_name">треба вибрати</string>
     <string name="fragment_city_data_generator_tv_head">Створення віджета</string>
-    <string name="fragment_city_list_tv">Місто</string>
+    <string name="city_2">Місто</string>
     <string name="fragment_country_list_tv">Країна</string>
     <string name="fragment_country_list_tv_code">Код</string>
     <string name="greate_widget_in_app">Створіть віджет у додатку</string>
@@ -56,8 +56,8 @@
     <string name="search">Пошук…</string>
     <string name="search_working">Пошук вже розпочато, зачекайте..</string>
     <string name="snow">Сніг</string>
-    <string name="tab_text_1">Віджет</string>
-    <string name="tab_text_2">Створити</string>
+    <string name="widget">Віджет</string>
+    <string name="create">Створити</string>
     <string name="to">до</string>
     <string name="uncorrect_place">Не коректне місцезнаходження</string>
     <string name="update">" - оновлено."</string>

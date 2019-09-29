@@ -18,7 +18,7 @@
         android:layout_toStartOf="@+id/county_row_tv_code"
         android:fontFamily="sans-serif-light"
         android:maxLines="1"
-        android:text="@string/empty_row"
+        android:text="@string/tv_date"
         android:textAlignment="viewStart"
         android:textColor="@color/colorCyberpunkRed"
         android:textSize="18sp"
@@ -34,7 +34,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="5dp"
         android:fontFamily="sans-serif-condensed"
-        android:text="@string/empty_row"
+        android:text="@string/tv_date"
         android:textAlignment="viewEnd"
         android:textColor="@color/colorCyberpunkRed"
         android:textSize="18sp" />
