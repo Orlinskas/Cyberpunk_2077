@@ -17,7 +17,7 @@
         android:fontFamily="@font/gost"
         android:shadowColor="@color/colorBlack"
         android:shadowRadius="2"
-        android:text="id"
+        android:text="@string/id"
         android:textColor="@color/colorCyberpunkRed"
         android:textSize="20sp" />
 
@@ -33,7 +33,7 @@
         android:fontFamily="@font/gost"
         android:shadowColor="@color/colorBlack"
         android:shadowRadius="2"
-        android:text="—"
+        android:text="@string/tire"
         android:textColor="@color/colorCyberpunkRed"
         android:textSize="20sp" />
 
@@ -50,7 +50,7 @@
         android:maxLength="15"
         android:shadowColor="@color/colorBlack"
         android:shadowRadius="2"
-        android:text="City"
+        android:text="@string/city_2"
         android:textColor="@color/colorCyberpunkRed"
         android:textSize="20sp" />
 
@@ -66,7 +66,7 @@
         android:fontFamily="@font/gost"
         android:shadowColor="@color/colorBlack"
         android:shadowRadius="2"
-        android:text="Code"
+        android:text="@string/code"
         android:textColor="@color/colorCyberpunkRed"
         android:textSize="20sp" />
 </RelativeLayout>

@@ -6,5 +6,5 @@
     android:minWidth="250dp"
     android:minHeight="40dp"
     android:updatePeriodMillis="1800000"
-    android:configure="com.orlinskas.weatherwidget.ui.home.ConfigurationWidgetActivity">
+    android:configure="com.orlinskas.cyberpunk.ui.home.ConfigurationWidgetActivity">
 </appwidget-provider>

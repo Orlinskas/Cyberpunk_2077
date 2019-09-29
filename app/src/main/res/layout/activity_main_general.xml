@@ -3,6 +3,7 @@
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_main_general_create_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,7 +32,7 @@
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="3dp"
             android:fontFamily="@font/cyberpunk_eng"
-            android:text="WIDGET"
+            android:text="@string/widget_head"
             android:textColor="@color/colorCyberpunkOrange"
             android:textSize="18sp" />
     </RelativeLayout>
@@ -56,7 +57,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            app:srcCompat="@drawable/im_progress_1" />
+            app:srcCompat="@drawable/im_progress_1"
+            android:contentDescription="@string/image"/>
 
         <LinearLayout
             android:id="@+id/activity_main_general_ll_btn_case_2"
@@ -74,7 +76,8 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:onClick="onClickMenu"
-                app:srcCompat="@drawable/im_help_btn_off" />
+                app:srcCompat="@drawable/im_help_btn_off"
+                android:contentDescription="@string/image"/>
 
             <ImageView
                 android:id="@+id/activity_main_general_iv_btn_share"
@@ -85,7 +88,8 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:onClick="onClickMenu"
-                app:srcCompat="@drawable/im_share_btn_off" />
+                app:srcCompat="@drawable/im_share_btn_off"
+                android:contentDescription="@string/image"/>
 
         </LinearLayout>
 
@@ -105,7 +109,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:onClick="onClickMenu"
-                app:srcCompat="@drawable/im_create_btn_off" />
+                app:srcCompat="@drawable/im_create_btn_off"
+                android:contentDescription="@string/image"/>
 
             <ImageView
                 android:id="@+id/activity_main_general_iv_btn_author"
@@ -116,7 +121,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:onClick="onClickMenu"
-                app:srcCompat="@drawable/im_author_btn_off" />
+                app:srcCompat="@drawable/im_author_btn_off"
+                android:contentDescription="@string/image" />
 
         </LinearLayout>
 
@@ -128,10 +134,11 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:fontFamily="@font/cyberpunk_2"
-            android:text="MENU"
+            android:text="@string/menu"
             android:textColor="@color/colorCyberpunkRed"
             android:textSize="14sp"
-            android:typeface="normal" />
+            android:typeface="normal"
+            tools:ignore="RelativeOverlap" />
 
     </RelativeLayout>
 
@@ -155,7 +162,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            app:srcCompat="@drawable/im_progress_1" />
+            app:srcCompat="@drawable/im_progress_1"
+            android:contentDescription="@string/image" />
 
         <ListView
             android:id="@+id/activity_main_general_lv_widgets"
@@ -173,10 +181,11 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/cyberpunk_2"
-            android:text="Widgets"
+            android:text="@string/widgets"
             android:textColor="@color/colorCyberpunkRed"
             android:textSize="14sp"
-            android:typeface="normal" />
+            android:typeface="normal"
+            tools:ignore="RelativeOverlap" />
     </RelativeLayout>
 
         <TextView
@@ -186,7 +195,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/cyberpunk_eng"
-            android:text="orlinskas development "
+            android:text="@string/orlinskas_development"
             android:textColor="@color/colorCyberpunkRed"
             android:textSize="12sp" />
 

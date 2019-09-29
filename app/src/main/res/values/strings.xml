@@ -108,4 +108,14 @@
     <string name="country_with_double_pins">Country:</string>
     <string name="need_to_choose">need to choose</string>
     <string name="orlinskas_development">orlinskas development</string>
+    <string name="orlinskas_development">orlinskas development</string>
+    <string name="widgets">Widgets</string>
+    <string name="menu">MENU</string>
+    <string name="widget_head">WIDGET</string>
+    <string name="update_big">UPDATE</string>
+    <string name="delete_big">DELETE</string>
+    <string name="orlinskas_development">orlinskas development</string>
+    <string name="id">id</string>
+    <string name="tire">—</string>
+    <string name="code">Code</string>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_widget_sr"
@@ -184,9 +185,10 @@
                         android:layout_marginBottom="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/im_btn_off_empty"
-                        android:text="UPDATE"
+                        android:text="@string/update_big"
                         android:textColor="@color/colorCyberpunkRed"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:ignore="ButtonStyle" />
 
                     <Button
                         android:id="@+id/fragment_widget_rl_menu_delete_btn"
@@ -197,9 +199,10 @@
                         android:layout_marginBottom="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/im_btn_off_empty"
-                        android:text="DELETE"
+                        android:text="@string/delete_big"
                         android:textColor="@color/colorCyberpunkRed"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:ignore="ButtonStyle" />
 
                 </LinearLayout>
 
@@ -578,7 +581,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/cyberpunk_eng"
-                android:text="orlinskas development "
+                android:text="@string/orlinskas_development"
                 android:textColor="@color/colorCyberpunkRed"
                 android:textSize="12sp" />
 
