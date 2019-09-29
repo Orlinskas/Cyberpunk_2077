@@ -7,7 +7,7 @@
     android:id="@+id/activity_message_rl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundListActivity">
+    android:background="@drawable/im_background_3">
 
 
     <RelativeLayout
@@ -18,7 +18,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_background">
+        android:background="@drawable/grey_background">
 
         <ImageView
             android:id="@+id/imageView5"
@@ -28,8 +28,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            app:srcCompat="@drawable/gmail"
-            android:contentDescription="@string/gmail_im" />
+            android:contentDescription="@string/gmail_im"
+            app:srcCompat="@drawable/gmail" />
 
         <TextView
             android:id="@+id/textView8"
@@ -45,7 +45,7 @@
             android:shadowRadius="4"
             android:text="@string/question"
             android:textAllCaps="false"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="@color/colorCyberpunkRed"
             android:textSize="18sp" />
 
         <TextView
@@ -76,7 +76,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_background">
+        android:background="@drawable/grey_background">
 
         <ImageView
             android:id="@+id/imageView51"
@@ -129,7 +129,7 @@
             android:shadowRadius="4"
             android:text="@string/mail"
             android:textAllCaps="false"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="@color/colorCyberpunkRed"
             android:textSize="18sp" />
 
         <TextView
@@ -148,5 +148,16 @@
             android:textColor="@color/colorTextBlack"
             android:textSize="14sp" />
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/activity_city_data_tv_author2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/cyberpunk_eng"
+        android:text="@string/orlinskas_development"
+        android:textColor="@color/colorCyberpunkRed"
+        android:textSize="12sp" />
 
 </RelativeLayout>

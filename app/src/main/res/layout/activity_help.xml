@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_help_sv"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundListActivity">
+    android:background="@drawable/im_background_3">
 
     <RelativeLayout
         android:id="@+id/activity_help_rl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBackgroundListActivity">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/activity_help_rl_all"
@@ -23,7 +21,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/rounded_background">
+            android:background="@drawable/grey_background">
 
             <TextView
                 android:id="@+id/activity_help_all_tv"
@@ -35,7 +33,7 @@
                 android:text="@string/all"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/colorTextBlack" />
+                android:textColor="@color/colorCyberpunkRed" />
 
             <TextView
                 android:id="@+id/activity_help_all_desc_1"
@@ -49,7 +47,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="@string/all_desc_1"
                 android:textAlignment="viewStart"
-                android:textColor="@color/colorInfoText"
+                android:textColor="@color/colorCyberpunkRed"
                 android:textSize="18sp" />
 
             <View
@@ -72,7 +70,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/rounded_background">
+            android:background="@drawable/grey_background">
 
             <TextView
                 android:id="@+id/activity_help_tv"
@@ -84,7 +82,7 @@
                 android:text="@string/forecast"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/colorTextBlack" />
+                android:textColor="@color/colorCyberpunkRed" />
 
             <TextView
                 android:id="@+id/activity_help_desc_2"
@@ -98,7 +96,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="@string/desc_2"
                 android:textAlignment="viewStart"
-                android:textColor="@color/colorInfoText"
+                android:textColor="@color/colorCyberpunkRed"
                 android:textSize="18sp" />
 
             <View
@@ -120,7 +118,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/rounded_background">
+            android:background="@drawable/grey_background">
 
             <ImageView
                 android:id="@+id/activity_help_widget_iv"
@@ -142,7 +140,7 @@
                 android:text="@string/widget"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/colorTextBlack" />
+                android:textColor="@color/colorCyberpunkRed" />
 
             <TextView
                 android:id="@+id/activity_help_widget_desc_1"
@@ -156,7 +154,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="@string/widget_desc_1"
                 android:textAlignment="viewStart"
-                android:textColor="@color/colorInfoText"
+                android:textColor="@color/colorCyberpunkRed"
                 android:textSize="18sp" />
 
             <TextView
@@ -171,7 +169,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="@string/widget_desc_2"
                 android:textAlignment="viewStart"
-                android:textColor="@color/colorInfoText"
+                android:textColor="@color/colorCyberpunkRed"
                 android:textSize="18sp" />
 
             <TextView
@@ -186,7 +184,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="@string/widget_desc_3"
                 android:textAlignment="viewStart"
-                android:textColor="@color/colorInfoText"
+                android:textColor="@color/colorCyberpunkRed"
                 android:textSize="18sp" />
 
 
@@ -202,7 +200,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="@string/widget_desc_4"
                 android:textAlignment="viewStart"
-                android:textColor="@color/colorInfoText"
+                android:textColor="@color/colorCyberpunkRed"
                 android:textSize="18sp" />
 
 
@@ -214,7 +212,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="@string/autor_group"
                 android:textAlignment="center"
-                android:textColor="@color/colorInfoText" />
+                android:textColor="@color/colorCyberpunkRed" />
 
             <View
                 android:id="@+id/activity_help_widget_view_line_top"

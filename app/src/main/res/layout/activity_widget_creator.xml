@@ -3,6 +3,7 @@
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_city_data_generator_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +58,8 @@
                 android:layout_margin="5dp"
                 android:layout_marginEnd="367dp"
                 android:layout_marginBottom="3dp"
-                app:srcCompat="@drawable/im_progress_1" />
+                app:srcCompat="@drawable/im_progress_1"
+                android:contentDescription="@string/image" />
 
             <RelativeLayout
                 android:id="@+id/activity_city_data_generator_conection_rl"
@@ -126,10 +128,11 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/cyberpunk_2"
-                android:text="Create widget"
+                android:text="@string/create_widget"
                 android:textColor="@color/colorCyberpunkRed"
                 android:textSize="14sp"
-                android:typeface="normal" />
+                android:typeface="normal"
+                tools:ignore="RelativeOverlap" />
 
             <TextView
                 android:id="@+id/activity_city_data_generator_tv_city"
@@ -139,7 +142,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-light"
-                android:text="City:"
+                android:text="@string/city_with_double_pins"
                 android:textColor="@color/colorCyberpunkRed"
                 android:textSize="18sp" />
 
@@ -152,7 +155,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
                 android:fontFamily="sans-serif-light"
-                android:text="need to choose"
+                android:text="@string/need_to_choose"
                 android:textAlignment="center"
                 android:textColor="@color/colorCyberpunkRed"
                 android:textSize="18sp" />
@@ -165,7 +168,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-light"
-                android:text="Country:"
+                android:text="@string/country_with_double_pins"
                 android:textColor="@color/colorCyberpunkRed"
                 android:textSize="18sp" />
 
@@ -178,7 +181,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
                 android:fontFamily="sans-serif-light"
-                android:text="need to choose"
+                android:text="@string/need_to_choose"
                 android:textAlignment="center"
                 android:textColor="@color/colorCyberpunkRed"
                 android:textSize="18sp" />
@@ -193,9 +196,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/cyberpunk_eng"
-        android:text="orlinskas development "
+        android:text="@string/orlinskas_development"
         android:textColor="@color/colorCyberpunkRed"
-        android:textSize="10sp" />
+        android:textSize="12sp" />
 
     </RelativeLayout>
 

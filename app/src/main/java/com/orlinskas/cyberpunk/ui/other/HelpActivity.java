@@ -33,8 +33,8 @@ public class HelpActivity extends AppCompatActivity {
                 Intent sendIntent = new Intent();
                 sendIntent.setType("text/plain");
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT,  "\"Weather\" - удобный виджет погоды. Присоединяйся https://play.google.com/store/apps/developer?id=Orlinskas.Development");
-                startActivity(Intent.createChooser(sendIntent,"Поделиться"));
+                sendIntent.putExtra(Intent.EXTRA_TEXT,  R.string.share_text);
+                startActivity(Intent.createChooser(sendIntent, getString(R.string.share)));
                 return true;
             case R.id.action_help_pls:
                 ToastBuilder.create(getApplicationContext(), "Уже здесь");

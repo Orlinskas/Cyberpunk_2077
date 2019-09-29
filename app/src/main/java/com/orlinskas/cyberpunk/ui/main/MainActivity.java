@@ -136,8 +136,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent sendIntent = new Intent();
                 sendIntent.setType("text/plain");
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT,  "\"Cyberpunk 2077\" - Wake the f*** Up Android. https://play.google.com/store/apps/developer?id=Orlinskas.Development");
-                startActivity(Intent.createChooser(sendIntent,"Share"));
+                sendIntent.putExtra(Intent.EXTRA_TEXT,  R.string.share_text);
+                startActivity(Intent.createChooser(sendIntent, getString(R.string.share)));
 
                 runOnUiThread(new Runnable() {
                     @Override

@@ -99,4 +99,13 @@
         <item>выбрать…</item>
     </string-array>
     <string name="all">Общие</string>
+    <string name="share_text">\"Cyberpunk 2077\" - Wake the f*** Up Android. https://play.google.com/store/apps/developer?id=Orlinskas.Development</string>
+    <string name="share">Share</string>
+    <string name="image">image</string>
+    <string name="create_widget">Create widget</string>
+    <string name="city_with_double_pins">City:</string>
+    <string name="need_to_choose">need to choose</string>
+    <string name="country_with_double_pins">Country:</string>
+    <string name="need_to_choose">need to choose</string>
+    <string name="orlinskas_development">orlinskas development</string>
 </resources>
