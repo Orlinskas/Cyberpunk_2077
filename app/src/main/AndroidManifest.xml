@@ -11,9 +11,9 @@
         android:name=".ApplicationContext"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
-        android:icon="@drawable/logo_primary"
+        android:icon="@drawable/logo_cyberpunk"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo_primary"
+        android:roundIcon="@drawable/logo_cyberpunk"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
@@ -65,7 +65,7 @@
 
         <receiver
             android:name=".ui.home.HomeWidget"
-            android:icon="@drawable/logo_primary"
+            android:icon="@drawable/logo_cyberpunk"
             android:label="Weather">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
