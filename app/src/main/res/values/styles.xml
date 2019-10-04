@@ -30,4 +30,8 @@
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 
+    <style name="AppTheme.WhiteAccent">
+        <item name="colorAccent">@color/colorCyberpunkRed</item> <!-- Whatever color you want-->
+    </style>
+
 </resources>

@@ -2,8 +2,8 @@
 
 <resources>
     <color name="colorCyberpunkWhite">#F2E205</color>
-    <color name="colorCyberpunkGreen">#63CEA5</color>
     <color name="colorCyberpunkRed">#EF2F48</color>
+    <color name="colorCyberpunkGreen">#63CEA5</color>
     <color name="colorCyberpunkOrange">#EFA439</color>
     <color name="colorCyberpunkLowRed">#49383E</color>
 

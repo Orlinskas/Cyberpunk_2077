@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import com.orlinskas.cyberpunk.BuildConfig;
 import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.ToastBuilder;
-import com.orlinskas.cyberpunk.background.AlarmManagerSetter;
 import com.orlinskas.cyberpunk.preferences.Preferences;
 import com.orlinskas.cyberpunk.specification.WidgetEmptySpecification;
 import com.orlinskas.cyberpunk.widget.Widget;
@@ -84,9 +83,6 @@ public class ConfigurationWidgetActivity extends Activity {
         preferences.saveData(MY_WIDGET_ID_DEPENDS + appWidgetID, myWidgetID);
         //и наоборот
         preferences.saveData(APP_WIDGET_ID_DEPENDS + myWidgetID, appWidgetID);
-
-        AlarmManagerSetter alarmManagerSetter = new AlarmManagerSetter();
-        alarmManagerSetter.setAlarm(this, myWidgetID);
 
         setResult(RESULT_OK, resultValue); //отправил положительный ответ
         finish();

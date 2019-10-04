@@ -22,9 +22,6 @@ public class UpdateReceiver extends BroadcastReceiver {
                     context.startService(intentService);
                     break;
             }
-
-            AlarmManagerSetter alarmManagerSetter = new AlarmManagerSetter();
-            alarmManagerSetter.setAlarm(context, myWidgetID);
         }
     }
 }

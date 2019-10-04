@@ -29,4 +29,9 @@ public class DateCalculator {
         long milliseconds = now.getTime() - old.getTime();
         return (int) (milliseconds / (60 * 60 * 1000));
     }
+
+    public int calculateDifferencesInMinutes(Date old, Date now) {
+        long milliseconds = now.getTime() - old.getTime();
+        return (int) (milliseconds / (60 * 1000));
+    }
 }
