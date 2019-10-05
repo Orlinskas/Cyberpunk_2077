@@ -47,13 +47,6 @@
         <activity
             android:name=".ui.other.ContactsActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.ConfigurationWidgetActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
-            </intent-filter>
-        </activity>
 
         <activity
             android:name=".ui.main.ForecastActivity"
@@ -62,6 +55,23 @@
         <activity
             android:name=".ui.other.WidgetCreatorView"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.home.ConfigurationWidgetActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".background.WidgetUpdateService"
+            android:enabled="true"/>
+
+        <service
+            android:name=".ui.home.WidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+            android:exported="false"/>
 
         <receiver
             android:name=".ui.home.HomeWidget"
@@ -81,10 +91,6 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
-        <service
-            android:name=".background.WidgetUpdateService"
-            android:enabled="true"/>
 
         <uses-library
             android:name="android.test.runner"
