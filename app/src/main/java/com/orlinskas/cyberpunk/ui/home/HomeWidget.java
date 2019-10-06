@@ -18,8 +18,6 @@ import android.widget.RemoteViews;
 
 import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.background.WidgetUpdateService;
-import com.orlinskas.cyberpunk.chart.WeatherIconsSelector;
-import com.orlinskas.cyberpunk.date.DateCalculator;
 import com.orlinskas.cyberpunk.date.DateFormat;
 import com.orlinskas.cyberpunk.date.DateHelper;
 import com.orlinskas.cyberpunk.forecast.Forecast;
@@ -28,7 +26,6 @@ import com.orlinskas.cyberpunk.preferences.Preferences;
 import com.orlinskas.cyberpunk.widget.Widget;
 import com.orlinskas.cyberpunk.widget.WidgetRepository;
 
-import java.util.Date;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -144,7 +141,7 @@ public class HomeWidget extends AppWidgetProvider {
 
         views = troubleshoot(views, forecast);
 
-        views = fillConsole(views, forecast);
+        views = fillConsole(views, forecast, context);
 
         AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, views);
     }
@@ -188,14 +185,15 @@ public class HomeWidget extends AppWidgetProvider {
         return views;
     }
 
-    private RemoteViews fillConsole(RemoteViews views, Forecast forecast) {
-        ConsoleMessageBuilder builder = new ConsoleMessageBuilder(forecast);
+    private RemoteViews fillConsole(RemoteViews views, Forecast forecast, Context context) {
+        ConsoleMessageBuilder builder = new ConsoleMessageBuilder(forecast, context);
 
-        views.setTextViewText(R.id.widget_troubleshooter_tv_warning, builder.buildWarning());
+        views.setTextViewText(R.id.widget_troubleshooter_tv_warning, builder.buildLastUpdate());
         views.setTextViewText(R.id.widget_troubleshooter_tv_timezone, builder.buildTimezone());
-        views.setTextViewText(R.id.widget_troubleshooter_tv_battery, builder.buildBatteryStatus());
-        views.setTextViewText(R.id.widget_troubleshooter_tv_wifi, builder.buildWifiStatus());
-        views.setTextViewText(R.id.widget_troubleshooter_tv_precipitation, builder.buildPrecipitationValue());
+        views.setTextViewText(R.id.widget_troubleshooter_tv_RAM, builder.buildRAM());
+        views.setTextViewText(R.id.widget_troubleshooter_tv_memory, builder.buildMemoryTotal());
+        views.setTextViewText(R.id.widget_troubleshooter_tv_wifi, builder.buildMemoryFree());
+        views.setTextViewText(R.id.widget_troubleshooter_tv_precipitation, builder.buildWifiStatus());
 
         return views;
     }

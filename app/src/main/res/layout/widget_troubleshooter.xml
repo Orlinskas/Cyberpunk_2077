@@ -19,6 +19,73 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/widget_troubleshooter_ll_troubleshooter"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toStartOf="@+id/widget_troubleshooter_im_update_btn"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/widget_troubleshooter_iv_troubleshooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="3"
+            app:srcCompat="@drawable/im_trouble_text_2" />
+
+        <LinearLayout
+            android:id="@+id/widget_troubleshooter_ll_troubleshoter_icons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/widget_troubleshooter_iv_percipitation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/im_percipitation_off" />
+
+            <ImageView
+                android:id="@+id/widget_troubleshooter_iv_wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/im_wind_off" />
+
+            <ImageView
+                android:id="@+id/widget_troubleshooter_iv_wet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/im_wet_off" />
+
+            <ImageView
+                android:id="@+id/widget_troubleshooter_iv_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/im_head_off" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/widget_troubleshooter_im_update_btn"
+        android:layout_width="140dp"
+        android:layout_height="38dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="5dp"
+        app:srcCompat="@drawable/im_update_btn_off" />
+
     <RelativeLayout
         android:id="@+id/widget_troubleshooter_rl_clock"
         android:layout_width="wrap_content"
@@ -87,63 +154,6 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/widget_troubleshooter_ll_troubleshooter"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_toStartOf="@+id/widget_troubleshooter_im_update_btn"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/widget_troubleshooter_iv_troubleshooter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="3"
-            app:srcCompat="@drawable/im_trouble_text_2" />
-
-        <LinearLayout
-            android:id="@+id/widget_troubleshooter_ll_troubleshoter_icons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/widget_troubleshooter_iv_percipitation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/im_percipitation_off" />
-
-            <ImageView
-                android:id="@+id/widget_troubleshooter_iv_wind"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/im_wind_off" />
-
-            <ImageView
-                android:id="@+id/widget_troubleshooter_iv_wet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/im_wet_off" />
-
-            <ImageView
-                android:id="@+id/widget_troubleshooter_iv_head"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/im_head_off" />
-        </LinearLayout>
-    </LinearLayout>
-
     <RelativeLayout
         android:id="@+id/widget_troubleshooter_rl_city_name"
         android:layout_width="140dp"
@@ -167,88 +177,6 @@
             android:textSize="14sp" />
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/widget_troubleshooter_im_update_btn"
-        android:layout_width="140dp"
-        android:layout_height="38dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="5dp"
-        app:srcCompat="@drawable/im_update_btn_off" />
-
-    <RelativeLayout
-        android:id="@+id/widget_troubleshooter_rl_console"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/widget_troubleshooter_im_update_btn"
-        android:layout_below="@+id/widget_troubleshooter_rl_city_name"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="7dp"
-        android:layout_toEndOf="@+id/widget_troubleshooter_rl_clock">
-
-        <TextView
-            android:id="@+id/widget_troubleshooter_tv_warning"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="false"
-            android:layout_marginEnd="5dp"
-            android:maxLines="1"
-            android:text="warning"
-            android:textColor="@color/colorCyberpunkRed"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/widget_troubleshooter_tv_timezone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/widget_troubleshooter_tv_warning"
-            android:layout_alignParentEnd="false"
-            android:layout_marginEnd="5dp"
-            android:maxLines="1"
-            android:text="timezone UTC +3"
-            android:textColor="@color/colorCyberpunkRed"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/widget_troubleshooter_tv_battery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/widget_troubleshooter_tv_timezone"
-            android:layout_alignParentEnd="false"
-            android:layout_marginEnd="5dp"
-            android:maxLines="1"
-            android:text="battery_status"
-            android:textColor="@color/colorCyberpunkRed"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/widget_troubleshooter_tv_wifi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/widget_troubleshooter_tv_battery"
-            android:layout_alignParentEnd="false"
-            android:layout_marginEnd="5dp"
-            android:maxLines="1"
-            android:text="wifi_status"
-            android:textColor="@color/colorCyberpunkRed"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/widget_troubleshooter_tv_precipitation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/widget_troubleshooter_tv_wifi"
-            android:layout_alignParentEnd="false"
-            android:layout_marginEnd="5dp"
-            android:maxLines="1"
-            android:text="precipitation value"
-            android:textColor="@color/colorCyberpunkRed"
-            android:textSize="10sp" />
-
-    </RelativeLayout>
-
     <ProgressBar
         android:id="@+id/widget_troubleshooter_pb"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -262,9 +190,97 @@
         android:indeterminate="true"
         android:theme="@style/AppTheme.WhiteAccent" />
 
+    <RelativeLayout
+        android:id="@+id/widget_troubleshooter_rl_console"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/widget_troubleshooter_im_update_btn"
+        android:layout_below="@+id/widget_troubleshooter_rl_city_name"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@+id/widget_troubleshooter_rl_clock"
+        android:background="@drawable/console_background"
+        tools:layout_marginBottom="-3dp">
 
+        <TextView
+            android:id="@+id/widget_troubleshooter_tv_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="5dp"
+            android:maxLines="1"
+            android:text="--last_update"
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="10sp" />
 
+        <TextView
+            android:id="@+id/widget_troubleshooter_tv_timezone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/widget_troubleshooter_tv_warning"
+            android:layout_alignParentEnd="false"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="5dp"
+            android:maxLines="1"
+            android:text="--time_zone"
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="10sp" />
 
+        <TextView
+            android:id="@+id/widget_troubleshooter_tv_RAM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/widget_troubleshooter_tv_timezone"
+            android:layout_alignParentEnd="false"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="5dp"
+            android:maxLines="1"
+            android:text="--RAM"
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/widget_troubleshooter_tv_memory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/widget_troubleshooter_tv_RAM"
+            android:layout_alignParentEnd="false"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="5dp"
+            android:maxLines="1"
+            android:text="--memory total"
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/widget_troubleshooter_tv_wifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/widget_troubleshooter_tv_memory"
+            android:layout_alignParentEnd="false"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="5dp"
+            android:maxLines="1"
+            android:text="--memory free"
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/widget_troubleshooter_tv_precipitation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/widget_troubleshooter_tv_wifi"
+            android:layout_alignParentEnd="false"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="5dp"
+            android:maxLines="1"
+            android:text="--wifi status"
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="10sp" />
+
+    </RelativeLayout>
 
 
 </RelativeLayout>
