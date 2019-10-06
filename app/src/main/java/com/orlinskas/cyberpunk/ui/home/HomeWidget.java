@@ -9,9 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.v4.content.ContextCompat;
@@ -140,93 +138,69 @@ public class HomeWidget extends AppWidgetProvider {
     }
 
     private void updateUI(int appWidgetID, Forecast forecast, Context context) {
-        RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
 
+        views = fillMain(views, forecast, context);
+
+        views = troubleshoot(views, forecast);
+
+        views = fillConsole(views, forecast);
+
+        AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, views);
+    }
+
+    private RemoteViews fillMain(RemoteViews views, Forecast forecast, Context context) {
         tfZelec = Typeface.createFromAsset(context.getAssets(),"fonts/new_zelec.ttf");
         tfDigit = Typeface.createFromAsset(context.getAssets(),"fonts/digit_3.TTF");
 
-        Weather currentWeather = findCurrentWeather(forecast);
+        WidgetDataBuilder builder = new WidgetDataBuilder();
+
+        Weather currentWeather = builder.findCurrentWeather(forecast);
         String currentDate = DateHelper.getCurrent(DateFormat.DD_MM_YYYY);
         String cityName = forecast.getDayWeathers().get(0).getCityName();
-        String timezoneUTC = setTimezone(forecast);
-        String temperature = setTemperature(currentWeather);
-        int ID = setIcon(currentWeather);
+        String temperature = builder.setTemperature(currentWeather);
+        int ID = builder.setIcon(currentWeather);
 
-        widgetView.setTextViewText(R.id.widget_troubleshooter_tv_city_name, cityName);
-        widgetView.setTextViewText(R.id.widget_troubleshooter_tv_timezone, timezoneUTC);
+        views.setTextViewText(R.id.widget_troubleshooter_tv_city_name, cityName);
+        views.setImageViewBitmap(R.id.widget_troubleshooter_tv_date, convertToImg(currentDate, tfDigit, 50, ContextCompat.getColor(context, R.color.colorCyberpunkWhite), 500, 100, ContextCompat.getColor(context, R.color.colorCyberpunkGreen)));
+        views.setImageViewResource(R.id.widget_troubleshooter_iv_weather_icon, ID);
+        views.setTextViewText(R.id.widget_troubleshooter_tv_weather_value, temperature);
 
-        widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_weather_icon, ID);
-
-        widgetView.setTextViewText(R.id.widget_troubleshooter_tv_weather_value, temperature);
-
-        widgetView.setImageViewBitmap(R.id.widget_troubleshooter_tv_date,
-                convertToImg(currentDate, tfDigit, 50, ContextCompat.getColor(context, R.color.colorCyberpunkWhite), 500, 100, ContextCompat.getColor(context, R.color.colorCyberpunkGreen)));
-
-        AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, widgetView);
+        return views;
     }
 
-    private Weather findCurrentWeather(Forecast forecast) {
-        String nowDateString = DateHelper.getCurrent(DateFormat.YYYY_MM_DD_HH_MM);
-        Date nowDate = DateHelper.parse(nowDateString, DateFormat.YYYY_MM_DD_HH_MM);
+    private RemoteViews troubleshoot(RemoteViews views, Forecast forecast) {
+        TroubleShooter troubleShooter = new TroubleShooter(forecast);
 
-        int lastMinDifference = 200;
-        Weather needWeather = forecast.getDayWeathers().get(0);
-
-        for(Weather weather : forecast.getDayWeathers()) {
-            String weatherDateString = weather.getTimeOfDataForecast();
-            Date weatherDate = DateHelper.parse(weatherDateString, DateFormat.YYYY_MM_DD_HH_MM);
-
-            DateCalculator calculator = new DateCalculator();
-            int currentAbsDifference = Math.abs(calculator.calculateDifferencesInMinutes(nowDate, weatherDate));
-            if(currentAbsDifference < lastMinDifference) {
-                lastMinDifference = currentAbsDifference;
-                needWeather = weather;
-            }
+        if(troubleShooter.shootPrecipitation()) {
+            views.setImageViewResource(R.id.widget_troubleshooter_iv_percipitation, R.drawable.im_percipitation_on);
+        }
+        if(troubleShooter.shootWind()) {
+            views.setImageViewResource(R.id.widget_troubleshooter_iv_wind,R.drawable.im_wind_on);
+        }
+        if(troubleShooter.shootWet()) {
+            views.setImageViewResource(R.id.widget_troubleshooter_iv_wet, R.drawable.im_wet_on);
+        }
+        if (troubleShooter.shootHeadPain()) {
+            views.setImageViewResource(R.id.widget_troubleshooter_iv_head, R.drawable.im_head_on);
         }
 
-        return needWeather;
+        return views;
     }
 
-    private String setTimezone(Forecast forecast) {
-        int timezone = forecast.getDayWeathers().get(0).getTimezone();
+    private RemoteViews fillConsole(RemoteViews views, Forecast forecast) {
+        ConsoleMessageBuilder builder = new ConsoleMessageBuilder(forecast);
 
-        if(timezone > 0) {
-            return "UTC +" + timezone;
-        }
-        else {
-            return "UTC " + timezone;
-        }
+        views.setTextViewText(R.id.widget_troubleshooter_tv_warning, builder.buildWarning());
+        views.setTextViewText(R.id.widget_troubleshooter_tv_timezone, builder.buildTimezone());
+        views.setTextViewText(R.id.widget_troubleshooter_tv_battery, builder.buildBatteryStatus());
+        views.setTextViewText(R.id.widget_troubleshooter_tv_wifi, builder.buildWifiStatus());
+        views.setTextViewText(R.id.widget_troubleshooter_tv_precipitation, builder.buildPrecipitationValue());
+
+        return views;
     }
 
-    private String setTemperature(Weather currentWeather) {
-        String temperature = "—";
-        try {
-            int temp = currentWeather.getCurrentTemperature();
-
-            if(temp > 0) {
-                temperature = "+" + temp + "°C";
-            }
-            else {
-                temperature = temp + "°C";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return temperature;
-    }
-
-    private int setIcon(Weather weather) {
-        int ID = R.drawable.ic_na_icon;
-        WeatherIconsSelector selector = new WeatherIconsSelector();
-        try {
-            selector.findIcon(weather);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ID;
-    }
-
-    private Bitmap convertToImg(String text, Typeface typeface, int textSize, int color, int width, int height, int shadowColor) {
+    public Bitmap convertToImg(String text, Typeface typeface, int textSize, int color, int width, int height, int shadowColor) {
         Bitmap btmText = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
         Canvas canvas = new Canvas(btmText);
 

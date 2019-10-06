@@ -15,7 +15,7 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp"
-        android:background="@drawable/im_background_widget_3">
+        android:background="@drawable/im_background_widget_8">
 
     </RelativeLayout>
 
@@ -159,8 +159,11 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="monospace"
+            android:maxLength="15"
+            android:shadowColor="@color/colorCyberpunkGreen"
+            android:shadowRadius="6"
             android:text="city name "
-            android:textColor="@color/colorCyberpunkRed"
+            android:textColor="@color/colorCyberpunkWhite"
             android:textSize="14sp" />
     </RelativeLayout>
 
@@ -173,6 +176,78 @@
         android:layout_marginEnd="7dp"
         android:layout_marginBottom="5dp"
         app:srcCompat="@drawable/im_update_btn_off" />
+
+    <RelativeLayout
+        android:id="@+id/widget_troubleshooter_rl_console"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/widget_troubleshooter_im_update_btn"
+        android:layout_below="@+id/widget_troubleshooter_rl_city_name"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="7dp"
+        android:layout_toEndOf="@+id/widget_troubleshooter_rl_clock">
+
+        <TextView
+            android:id="@+id/widget_troubleshooter_tv_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_marginEnd="5dp"
+            android:maxLines="1"
+            android:text="warning"
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/widget_troubleshooter_tv_timezone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/widget_troubleshooter_tv_warning"
+            android:layout_alignParentEnd="false"
+            android:layout_marginEnd="5dp"
+            android:maxLines="1"
+            android:text="timezone UTC +3"
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/widget_troubleshooter_tv_battery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/widget_troubleshooter_tv_timezone"
+            android:layout_alignParentEnd="false"
+            android:layout_marginEnd="5dp"
+            android:maxLines="1"
+            android:text="battery_status"
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/widget_troubleshooter_tv_wifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/widget_troubleshooter_tv_battery"
+            android:layout_alignParentEnd="false"
+            android:layout_marginEnd="5dp"
+            android:maxLines="1"
+            android:text="wifi_status"
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/widget_troubleshooter_tv_precipitation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/widget_troubleshooter_tv_wifi"
+            android:layout_alignParentEnd="false"
+            android:layout_marginEnd="5dp"
+            android:maxLines="1"
+            android:text="precipitation value"
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="10sp" />
+
+    </RelativeLayout>
 
     <ProgressBar
         android:id="@+id/widget_troubleshooter_pb"
@@ -187,60 +262,7 @@
         android:indeterminate="true"
         android:theme="@style/AppTheme.WhiteAccent" />
 
-    <TextView
-        android:id="@+id/widget_troubleshooter_tv_warning"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/widget_troubleshooter_rl_city_name"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="5dp"
-        android:text="warning"
-        android:textColor="@color/colorCyberpunkRed"
-        android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/widget_troubleshooter_tv_timezone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/widget_troubleshooter_tv_warning"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="5dp"
-        android:text="timezone UTC +3"
-        android:textColor="@color/colorCyberpunkRed"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/widget_troubleshooter_tv_battery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/widget_troubleshooter_tv_timezone"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="5dp"
-        android:text="battery_status"
-        android:textColor="@color/colorCyberpunkRed"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/widget_troubleshooter_tv_wifi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/widget_troubleshooter_tv_battery"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="5dp"
-        android:text="wifi_status"
-        android:textColor="@color/colorCyberpunkRed"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/widget_troubleshooter_tv_precipitation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/widget_troubleshooter_tv_wifi"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="5dp"
-        android:text="precipitation value"
-        android:textColor="@color/colorCyberpunkRed"
-        android:textSize="12sp" />
 
 
 

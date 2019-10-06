@@ -68,11 +68,6 @@
             android:name=".background.WidgetUpdateService"
             android:enabled="true"/>
 
-        <service
-            android:name=".ui.home.WidgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS"
-            android:exported="false"/>
-
         <receiver
             android:name=".ui.home.HomeWidget"
             android:icon="@drawable/logo_cyberpunk"

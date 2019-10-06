@@ -10,7 +10,7 @@ public class TroubleShooter {
         this.forecast = forecast;
     }
 
-    private boolean shootPrecipitation() {
+    public boolean shootPrecipitation() {
         for(Weather weather : forecast.getDayWeathers()) {
             double rain = weather.getRainVolume();
             double snow = weather.getSnowVolume();
@@ -22,7 +22,7 @@ public class TroubleShooter {
         return false;
     }
 
-    private boolean shootWind() {
+    public boolean shootWind() {
         for(Weather weather : forecast.getDayWeathers()) {
             double wind = weather.getWindSpeed();
 
@@ -33,7 +33,7 @@ public class TroubleShooter {
         return false;
     }
 
-    private boolean shootWet() {
+    public boolean shootWet() {
         boolean isMinusTemp = false;
         boolean isPlusTemp = false;
 
@@ -50,7 +50,7 @@ public class TroubleShooter {
         return isMinusTemp & isPlusTemp;
     }
 
-    private boolean shootHeadPain() {
+    public boolean shootHeadPain() {
         int pressureSum = 0;
 
         for(Weather weather : forecast.getDayWeathers()) {
