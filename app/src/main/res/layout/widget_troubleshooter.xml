@@ -92,10 +92,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="4dp"
-        android:layout_toStartOf="@+id/widget_troubleshooter_im_update_btn">
+        android:layout_toStartOf="@+id/widget_troubleshooter_iv_flashlight">
 
         <ImageView
             android:id="@+id/widget_troubleshooter_tv_date"
@@ -190,16 +188,33 @@
         android:indeterminate="true"
         android:theme="@style/AppTheme.WhiteAccent" />
 
+    <ImageView
+        android:id="@+id/widget_troubleshooter_iv_flashlight"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_above="@+id/widget_troubleshooter_ll_troubleshooter"
+        android:layout_marginBottom="-5dp"
+        android:layout_toStartOf="@+id/widget_troubleshooter_rl_console"
+        app:srcCompat="@drawable/im_flashlight_btn_off" />
+
+    <ImageView
+        android:id="@+id/widget_troubleshooter_iv_wifi"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+
+        android:layout_above="@+id/widget_troubleshooter_iv_flashlight"
+        android:layout_toStartOf="@+id/widget_troubleshooter_rl_console"
+        app:srcCompat="@drawable/im_btn_wifi_off" />
+
     <RelativeLayout
         android:id="@+id/widget_troubleshooter_rl_console"
-        android:layout_width="match_parent"
+        android:layout_width="135dp"
         android:layout_height="match_parent"
         android:layout_above="@+id/widget_troubleshooter_im_update_btn"
         android:layout_below="@+id/widget_troubleshooter_rl_city_name"
-        android:layout_marginStart="5dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        android:layout_toEndOf="@+id/widget_troubleshooter_rl_clock"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/console_background"
         tools:layout_marginBottom="-3dp">
 
@@ -207,39 +222,44 @@
             android:id="@+id/widget_troubleshooter_tv_warning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/widget_troubleshooter_tv_timezone"
             android:layout_alignParentEnd="false"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="5dp"
+            android:fontFamily="sans-serif-thin"
             android:maxLines="1"
             android:text="--last_update"
             android:textColor="@color/colorCyberpunkRed"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/widget_troubleshooter_tv_timezone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:background="@color/colorConsoleBackgroundRow"
+            android:fontFamily="sans-serif-thin"
+            android:maxLines="1"
+            android:text="Console."
+            android:textColor="@color/colorTextBlack"
+            android:textSize="10sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/widget_troubleshooter_tv_RAM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/widget_troubleshooter_tv_warning"
             android:layout_alignParentEnd="false"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="5dp"
-            android:maxLines="1"
-            android:text="--time_zone"
-            android:textColor="@color/colorCyberpunkRed"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/widget_troubleshooter_tv_RAM"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/widget_troubleshooter_tv_timezone"
-            android:layout_alignParentEnd="false"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="5dp"
+            android:fontFamily="sans-serif-thin"
             android:maxLines="1"
             android:text="--RAM"
             android:textColor="@color/colorCyberpunkRed"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/widget_troubleshooter_tv_memory"
@@ -249,10 +269,12 @@
             android:layout_alignParentEnd="false"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="5dp"
+            android:fontFamily="sans-serif-thin"
             android:maxLines="1"
             android:text="--memory total"
             android:textColor="@color/colorCyberpunkRed"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/widget_troubleshooter_tv_wifi"
@@ -262,10 +284,12 @@
             android:layout_alignParentEnd="false"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="5dp"
+            android:fontFamily="sans-serif-thin"
             android:maxLines="1"
             android:text="--memory free"
             android:textColor="@color/colorCyberpunkRed"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/widget_troubleshooter_tv_precipitation"
@@ -275,10 +299,12 @@
             android:layout_alignParentEnd="false"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="5dp"
+            android:fontFamily="sans-serif-thin"
             android:maxLines="1"
             android:text="--wifi status"
             android:textColor="@color/colorCyberpunkRed"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

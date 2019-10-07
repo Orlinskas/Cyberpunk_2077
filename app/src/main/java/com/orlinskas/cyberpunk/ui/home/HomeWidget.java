@@ -10,6 +10,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.hardware.Camera;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.v4.content.ContextCompat;
@@ -23,6 +25,7 @@ import com.orlinskas.cyberpunk.date.DateHelper;
 import com.orlinskas.cyberpunk.forecast.Forecast;
 import com.orlinskas.cyberpunk.forecast.Weather;
 import com.orlinskas.cyberpunk.preferences.Preferences;
+import com.orlinskas.cyberpunk.ui.main.ForecastActivity;
 import com.orlinskas.cyberpunk.widget.Widget;
 import com.orlinskas.cyberpunk.widget.WidgetRepository;
 
@@ -37,10 +40,15 @@ public class HomeWidget extends AppWidgetProvider {
     public static final String ACTION_CREATE = "create";
     public static final String ACTION_DEFAULT = "default";
     public static final String ACTION_UPDATE = "update";
-    private final String ACTION_CLICK_CENTER = "centerAreaClick";
+    private final String ACTION_CLICK_UPDATE_BUTTON = "centerAreaClick";
+    private final String ACTION_CLICK_FLASHLIGHT = "flashlightAreaClick";
+    private final String ACTION_CLICK_WIFI = "wifiAreaClick";
+    private final String ACTION_CLICK_WEATHER = "weatherAreaClick";
     private Typeface tfZelec;
     private Typeface tfDigit;
-
+    private boolean isFlashlightOn = false;
+    private Camera camera;
+    private Camera.Parameters params;
 
     @Override
     public IBinder peekService(Context myContext, Intent service) {
@@ -51,7 +59,7 @@ public class HomeWidget extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
         for (int id : appWidgetIds) {
-            updateWidget(id, context);
+            createWidget(id, context);
         }
     }
 
@@ -71,10 +79,20 @@ public class HomeWidget extends AppWidgetProvider {
                 case ACTION_CREATE:
                 case ACTION_DEFAULT:
                 case ACTION_UPDATE:
-                    updateWidget(appWidgetID, context);
-                case ACTION_CLICK_CENTER:
+                    createWidget(appWidgetID, context);
+                    break;
+                case ACTION_CLICK_UPDATE_BUTTON:
                     UpdateWidgetTask task = new UpdateWidgetTask(context, appWidgetID);
                     task.execute();
+                    break;
+                case ACTION_CLICK_FLASHLIGHT:
+                    enableFlashlight(context, appWidgetID);
+                    break;
+                case ACTION_CLICK_WIFI:
+                    enableWifi(context, appWidgetID);
+                    break;
+                case ACTION_CLICK_WEATHER:
+                    openWeatherPage(context, appWidgetID);
                     break;
             }
         }
@@ -93,17 +111,36 @@ public class HomeWidget extends AppWidgetProvider {
         }
     }
 
-    public void updateWidget(int appWidgetID, Context context) {
+    public void createWidget(int appWidgetID, Context context) {
         RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
 
         Intent updateClickIntent = new Intent(context, HomeWidget.class);
         updateClickIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         updateClickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
-        updateClickIntent.putExtra(ACTION, ACTION_CLICK_CENTER);
-        PendingIntent pUpdateIntent = PendingIntent.getBroadcast(context, appWidgetID + 300, updateClickIntent, 0);
+        updateClickIntent.putExtra(ACTION, ACTION_CLICK_UPDATE_BUTTON);
+        PendingIntent pUpdateIntent = PendingIntent.getBroadcast(context, appWidgetID + 400, updateClickIntent, 0);
+
+        Intent flashLightClickIntent = new Intent(context, HomeWidget.class);
+        flashLightClickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
+        flashLightClickIntent.putExtra(ACTION, ACTION_CLICK_FLASHLIGHT);
+        PendingIntent pFlashlightIntent = PendingIntent.getBroadcast(context, appWidgetID + 500, flashLightClickIntent, 0);
+
+        Intent wifiClickIntent = new Intent(context, HomeWidget.class);
+        wifiClickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
+        wifiClickIntent.putExtra(ACTION, ACTION_CLICK_WIFI);
+        PendingIntent pWifiIntent = PendingIntent.getBroadcast(context, appWidgetID + 600, wifiClickIntent, 0);
+
+        Intent openWeatherPageIntent = new Intent(context, HomeWidget.class);
+        openWeatherPageIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
+        openWeatherPageIntent.putExtra(ACTION, ACTION_CLICK_WEATHER);
+        PendingIntent pWeatherPageIntent = PendingIntent.getBroadcast(context, appWidgetID + 700, openWeatherPageIntent, 0);
 
         widgetView.setOnClickPendingIntent(R.id.widget_troubleshooter_im_update_btn, pUpdateIntent);
-        widgetView.setViewVisibility(R.id.widget_troubleshooter_pb, View.INVISIBLE);
+        widgetView.setOnClickPendingIntent(R.id.widget_troubleshooter_iv_flashlight, pFlashlightIntent);
+        widgetView.setOnClickPendingIntent(R.id.widget_troubleshooter_iv_wifi, pWifiIntent);
+        widgetView.setOnClickPendingIntent(R.id.widget_troubleshooter_rl_clock, pWeatherPageIntent);
+        widgetView.setOnClickPendingIntent(R.id.widget_troubleshooter_ll_troubleshooter, pWeatherPageIntent);
+
         widgetView.setImageViewResource(R.id.widget_troubleshooter_im_update_btn, R.drawable.im_update_btn_off);
         widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_troubleshooter, R.drawable.im_trouble_text_2);
         widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_percipitation, R.drawable.im_percipitation_off);
@@ -111,19 +148,43 @@ public class HomeWidget extends AppWidgetProvider {
         widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_wet, R.drawable.im_wet_off);
         widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_head, R.drawable.im_head_off);
 
+        if(camera == null) {
+            camera = Camera.open();
+            params = camera.getParameters();
+        }
+
+        if(isFlashlightOn) {
+            widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_flashlight, R.drawable.im_btn_flashlight_on);
+        }
+        else {
+            widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_flashlight, R.drawable.im_flashlight_btn_off);
+        }
+
+        if(isWifiEnabled(context)) {
+            widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_wifi, R.drawable.im_btn_wifi_on);
+        }
+        else {
+            widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_wifi, R.drawable.im_btn_wifi_off);
+        }
+
+        widgetView.setViewVisibility(R.id.widget_troubleshooter_pb, View.INVISIBLE);
+
         AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, widgetView);
 
         Widget widget = findWidget(appWidgetID, context);
-
         if(widget != null && widget.getDaysForecast() != null){
             Forecast forecast = widget.getDaysForecast().get(0);
             updateUI(appWidgetID, forecast, context);
         }
     }
 
+    private boolean isWifiEnabled(Context context) {
+        WifiManager manager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        return manager.isWifiEnabled();
+    }
+
     private Widget findWidget(int appWidgetID, Context context) {
-        Preferences preferences = Preferences.getInstance(context, Preferences.SETTINGS);
-        int myWidgetID = preferences.getData(MY_WIDGET_ID_DEPENDS + appWidgetID, 0);
+        int myWidgetID = readMyWidgetID(appWidgetID, context);
 
         WidgetRepository repository = new WidgetRepository(context);
         try {
@@ -134,19 +195,24 @@ public class HomeWidget extends AppWidgetProvider {
         return null;
     }
 
+    private int readMyWidgetID(int appWidgetID, Context context) {
+        Preferences preferences = Preferences.getInstance(context, Preferences.SETTINGS);
+        return preferences.getData(MY_WIDGET_ID_DEPENDS + appWidgetID, 0);
+    }
+
     private void updateUI(int appWidgetID, Forecast forecast, Context context) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
 
-        views = fillMain(views, forecast, context);
+        views = updateMain(views, forecast, context);
 
-        views = troubleshoot(views, forecast);
+        views = updateTroubleshooter(views, forecast);
 
-        views = fillConsole(views, forecast, context);
+        views = updateConsole(views, forecast, context);
 
         AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, views);
     }
 
-    private RemoteViews fillMain(RemoteViews views, Forecast forecast, Context context) {
+    private RemoteViews updateMain(RemoteViews views, Forecast forecast, Context context) {
         tfZelec = Typeface.createFromAsset(context.getAssets(),"fonts/new_zelec.ttf");
         tfDigit = Typeface.createFromAsset(context.getAssets(),"fonts/digit_3.TTF");
 
@@ -166,7 +232,7 @@ public class HomeWidget extends AppWidgetProvider {
         return views;
     }
 
-    private RemoteViews troubleshoot(RemoteViews views, Forecast forecast) {
+    private RemoteViews updateTroubleshooter(RemoteViews views, Forecast forecast) {
         TroubleShooter troubleShooter = new TroubleShooter(forecast);
 
         if(troubleShooter.shootPrecipitation()) {
@@ -185,7 +251,7 @@ public class HomeWidget extends AppWidgetProvider {
         return views;
     }
 
-    private RemoteViews fillConsole(RemoteViews views, Forecast forecast, Context context) {
+    private RemoteViews updateConsole(RemoteViews views, Forecast forecast, Context context) {
         ConsoleMessageBuilder builder = new ConsoleMessageBuilder(forecast, context);
 
         views.setTextViewText(R.id.widget_troubleshooter_tv_warning, builder.buildLastUpdate());
@@ -259,7 +325,54 @@ public class HomeWidget extends AppWidgetProvider {
             widgetView.setViewVisibility(R.id.widget_troubleshooter_pb, View.INVISIBLE);
             widgetView.setImageViewResource(R.id.widget_troubleshooter_im_update_btn,R.drawable.im_update_btn_off);
             AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, widgetView);
-            updateWidget(appWidgetID, context);
+            createWidget(appWidgetID, context);
         }
     }
+
+    private void openWeatherPage(Context context, int appWidgetID) {
+        Intent intent = new Intent(context, ForecastActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("myWidgetID", readMyWidgetID(appWidgetID, context));
+        context.startActivity(intent);
+    }
+
+    private void enableWifi(Context context, int appWidgetID) {
+        RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
+        widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_wifi, R.drawable.im_btn_wifi_on);
+        AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, widgetView);
+    }
+
+    private void enableFlashlight(Context context, int appWidgetID) {
+        if (isFlashlightOn) {
+            if (camera == null || params == null) {
+                return;
+            }
+            params = camera.getParameters();
+            params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+            camera.setParameters(params);
+            camera.stopPreview();
+
+            isFlashlightOn = false;
+
+            RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
+            widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_flashlight, R.drawable.im_btn_flashlight_off);
+            AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, widgetView);
+        }
+        else {
+            camera = Camera.open();
+            params = camera.getParameters();
+            params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            camera.setParameters(params);
+            camera.startPreview();
+
+            isFlashlightOn = true;
+
+            RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
+            widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_flashlight, R.drawable.im_btn_flashlight_on);
+            AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, widgetView);
+        }
+
+        
+    }
+
 }

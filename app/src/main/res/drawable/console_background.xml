@@ -12,6 +12,6 @@
 
     <stroke
         android:width="0.3dp"
-        android:color="@color/colorCyberpunkRed" />
+        android:color="@color/colorConsoleBackgroundRow" />
 
 </shape>
