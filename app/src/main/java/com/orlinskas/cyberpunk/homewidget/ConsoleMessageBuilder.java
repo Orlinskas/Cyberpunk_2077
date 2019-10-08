@@ -1,4 +1,4 @@
-package com.orlinskas.cyberpunk.ui.home;
+package com.orlinskas.cyberpunk.homewidget;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -38,11 +38,7 @@ public class ConsoleMessageBuilder {
     }
 
     public String buildTimezone() {
-        StringBuilder message = new StringBuilder();
-
-        message.append(getTimezone());
-
-        return message.toString();
+        return getTimezone();
     }
 
     private String getTimezone() {
@@ -54,15 +50,7 @@ public class ConsoleMessageBuilder {
     }
 
     public String buildRAM() {
-        StringBuilder message = new StringBuilder();
-        message.append("--").append("RAM available").append(" ");
-
-        message.append(getRAM());
-
-        message.append(".");
-
-        return message.toString();
-
+        return "--" + "RAM available" + " " + getRAM() + ".";
     }
 
     private String getRAM() {
@@ -76,27 +64,17 @@ public class ConsoleMessageBuilder {
     }
 
     public String buildMemoryTotal() {
-        StringBuilder message = new StringBuilder();
-        message.append("--").append("memory_total").append(" ");
-        message.append(getMemoryTotal());
-        message.append(".");
-
-        return message.toString();
-    }
-
-    public String buildMemoryFree() {
-        StringBuilder message = new StringBuilder();
-        message.append("--").append("memory_free").append(" ");
-        message.append(getMemoryFree());
-        message.append(".");
-
-        return message.toString();
+        return "--" + "memory_total" + " " + getMemoryTotal() + ".";
     }
 
     private String getMemoryTotal() {
         StatFs statFs = new StatFs(Environment.getRootDirectory().getAbsolutePath());
         long total = (statFs.getBlockCountLong() * statFs.getBlockSizeLong());
         return bytesToHuman(total);
+    }
+
+    public String buildMemoryFree() {
+        return "--" + "memory_free" + " " + getMemoryFree() + ".";
     }
 
     private String getMemoryFree() {
@@ -107,56 +85,30 @@ public class ConsoleMessageBuilder {
     }
 
     private String bytesToHuman (long size) {
-        long Kb = 1  * 1024;
+        long Kb = 1024;
         long Mb = Kb * 1024;
         long Gb = Mb * 1024;
         long Tb = Gb * 1024;
         long Pb = Tb * 1024;
         long Eb = Pb * 1024;
 
-        if (size <  Kb)                 return floatForm(        size     ) + " byte";
-        if (size >= Kb && size < Mb)    return floatForm((double)size / Kb) + " Kb";
-        if (size >= Mb && size < Gb)    return floatForm((double)size / Mb) + " Mb";
-        if (size >= Gb && size < Tb)    return floatForm((double)size / Gb) + " Gb";
-        if (size >= Tb && size < Pb)    return floatForm((double)size / Tb) + " Tb";
-        if (size >= Pb && size < Eb)    return floatForm((double)size / Pb) + " Pb";
-        if (size >= Eb)                 return floatForm((double)size / Eb) + " Eb";
+        if (size <  Kb)   return floatForm(       size      ) + " byte";
+        if (size < Mb)    return floatForm((double)size / Kb) + " Kb";
+        if (size < Gb)    return floatForm((double)size / Mb) + " Mb";
+        if (size < Tb)    return floatForm((double)size / Gb) + " Gb";
+        if (size < Pb)    return floatForm((double)size / Tb) + " Tb";
+        if (size < Eb)    return floatForm((double)size / Pb) + " Pb";
 
-        return "???";
+        return floatForm((double)size / Eb) + " Eb";
+
     }
 
     private String floatForm (double d) {
         return new DecimalFormat("#.##").format(d);
     }
 
-    public String buildBatteryStatus() {
-        StringBuilder message = new StringBuilder();
-        message.append("--").append("battery").append(" ");
-
-        message.append(getBatteryStatus());
-
-        message.append(".");
-
-        return message.toString();
-    }
-
-    private int getBatteryStatus() {
-        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        Intent batteryStatus = context.registerReceiver(null, ifilter);
-
-        assert batteryStatus != null;
-        return batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-    }
-
     public String buildWifiStatus() {
-        StringBuilder message = new StringBuilder();
-        message.append("--").append("wifi").append(" ");
-
-        message.append(getWifiName());
-
-        message.append(".");
-
-        return message.toString();
+        return "--" + "wifi" + " " + getWifiName() + ".";
     }
 
     private String getWifiName() {
@@ -193,5 +145,17 @@ public class ConsoleMessageBuilder {
         }
 
         return value;
+    }
+
+    public String buildBatteryStatus() {
+        return "--" + "battery" + " " + getBatteryStatus() + ".";
+    }
+
+    private int getBatteryStatus() {
+        IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent batteryStatus = context.registerReceiver(null, filter);
+
+        assert batteryStatus != null;
+        return batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
     }
 }

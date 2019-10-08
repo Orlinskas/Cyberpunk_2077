@@ -23,6 +23,9 @@ import com.orlinskas.cyberpunk.date.DateFormat;
 import com.orlinskas.cyberpunk.date.DateHelper;
 import com.orlinskas.cyberpunk.forecast.Forecast;
 import com.orlinskas.cyberpunk.forecast.Weather;
+import com.orlinskas.cyberpunk.homewidget.ConsoleMessageBuilder;
+import com.orlinskas.cyberpunk.homewidget.TroubleShooter;
+import com.orlinskas.cyberpunk.homewidget.WidgetDataBuilder;
 import com.orlinskas.cyberpunk.preferences.Preferences;
 import com.orlinskas.cyberpunk.ui.main.ForecastActivity;
 import com.orlinskas.cyberpunk.widget.Widget;
@@ -141,7 +144,7 @@ public class HomeWidget extends AppWidgetProvider {
         widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_wind, R.drawable.im_wind_off);
         widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_wet, R.drawable.im_wet_off);
         widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_head, R.drawable.im_head_off);
-        widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_flashlight, R.drawable.im_flashlight_btn_off);
+        widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_flashlight, R.drawable.im_btn_flashlight_off);
 
         if(isWifiEnabled(context)) {
             widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_wifi, R.drawable.im_btn_wifi_on);

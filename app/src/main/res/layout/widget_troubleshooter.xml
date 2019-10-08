@@ -194,7 +194,7 @@
         android:layout_above="@+id/widget_troubleshooter_ll_troubleshooter"
         android:layout_marginBottom="-5dp"
         android:layout_toStartOf="@+id/widget_troubleshooter_rl_console"
-        app:srcCompat="@drawable/im_flashlight_btn_off" />
+        app:srcCompat="@drawable/im_btn_flashlight_off" />
 
     <ImageView
         android:id="@+id/widget_troubleshooter_iv_wifi"

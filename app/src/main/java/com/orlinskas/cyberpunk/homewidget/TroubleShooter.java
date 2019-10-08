@@ -1,7 +1,11 @@
-package com.orlinskas.cyberpunk.ui.home;
+package com.orlinskas.cyberpunk.homewidget;
 
 import com.orlinskas.cyberpunk.forecast.Forecast;
 import com.orlinskas.cyberpunk.forecast.Weather;
+
+import static com.orlinskas.cyberpunk.background.Settings.DANGEROUS_PRECIPITATION_VALUE;
+import static com.orlinskas.cyberpunk.background.Settings.DANGEROUS_PRESSURE_VIBRATION_VALUE;
+import static com.orlinskas.cyberpunk.background.Settings.DANGEROUS_WIND_VALUE;
 
 public class TroubleShooter {
     private Forecast forecast;
@@ -15,7 +19,7 @@ public class TroubleShooter {
             double rain = weather.getRainVolume();
             double snow = weather.getSnowVolume();
 
-            if(rain > 0 | snow > 0) {
+            if(rain > DANGEROUS_PRECIPITATION_VALUE | snow > DANGEROUS_PRECIPITATION_VALUE) {
                 return true;
             }
         }
@@ -26,7 +30,7 @@ public class TroubleShooter {
         for(Weather weather : forecast.getDayWeathers()) {
             double wind = weather.getWindSpeed();
 
-            if(wind > 4.5) {
+            if(wind > DANGEROUS_WIND_VALUE) {
                 return true;
             }
         }
@@ -62,7 +66,7 @@ public class TroubleShooter {
         for(Weather weather : forecast.getDayWeathers()) {
             int pressureDifference = pressureAverage - weather.getPressure();
 
-            if(Math.abs(pressureDifference) > 3) {
+            if(Math.abs(pressureDifference) > DANGEROUS_PRESSURE_VIBRATION_VALUE) {
                 return true;
             }
         }

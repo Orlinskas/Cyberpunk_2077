@@ -1,4 +1,4 @@
-package com.orlinskas.cyberpunk.ui.home;
+package com.orlinskas.cyberpunk.homewidget;
 
 import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.chart.WeatherIconsSelector;
