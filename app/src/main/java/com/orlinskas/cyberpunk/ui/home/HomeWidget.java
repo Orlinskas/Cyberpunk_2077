@@ -10,7 +10,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.hardware.Camera;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.IBinder;
@@ -44,11 +43,6 @@ public class HomeWidget extends AppWidgetProvider {
     private final String ACTION_CLICK_FLASHLIGHT = "flashlightAreaClick";
     private final String ACTION_CLICK_WIFI = "wifiAreaClick";
     private final String ACTION_CLICK_WEATHER = "weatherAreaClick";
-    private Typeface tfZelec;
-    private Typeface tfDigit;
-    private boolean isFlashlightOn = false;
-    private Camera camera;
-    private Camera.Parameters params;
 
     @Override
     public IBinder peekService(Context myContext, Intent service) {
@@ -86,7 +80,7 @@ public class HomeWidget extends AppWidgetProvider {
                     task.execute();
                     break;
                 case ACTION_CLICK_FLASHLIGHT:
-                    enableFlashlight(context, appWidgetID);
+                    openFlashlightActivity(context);
                     break;
                 case ACTION_CLICK_WIFI:
                     enableWifi(context, appWidgetID);
@@ -147,18 +141,7 @@ public class HomeWidget extends AppWidgetProvider {
         widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_wind, R.drawable.im_wind_off);
         widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_wet, R.drawable.im_wet_off);
         widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_head, R.drawable.im_head_off);
-
-        if(camera == null) {
-            camera = Camera.open();
-            params = camera.getParameters();
-        }
-
-        if(isFlashlightOn) {
-            widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_flashlight, R.drawable.im_btn_flashlight_on);
-        }
-        else {
-            widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_flashlight, R.drawable.im_flashlight_btn_off);
-        }
+        widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_flashlight, R.drawable.im_flashlight_btn_off);
 
         if(isWifiEnabled(context)) {
             widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_wifi, R.drawable.im_btn_wifi_on);
@@ -176,11 +159,6 @@ public class HomeWidget extends AppWidgetProvider {
             Forecast forecast = widget.getDaysForecast().get(0);
             updateUI(appWidgetID, forecast, context);
         }
-    }
-
-    private boolean isWifiEnabled(Context context) {
-        WifiManager manager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        return manager.isWifiEnabled();
     }
 
     private Widget findWidget(int appWidgetID, Context context) {
@@ -203,18 +181,17 @@ public class HomeWidget extends AppWidgetProvider {
     private void updateUI(int appWidgetID, Forecast forecast, Context context) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
 
-        views = updateMain(views, forecast, context);
+        updateMain(views, forecast, context);
 
-        views = updateTroubleshooter(views, forecast);
+        updateTroubleshooter(views, forecast);
 
-        views = updateConsole(views, forecast, context);
+        updateConsole(views, forecast, context);
 
         AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, views);
     }
 
-    private RemoteViews updateMain(RemoteViews views, Forecast forecast, Context context) {
-        tfZelec = Typeface.createFromAsset(context.getAssets(),"fonts/new_zelec.ttf");
-        tfDigit = Typeface.createFromAsset(context.getAssets(),"fonts/digit_3.TTF");
+    private void updateMain(RemoteViews views, Forecast forecast, Context context) {
+        Typeface tfDigit = Typeface.createFromAsset(context.getAssets(), "fonts/digit_3.TTF");
 
         WidgetDataBuilder builder = new WidgetDataBuilder();
 
@@ -229,10 +206,9 @@ public class HomeWidget extends AppWidgetProvider {
         views.setImageViewResource(R.id.widget_troubleshooter_iv_weather_icon, ID);
         views.setTextViewText(R.id.widget_troubleshooter_tv_weather_value, temperature);
 
-        return views;
     }
 
-    private RemoteViews updateTroubleshooter(RemoteViews views, Forecast forecast) {
+    private void updateTroubleshooter(RemoteViews views, Forecast forecast) {
         TroubleShooter troubleShooter = new TroubleShooter(forecast);
 
         if(troubleShooter.shootPrecipitation()) {
@@ -248,20 +224,17 @@ public class HomeWidget extends AppWidgetProvider {
             views.setImageViewResource(R.id.widget_troubleshooter_iv_head, R.drawable.im_head_on);
         }
 
-        return views;
     }
 
-    private RemoteViews updateConsole(RemoteViews views, Forecast forecast, Context context) {
+    private void updateConsole(RemoteViews views, Forecast forecast, Context context) {
         ConsoleMessageBuilder builder = new ConsoleMessageBuilder(forecast, context);
 
         views.setTextViewText(R.id.widget_troubleshooter_tv_warning, builder.buildLastUpdate());
-        views.setTextViewText(R.id.widget_troubleshooter_tv_timezone, builder.buildTimezone());
+        views.setTextViewText(R.id.widget_troubleshooter_tv_timezone_utc, builder.buildTimezone());
         views.setTextViewText(R.id.widget_troubleshooter_tv_RAM, builder.buildRAM());
         views.setTextViewText(R.id.widget_troubleshooter_tv_memory, builder.buildMemoryTotal());
         views.setTextViewText(R.id.widget_troubleshooter_tv_wifi, builder.buildMemoryFree());
         views.setTextViewText(R.id.widget_troubleshooter_tv_precipitation, builder.buildWifiStatus());
-
-        return views;
     }
 
     public Bitmap convertToImg(String text, Typeface typeface, int textSize, int color, int width, int height, int shadowColor) {
@@ -337,42 +310,39 @@ public class HomeWidget extends AppWidgetProvider {
     }
 
     private void enableWifi(Context context, int appWidgetID) {
-        RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
-        widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_wifi, R.drawable.im_btn_wifi_on);
-        AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, widgetView);
-    }
+        if(isWifiEnabled(context)) {
+            try {
+                WifiManager wifi = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                wifi.setWifiEnabled(false);
 
-    private void enableFlashlight(Context context, int appWidgetID) {
-        if (isFlashlightOn) {
-            if (camera == null || params == null) {
-                return;
+                RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
+                widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_wifi, R.drawable.im_btn_wifi_off);
+                AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, widgetView);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            params = camera.getParameters();
-            params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-            camera.setParameters(params);
-            camera.stopPreview();
-
-            isFlashlightOn = false;
-
-            RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
-            widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_flashlight, R.drawable.im_btn_flashlight_off);
-            AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, widgetView);
         }
         else {
-            camera = Camera.open();
-            params = camera.getParameters();
-            params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-            camera.setParameters(params);
-            camera.startPreview();
+            try {
+                WifiManager wifi = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                wifi.setWifiEnabled(true);
 
-            isFlashlightOn = true;
-
-            RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
-            widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_flashlight, R.drawable.im_btn_flashlight_on);
-            AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, widgetView);
+                RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
+                widgetView.setImageViewResource(R.id.widget_troubleshooter_iv_wifi, R.drawable.im_btn_wifi_on);
+                AppWidgetManager.getInstance(context).updateAppWidget(appWidgetID, widgetView);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
-        
     }
 
+    private boolean isWifiEnabled(Context context) {
+        WifiManager manager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        return manager.isWifiEnabled();
+    }
+
+    private void openFlashlightActivity(Context context) {
+        Intent intent = new Intent(context, FlashlightActivity.class);
+        context.startActivity(intent);
+    }
 }

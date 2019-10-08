@@ -39,7 +39,6 @@ public class ConsoleMessageBuilder {
 
     public String buildTimezone() {
         StringBuilder message = new StringBuilder();
-        message.append(" ").append("Console.").append("      ");
 
         message.append(getTimezone());
 

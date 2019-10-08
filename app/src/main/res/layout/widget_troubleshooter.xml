@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_troubleshooter_rl"
@@ -92,6 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_toStartOf="@+id/widget_troubleshooter_iv_flashlight">
 
@@ -111,8 +113,7 @@
             android:layout_below="@+id/widget_troubleshooter_tv_date"
             android:layout_marginTop="-7dp"
             android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@+id/textView2"
-            app:srcCompat="@drawable/ic_803" />
+            android:layout_toStartOf="@+id/textView2" />
 
         <TextClock
             android:id="@+id/widget_troubleshooter_digital_clock"
@@ -122,7 +123,6 @@
             android:fontFamily="sans-serif-thin"
             android:shadowColor="@color/colorCyberpunkGreen"
             android:shadowRadius="6"
-            android:text="12:00"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -138,7 +138,6 @@
             android:fontFamily="sans-serif-medium"
             android:shadowColor="@color/colorCyberpunkRed"
             android:shadowRadius="4"
-            android:text="+13 C"
             android:textAlignment="center"
             android:textColor="@color/colorCyberpunkRed"
             android:typeface="normal" />
@@ -170,7 +169,7 @@
             android:maxLength="15"
             android:shadowColor="@color/colorCyberpunkGreen"
             android:shadowRadius="6"
-            android:text="city name "
+            android:text="Loading..."
             android:textColor="@color/colorCyberpunkWhite"
             android:textSize="14sp" />
     </RelativeLayout>
@@ -219,21 +218,6 @@
         tools:layout_marginBottom="-3dp">
 
         <TextView
-            android:id="@+id/widget_troubleshooter_tv_warning"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/widget_troubleshooter_tv_timezone"
-            android:layout_alignParentEnd="false"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="5dp"
-            android:fontFamily="sans-serif-thin"
-            android:maxLines="1"
-            android:text="--last_update"
-            android:textColor="@color/colorCyberpunkRed"
-            android:textSize="10sp"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/widget_troubleshooter_tv_timezone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -247,6 +231,33 @@
             android:textStyle="bold|italic" />
 
         <TextView
+            android:id="@+id/widget_troubleshooter_tv_timezone_utc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="sans-serif-thin"
+            android:maxLines="1"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="10sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/widget_troubleshooter_tv_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/widget_troubleshooter_tv_timezone"
+            android:layout_alignParentEnd="false"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="sans-serif-thin"
+            android:maxLines="1"
+            android:text=""
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/widget_troubleshooter_tv_RAM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -256,7 +267,7 @@
             android:layout_marginEnd="5dp"
             android:fontFamily="sans-serif-thin"
             android:maxLines="1"
-            android:text="--RAM"
+            android:text=""
             android:textColor="@color/colorCyberpunkRed"
             android:textSize="10sp"
             android:textStyle="bold" />
@@ -271,7 +282,6 @@
             android:layout_marginEnd="5dp"
             android:fontFamily="sans-serif-thin"
             android:maxLines="1"
-            android:text="--memory total"
             android:textColor="@color/colorCyberpunkRed"
             android:textSize="10sp"
             android:textStyle="bold" />
@@ -286,7 +296,6 @@
             android:layout_marginEnd="5dp"
             android:fontFamily="sans-serif-thin"
             android:maxLines="1"
-            android:text="--memory free"
             android:textColor="@color/colorCyberpunkRed"
             android:textSize="10sp"
             android:textStyle="bold" />
@@ -301,7 +310,6 @@
             android:layout_marginEnd="5dp"
             android:fontFamily="sans-serif-thin"
             android:maxLines="1"
-            android:text="--wifi status"
             android:textColor="@color/colorCyberpunkRed"
             android:textSize="10sp"
             android:textStyle="bold" />
