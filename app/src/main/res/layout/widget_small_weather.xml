@@ -6,8 +6,7 @@
     android:id="@+id/layout_widget_rl"
     android:layout_width="wrap_content"
     android:layout_height="88dp"
-    android:alpha="50"
-    android:background="@drawable/im_background_4">
+    android:background="@drawable/im_background_small_widget">
 
     <LinearLayout
         android:id="@+id/layout_widget_ll_chart_case"
@@ -423,11 +422,11 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-medium"
         android:maxLines="1"
+        android:shadowColor="@color/colorCyberpunkGreen"
+        android:shadowRadius="6"
         android:text="@string/loading"
         android:textAlignment="center"
         android:textColor="@color/colorCyberpunkWhite"
-        android:textSize="12sp"
-        android:shadowColor="@color/colorCyberpunkGreen"
-        android:shadowRadius="6" />
+        android:textSize="12sp" />
 
 </RelativeLayout>
