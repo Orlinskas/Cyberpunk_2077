@@ -80,16 +80,29 @@
             android:enabled="true"/>
 
         <receiver
-            android:name=".ui.home.HomeWidget"
+            android:name=".ui.home.WidgetTroubleshooter"
             android:icon="@drawable/logo_cyberpunk"
-            android:label="Weather">
+            android:label="Troubleshooter">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_metadata" />
+                android:resource="@xml/widget_troubleshooter_metadata" />
+        </receiver>
+
+        <receiver
+            android:name=".ui.home.WidgetSmallWeather"
+            android:icon="@drawable/logo_cyberpunk"
+            android:label="WeatherSmall">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_small_weather_metadata" />
         </receiver>
 
         <receiver android:name=".background.UpdateReceiver">

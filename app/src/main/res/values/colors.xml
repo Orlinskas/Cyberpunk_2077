@@ -49,6 +49,6 @@
     <color name="colorWidgetTextDate">#ACABAB</color>
     <color name="colorWidgetTextTemp">#ACABAB</color>
     <color name="colorWidgetShadow">#141414</color>
-    <color name="colorWidgetBackground">#A5000000</color>
+    <color name="colorWidgetBackground">#CA000000</color>
 
 </resources>

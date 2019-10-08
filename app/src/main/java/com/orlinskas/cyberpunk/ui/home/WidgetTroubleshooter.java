@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit;
 import static com.orlinskas.cyberpunk.background.Settings.MY_WIDGET_ID;
 import static com.orlinskas.cyberpunk.preferences.Preferences.MY_WIDGET_ID_DEPENDS;
 
-public class HomeWidget extends AppWidgetProvider {
+public class WidgetTroubleshooter extends AppWidgetProvider {
     public static final String ACTION = "action";
     public static final String ACTION_CREATE = "create";
     public static final String ACTION_DEFAULT = "default";
@@ -111,23 +111,23 @@ public class HomeWidget extends AppWidgetProvider {
     public void createWidget(int appWidgetID, Context context) {
         RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_troubleshooter);
 
-        Intent updateClickIntent = new Intent(context, HomeWidget.class);
+        Intent updateClickIntent = new Intent(context, WidgetTroubleshooter.class);
         updateClickIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         updateClickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
         updateClickIntent.putExtra(ACTION, ACTION_CLICK_UPDATE_BUTTON);
         PendingIntent pUpdateIntent = PendingIntent.getBroadcast(context, appWidgetID + 400, updateClickIntent, 0);
 
-        Intent flashLightClickIntent = new Intent(context, HomeWidget.class);
+        Intent flashLightClickIntent = new Intent(context, WidgetTroubleshooter.class);
         flashLightClickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
         flashLightClickIntent.putExtra(ACTION, ACTION_CLICK_FLASHLIGHT);
         PendingIntent pFlashlightIntent = PendingIntent.getBroadcast(context, appWidgetID + 500, flashLightClickIntent, 0);
 
-        Intent wifiClickIntent = new Intent(context, HomeWidget.class);
+        Intent wifiClickIntent = new Intent(context, WidgetTroubleshooter.class);
         wifiClickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
         wifiClickIntent.putExtra(ACTION, ACTION_CLICK_WIFI);
         PendingIntent pWifiIntent = PendingIntent.getBroadcast(context, appWidgetID + 600, wifiClickIntent, 0);
 
-        Intent openWeatherPageIntent = new Intent(context, HomeWidget.class);
+        Intent openWeatherPageIntent = new Intent(context, WidgetTroubleshooter.class);
         openWeatherPageIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
         openWeatherPageIntent.putExtra(ACTION, ACTION_CLICK_WEATHER);
         PendingIntent pWeatherPageIntent = PendingIntent.getBroadcast(context, appWidgetID + 700, openWeatherPageIntent, 0);

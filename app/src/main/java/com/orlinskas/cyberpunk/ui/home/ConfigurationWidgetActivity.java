@@ -46,7 +46,7 @@ public class ConfigurationWidgetActivity extends Activity {
 
         resultValue = new Intent();
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
-        resultValue.putExtra(HomeWidget.ACTION, HomeWidget.ACTION_CREATE);
+        resultValue.putExtra(WidgetTroubleshooter.ACTION, WidgetTroubleshooter.ACTION_CREATE);
         setResult(RESULT_CANCELED, resultValue); //сформировал негативный ответ на случай выхода
 
         setContentView(R.layout.config_layout);

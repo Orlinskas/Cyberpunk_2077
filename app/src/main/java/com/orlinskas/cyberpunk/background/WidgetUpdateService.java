@@ -12,7 +12,7 @@ import com.orlinskas.cyberpunk.date.DateHelper;
 import com.orlinskas.cyberpunk.forecast.ForecastListBuilder;
 import com.orlinskas.cyberpunk.forecast.WeatherReceiver;
 import com.orlinskas.cyberpunk.preferences.Preferences;
-import com.orlinskas.cyberpunk.ui.home.HomeWidget;
+import com.orlinskas.cyberpunk.ui.home.WidgetTroubleshooter;
 import com.orlinskas.cyberpunk.widget.Widget;
 import com.orlinskas.cyberpunk.widget.WidgetRepository;
 
@@ -104,9 +104,9 @@ public class WidgetUpdateService extends Service {
         Preferences preferences = Preferences.getInstance(context, Preferences.SETTINGS);
         int appWidgetID = preferences.getData(APP_WIDGET_ID_DEPENDS + myWidgetID, AppWidgetManager.INVALID_APPWIDGET_ID);
 
-        Intent update = new Intent(context, HomeWidget.class);
+        Intent update = new Intent(context, WidgetTroubleshooter.class);
         update.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
-        update.putExtra(HomeWidget.ACTION, HomeWidget.ACTION_UPDATE);
+        update.putExtra(WidgetTroubleshooter.ACTION, WidgetTroubleshooter.ACTION_UPDATE);
         PendingIntent pRightIntent = PendingIntent.getBroadcast(context, appWidgetID + 400, update, 0);
         try {
             pRightIntent.send();

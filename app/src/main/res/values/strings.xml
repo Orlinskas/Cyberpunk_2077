@@ -106,6 +106,7 @@
     <string name="orlinskas_development" translatable="false">orlinskas development</string>
     <string name="id" translatable="false">id</string>
     <string name="code" translatable="false">Code</string>
+    <string name="empty_row">-</string>
 
     <string-array name="spinner">
         <item>choose…</item>
