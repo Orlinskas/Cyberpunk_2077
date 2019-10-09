@@ -18,7 +18,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import com.orlinskas.cyberpunk.R;
-import com.orlinskas.cyberpunk.background.WidgetUpdateService;
+import com.orlinskas.cyberpunk.background.TroubleshooterUpdateService;
 import com.orlinskas.cyberpunk.date.DateFormat;
 import com.orlinskas.cyberpunk.date.DateHelper;
 import com.orlinskas.cyberpunk.forecast.Forecast;
@@ -41,7 +41,7 @@ public class WidgetTroubleshooter extends AppWidgetProvider {
     public static final String ACTION = "action";
     public static final String ACTION_CREATE = "create";
     public static final String ACTION_DEFAULT = "default";
-    public static final String ACTION_UPDATE = "update";
+    public static final String ACTION_UPDATE = "updateTroubleshooter";
     private final String ACTION_CLICK_UPDATE_BUTTON = "centerAreaClick";
     private final String ACTION_CLICK_FLASHLIGHT = "flashlightAreaClick";
     private final String ACTION_CLICK_WIFI = "wifiAreaClick";
@@ -284,7 +284,7 @@ public class WidgetTroubleshooter extends AppWidgetProvider {
         @Override
         protected Void doInBackground(Void... voids) {
             int myWidgetID = Objects.requireNonNull(findWidget(appWidgetID, context)).getId();
-            Intent intentService = new Intent(context, WidgetUpdateService.class);
+            Intent intentService = new Intent(context, TroubleshooterUpdateService.class);
             intentService.putExtra(MY_WIDGET_ID, myWidgetID);
             context.startService(intentService);
             try {

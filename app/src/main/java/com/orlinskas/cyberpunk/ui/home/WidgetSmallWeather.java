@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import com.orlinskas.cyberpunk.R;
-import com.orlinskas.cyberpunk.background.WidgetUpdateService;
+import com.orlinskas.cyberpunk.background.SmallWeatherUpdateService;
 import com.orlinskas.cyberpunk.chart.WeatherIconsSelector;
 import com.orlinskas.cyberpunk.forecast.Forecast;
 import com.orlinskas.cyberpunk.forecast.Weather;
@@ -31,7 +31,7 @@ public class WidgetSmallWeather extends AppWidgetProvider {
     public static final String ACTION = "action";
     public static final String ACTION_CREATE = "create";
     public static final String ACTION_DEFAULT = "default";
-    public static final String ACTION_UPDATE = "update";
+    public static final String ACTION_UPDATE = "updateSmallWeather";
     private final String ACTION_CLICK_LEFT = "leftAreaClick";
     private final String ACTION_CLICK_RIGHT = "rightAreaClick";
     private final String ACTION_CLICK_CENTER = "centerAreaClick";
@@ -251,7 +251,7 @@ public class WidgetSmallWeather extends AppWidgetProvider {
         @Override
         protected Void doInBackground(Void... voids) {
             int myWidgetID = Objects.requireNonNull(findWidget(appWidgetID, context)).getId();
-            Intent intentService = new Intent(context, WidgetUpdateService.class);
+            Intent intentService = new Intent(context, SmallWeatherUpdateService.class);
             intentService.putExtra(MY_WIDGET_ID, myWidgetID);
             context.startService(intentService);
             try {

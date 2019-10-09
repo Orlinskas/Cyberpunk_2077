@@ -12,7 +12,7 @@ import com.orlinskas.cyberpunk.date.DateHelper;
 import com.orlinskas.cyberpunk.forecast.ForecastListBuilder;
 import com.orlinskas.cyberpunk.forecast.WeatherReceiver;
 import com.orlinskas.cyberpunk.preferences.Preferences;
-import com.orlinskas.cyberpunk.ui.home.WidgetTroubleshooter;
+import com.orlinskas.cyberpunk.ui.home.WidgetSmallWeather;
 import com.orlinskas.cyberpunk.widget.Widget;
 import com.orlinskas.cyberpunk.widget.WidgetRepository;
 
@@ -20,11 +20,11 @@ import static com.orlinskas.cyberpunk.background.Settings.MY_WIDGET_ID;
 import static com.orlinskas.cyberpunk.preferences.Preferences.APP_WIDGET_ID_DEPENDS;
 import static com.orlinskas.cyberpunk.preferences.Preferences.WIDGET_LAST_UPDATE;
 
-public class WidgetUpdateService extends Service {
+public class SmallWeatherUpdateService extends Service {
     private int myWidgetID;
     private Context context;
 
-    public WidgetUpdateService() {
+    public SmallWeatherUpdateService() {
     }
 
     @Override
@@ -104,10 +104,10 @@ public class WidgetUpdateService extends Service {
         Preferences preferences = Preferences.getInstance(context, Preferences.SETTINGS);
         int appWidgetID = preferences.getData(APP_WIDGET_ID_DEPENDS + myWidgetID, AppWidgetManager.INVALID_APPWIDGET_ID);
 
-        Intent update = new Intent(context, WidgetTroubleshooter.class);
+        Intent update = new Intent(context, WidgetSmallWeather.class);
         update.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
-        update.putExtra(WidgetTroubleshooter.ACTION, WidgetTroubleshooter.ACTION_UPDATE);
-        PendingIntent pRightIntent = PendingIntent.getBroadcast(context, appWidgetID + 400, update, 0);
+        update.putExtra(WidgetSmallWeather.ACTION, WidgetSmallWeather.ACTION_UPDATE);
+        PendingIntent pRightIntent = PendingIntent.getBroadcast(context, appWidgetID + 420, update, 0);
         try {
             pRightIntent.send();
         } catch (PendingIntent.CanceledException e) {
@@ -115,3 +115,4 @@ public class WidgetUpdateService extends Service {
         }
     }
 }
+

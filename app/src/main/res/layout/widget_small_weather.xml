@@ -364,9 +364,11 @@
     <ProgressBar
         android:id="@+id/widget_layout_pb"
         style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="25dp"
         android:indeterminate="true"
         android:visibility="invisible" />
 
@@ -420,7 +422,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="monospace"
+        android:maxLength="20"
         android:maxLines="1"
         android:shadowColor="@color/colorCyberpunkGreen"
         android:shadowRadius="6"

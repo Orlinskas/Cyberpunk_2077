@@ -76,7 +76,11 @@
             android:finishOnTaskLaunch = "true"/>
 
         <service
-            android:name=".background.WidgetUpdateService"
+            android:name=".background.TroubleshooterUpdateService"
+            android:enabled="true"/>
+
+        <service
+            android:name=".background.SmallWeatherUpdateService"
             android:enabled="true"/>
 
         <receiver
