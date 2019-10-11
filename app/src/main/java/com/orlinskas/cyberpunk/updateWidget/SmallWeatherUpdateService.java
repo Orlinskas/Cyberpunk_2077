@@ -1,4 +1,4 @@
-package com.orlinskas.cyberpunk.background;
+package com.orlinskas.cyberpunk.updateWidget;
 
 import android.app.PendingIntent;
 import android.app.Service;
@@ -16,7 +16,7 @@ import com.orlinskas.cyberpunk.ui.home.WidgetSmallWeather;
 import com.orlinskas.cyberpunk.widget.Widget;
 import com.orlinskas.cyberpunk.widget.WidgetRepository;
 
-import static com.orlinskas.cyberpunk.background.Settings.MY_WIDGET_ID;
+import static com.orlinskas.cyberpunk.updateWidget.Settings.MY_WIDGET_ID;
 import static com.orlinskas.cyberpunk.preferences.Preferences.APP_WIDGET_ID_DEPENDS;
 import static com.orlinskas.cyberpunk.preferences.Preferences.WIDGET_LAST_UPDATE;
 

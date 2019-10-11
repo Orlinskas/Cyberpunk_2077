@@ -4,8 +4,8 @@ import com.orlinskas.cyberpunk.City;
 import com.orlinskas.cyberpunk.date.DateFormat;
 import com.orlinskas.cyberpunk.date.DateHelper;
 
-import static com.orlinskas.cyberpunk.background.Settings.OPENWEATHERMAP_API_KEY;
-import static com.orlinskas.cyberpunk.background.Settings.OPENWEATHERMAP_UNITS;
+import static com.orlinskas.cyberpunk.updateWidget.Settings.OPENWEATHERMAP_API_KEY;
+import static com.orlinskas.cyberpunk.updateWidget.Settings.OPENWEATHERMAP_UNITS;
 
 public class RequestBuilder {
     private final static String OPENWEATHERMAP_COM = "http://api.openweathermap.org/";

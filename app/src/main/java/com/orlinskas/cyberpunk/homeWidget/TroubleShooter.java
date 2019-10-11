@@ -1,11 +1,11 @@
-package com.orlinskas.cyberpunk.homewidget;
+package com.orlinskas.cyberpunk.homeWidget;
 
 import com.orlinskas.cyberpunk.forecast.Forecast;
 import com.orlinskas.cyberpunk.forecast.Weather;
 
-import static com.orlinskas.cyberpunk.background.Settings.DANGEROUS_PRECIPITATION_VALUE;
-import static com.orlinskas.cyberpunk.background.Settings.DANGEROUS_PRESSURE_VIBRATION_VALUE;
-import static com.orlinskas.cyberpunk.background.Settings.DANGEROUS_WIND_VALUE;
+import static com.orlinskas.cyberpunk.updateWidget.Settings.DANGEROUS_PRECIPITATION_VALUE;
+import static com.orlinskas.cyberpunk.updateWidget.Settings.DANGEROUS_PRESSURE_VIBRATION_VALUE;
+import static com.orlinskas.cyberpunk.updateWidget.Settings.DANGEROUS_WIND_VALUE;
 
 public class TroubleShooter {
     private Forecast forecast;

@@ -18,14 +18,14 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import com.orlinskas.cyberpunk.R;
-import com.orlinskas.cyberpunk.background.TroubleshooterUpdateService;
+import com.orlinskas.cyberpunk.updateWidget.TroubleshooterUpdateService;
 import com.orlinskas.cyberpunk.date.DateFormat;
 import com.orlinskas.cyberpunk.date.DateHelper;
 import com.orlinskas.cyberpunk.forecast.Forecast;
 import com.orlinskas.cyberpunk.forecast.Weather;
-import com.orlinskas.cyberpunk.homewidget.ConsoleMessageBuilder;
-import com.orlinskas.cyberpunk.homewidget.TroubleShooter;
-import com.orlinskas.cyberpunk.homewidget.WidgetDataBuilder;
+import com.orlinskas.cyberpunk.homeWidget.ConsoleMessageBuilder;
+import com.orlinskas.cyberpunk.homeWidget.TroubleShooter;
+import com.orlinskas.cyberpunk.homeWidget.WidgetDataBuilder;
 import com.orlinskas.cyberpunk.preferences.Preferences;
 import com.orlinskas.cyberpunk.ui.main.ForecastActivity;
 import com.orlinskas.cyberpunk.widget.Widget;
@@ -34,7 +34,7 @@ import com.orlinskas.cyberpunk.widget.WidgetRepository;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-import static com.orlinskas.cyberpunk.background.Settings.MY_WIDGET_ID;
+import static com.orlinskas.cyberpunk.updateWidget.Settings.MY_WIDGET_ID;
 import static com.orlinskas.cyberpunk.preferences.Preferences.MY_WIDGET_ID_DEPENDS;
 
 public class WidgetTroubleshooter extends AppWidgetProvider {

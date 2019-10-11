@@ -1,10 +1,10 @@
-package com.orlinskas.cyberpunk.background;
+package com.orlinskas.cyberpunk.updateWidget;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import static com.orlinskas.cyberpunk.background.Settings.MY_WIDGET_ID;
+import static com.orlinskas.cyberpunk.updateWidget.Settings.MY_WIDGET_ID;
 
 public class UpdateReceiver extends BroadcastReceiver {
     public static final String UPDATE_TROUBLESHOOTER = "updateTroubleshooter";

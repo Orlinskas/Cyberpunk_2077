@@ -1,4 +1,4 @@
-package com.orlinskas.cyberpunk.background;
+package com.orlinskas.cyberpunk.updateWidget;
 
 public class Settings {
     static final int NEED_HOURS_TO_UPDATE = 2;

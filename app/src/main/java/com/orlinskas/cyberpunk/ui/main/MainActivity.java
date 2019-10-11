@@ -30,6 +30,7 @@ import com.orlinskas.cyberpunk.request.Request;
 import com.orlinskas.cyberpunk.specification.WidgetEmptySpecification;
 import com.orlinskas.cyberpunk.ui.other.HelpActivity;
 import com.orlinskas.cyberpunk.ui.other.ContactsActivity;
+import com.orlinskas.cyberpunk.ui.other.WallpaperSetterActivity;
 import com.orlinskas.cyberpunk.ui.other.WidgetCreatorView;
 import com.orlinskas.cyberpunk.widget.Widget;
 import com.orlinskas.cyberpunk.widget.WidgetRepository;
@@ -38,7 +39,7 @@ import java.util.ArrayList;
 
 @SuppressLint("StaticFieldLeak")
 public class MainActivity extends AppCompatActivity {
-    private ImageView btnCreate, btnAuthor, btnHelp, btnShare;
+    private ImageView btnCreate, btnAuthor, btnHelp, btnShare, btnWallpaper;
     private ImageView progressMenu, progressList;
     private ListView listView;
     private OpenActivityTask openActivityTask;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         btnAuthor = findViewById(R.id.activity_main_general_iv_btn_author);
         btnHelp = findViewById(R.id.activity_main_general_iv_btn_help);
         btnShare = findViewById(R.id.activity_main_general_iv_btn_share);
+        btnWallpaper = findViewById(R.id.activity_main_general_iv_btn_set_wallpaper);
         progressMenu = findViewById(R.id.activity_main_general_im_progress_menu);
         progressList = findViewById(R.id.activity_main_general_im_progress_list);
         listView = findViewById(R.id.activity_main_general_lv_widgets);
@@ -126,6 +128,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.activity_main_general_iv_btn_share:
                 btnShare.setImageResource(R.drawable.im_share_btn_on);
                 startSharing();
+                break;
+            case R.id.activity_main_general_iv_btn_set_wallpaper:
+                btnWallpaper.setImageResource(R.drawable.im_wallpaper_btn_on);
+                startOpenActivityTask(WallpaperSetterActivity.class);
                 break;
         }
     }
@@ -368,6 +374,7 @@ public class MainActivity extends AppCompatActivity {
         btnHelp.setImageResource(R.drawable.im_help_btn_off);
         btnAuthor.setImageResource(R.drawable.im_author_btn_off);
         btnCreate.setImageResource(R.drawable.im_create_btn_off);
+        btnWallpaper.setImageResource(R.drawable.im_wallpaper_btn_off);
     }
 }
 

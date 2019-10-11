@@ -1,4 +1,4 @@
-package com.orlinskas.cyberpunk.background;
+package com.orlinskas.cyberpunk.updateWidget;
 
 import android.content.Context;
 
@@ -11,7 +11,7 @@ import com.orlinskas.cyberpunk.widget.WidgetRepository;
 
 import java.util.Date;
 
-import static com.orlinskas.cyberpunk.background.Settings.NEED_HOURS_TO_UPDATE;
+import static com.orlinskas.cyberpunk.updateWidget.Settings.NEED_HOURS_TO_UPDATE;
 import static com.orlinskas.cyberpunk.preferences.Preferences.WIDGET_LAST_UPDATE;
 
 public class WidgetUpdateChecker {

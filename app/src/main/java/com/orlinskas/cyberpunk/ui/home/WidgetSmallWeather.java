@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import com.orlinskas.cyberpunk.R;
-import com.orlinskas.cyberpunk.background.SmallWeatherUpdateService;
+import com.orlinskas.cyberpunk.updateWidget.SmallWeatherUpdateService;
 import com.orlinskas.cyberpunk.chart.WeatherIconsSelector;
 import com.orlinskas.cyberpunk.forecast.Forecast;
 import com.orlinskas.cyberpunk.forecast.Weather;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-import static com.orlinskas.cyberpunk.background.Settings.MY_WIDGET_ID;
+import static com.orlinskas.cyberpunk.updateWidget.Settings.MY_WIDGET_ID;
 import static com.orlinskas.cyberpunk.preferences.Preferences.MY_WIDGET_ID_DEPENDS;
 import static com.orlinskas.cyberpunk.preferences.Preferences.WIDGET_DAY_NUMBER;
 

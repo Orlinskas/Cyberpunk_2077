@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import com.github.mikephil.charting.charts.LineChart;
 import com.orlinskas.cyberpunk.ActivityOpener;
 import com.orlinskas.cyberpunk.R;
-import com.orlinskas.cyberpunk.background.WidgetUpdateChecker;
+import com.orlinskas.cyberpunk.updateWidget.WidgetUpdateChecker;
 import com.orlinskas.cyberpunk.chart.ChartBuilder;
 import com.orlinskas.cyberpunk.chart.WeatherIconsLayoutBuilder;
 import com.orlinskas.cyberpunk.forecast.Forecast;

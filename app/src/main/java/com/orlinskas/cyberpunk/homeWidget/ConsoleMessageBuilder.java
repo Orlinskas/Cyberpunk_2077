@@ -1,4 +1,4 @@
-package com.orlinskas.cyberpunk.homewidget;
+package com.orlinskas.cyberpunk.homeWidget;
 
 import android.app.ActivityManager;
 import android.content.Context;
