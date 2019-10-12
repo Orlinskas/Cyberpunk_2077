@@ -4,22 +4,28 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-public class ImageAdapter extends BaseAdapter {
+import java.util.Locale;
+
+public class WallpaperAdapter extends BaseAdapter {
+    private Context context;
     public final static Integer[] wallpapersPath = {
             R.drawable.wallpaper_1, R.drawable.wallpaper_2, R.drawable.wallpaper_3,
             R.drawable.wallpaper_4, R.drawable.wallpaper_5, R.drawable.wallpaper_6,
             R.drawable.wallpaper_7, R.drawable.wallpaper_8, R.drawable.wallpaper_9,
             R.drawable.wallpaper_11, R.drawable.wallpaper_12, R.drawable.wallpaper_13,
-            R.drawable.wallpaper_14, R.drawable.wallpaper_15,};
-    private Context context;
+            R.drawable.wallpaper_14, R.drawable.wallpaper_15, R.drawable.wallpaper_16,
+            R.drawable.wallpaper_17, R.drawable.wallpaper_18, R.drawable.wallpaper_19,
+            R.drawable.wallpaper_20, R.drawable.wallpaper_21, R.drawable.wallpaper_22};
 
-    public ImageAdapter(Context context) {
+    public WallpaperAdapter(Context context) {
         this.context = context;
     }
 
@@ -50,8 +56,17 @@ public class ImageAdapter extends BaseAdapter {
             image_row = convertView;
         }
 
+        int imagePath = wallpapersPath[position];
+
         ImageView imageView = image_row.findViewById(R.id.image_row_iv);
-        imageView.setImageBitmap(compressBitmap(context.getResources(), wallpapersPath[position]));
+        imageView.setImageBitmap(compressBitmap(context.getResources(), imagePath));
+
+        Drawable d = context.getResources().getDrawable(imagePath);
+        int h = d.getIntrinsicHeight();
+        int w = d.getIntrinsicWidth();
+
+        TextView sizeImage = image_row.findViewById(R.id.image_row_tv);
+        sizeImage.setText(String.format(Locale.ENGLISH, "%d X %d", w, h));
 
         return image_row;
     }
