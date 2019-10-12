@@ -6,8 +6,7 @@ import android.content.Intent;
 
 import static com.orlinskas.cyberpunk.updateWidget.Settings.MY_WIDGET_ID;
 
-public class UpdateReceiver extends BroadcastReceiver {
-    public static final String UPDATE_TROUBLESHOOTER = "updateTroubleshooter";
+public class SmallWeatherUpdateReceiver extends BroadcastReceiver {
     public static final String UPDATE_SMALL_WEATHER = "updateSmallWeather";
 
     @Override
@@ -16,12 +15,7 @@ public class UpdateReceiver extends BroadcastReceiver {
             int myWidgetID = intent.getIntExtra(MY_WIDGET_ID,0);
 
             switch (intent.getAction()) {
-                case UPDATE_TROUBLESHOOTER:
                 case Intent.ACTION_BOOT_COMPLETED:
-                    Intent intentService = new Intent(context, TroubleshooterUpdateService.class);
-                    intentService.putExtra(MY_WIDGET_ID, myWidgetID);
-                    context.startService(intentService);
-                    break;
                 case UPDATE_SMALL_WEATHER:
                     Intent intentServiceSmallWeather = new Intent(context, SmallWeatherUpdateService.class);
                     intentServiceSmallWeather.putExtra(MY_WIDGET_ID, myWidgetID);

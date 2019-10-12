@@ -97,6 +97,7 @@
             android:resizeMode="horizontal|vertical">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
 
             <meta-data
@@ -119,7 +120,13 @@
                 android:resource="@xml/widget_small_weather_metadata" />
         </receiver>
 
-        <receiver android:name=".updateWidget.UpdateReceiver">
+        <receiver android:name=".updateWidget.TroubleshooterUpdateReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".updateWidget.SmallWeatherUpdateReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
