@@ -1,41 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/config_layout_sv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorBackgroundListActivity">
+    android:background="@drawable/im_background_3">
 
     <RelativeLayout
         android:id="@+id/config_layout_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/rounded_background">
-
-        <Button
-            android:id="@+id/config_layout_btn_settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/config_layout_desc_2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:onClick="onClickSettings"
-            android:text="@string/open_settings" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/grey_background">
 
         <Button
             android:id="@+id/config_layout_btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_below="@+id/config_layout_desc_5"
             android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="40dp"
-            android:background="@drawable/main_button"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/im_btn_off_empty"
             android:onClick="onClickCreate"
             android:text="@string/btn_config"
-            android:textColor="@color/colorTextButton"
+            android:textColor="@color/colorCyberpunkRed"
             android:textSize="14sp" />
 
         <Spinner
@@ -54,38 +48,25 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="5dp"
             android:layout_marginTop="15dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/new_zelec"
             android:text="@string/config_head"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/colorTextBlack" />
-
-        <TextView
-            android:id="@+id/config_layout_desc_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/config_layout_view_line_bot"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="5dp"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/config_body_descr_2"
-            android:textAlignment="viewStart"
-            android:textColor="@color/colorInfoText"
-            android:textSize="18sp" />
+            android:textColor="@color/colorCyberpunkRed"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/config_layout_desc_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/config_layout_btn_settings"
+            android:layout_below="@id/config_layout_spn"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="5dp"
             android:fontFamily="sans-serif-light"
             android:text="@string/config_body_descr_3"
             android:textAlignment="viewStart"
-            android:textColor="@color/colorInfoText"
+            android:textColor="@color/colorCyberpunkRed"
             android:textSize="18sp" />
 
         <TextView
@@ -99,7 +80,7 @@
             android:fontFamily="sans-serif-light"
             android:text="@string/config_body_descr_4"
             android:textAlignment="viewStart"
-            android:textColor="@color/colorInfoText"
+            android:textColor="@color/colorCyberpunkRed"
             android:textSize="18sp" />
 
         <TextView
@@ -113,22 +94,8 @@
             android:fontFamily="sans-serif-light"
             android:text="@string/desc_5"
             android:textAlignment="viewStart"
-            android:textColor="@color/colorInfoText"
+            android:textColor="@color/colorCyberpunkRed"
             android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/config_layout_desc_tv_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/config_layout_btn"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="0dp"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/autor_group"
-            android:textAlignment="center"
-            android:textColor="@color/colorInfoText" />
 
         <View
             android:id="@+id/config_layout_view_line_top"
@@ -151,4 +118,15 @@
             android:layout_marginEnd="10dp" />
     </RelativeLayout>
 
-</ScrollView>
+    <TextView
+        android:id="@+id/activity_city_data_tv_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/cyberpunk_eng"
+        android:text="@string/orlinskas_development"
+        android:textColor="@color/colorCyberpunkRed"
+        android:textSize="12sp" />
+
+</RelativeLayout>
