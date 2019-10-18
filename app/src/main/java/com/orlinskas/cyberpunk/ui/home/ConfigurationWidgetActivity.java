@@ -3,7 +3,7 @@ package com.orlinskas.cyberpunk.ui.home;
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -12,7 +12,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.orlinskas.cyberpunk.BuildConfig;
 import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.preferences.Preferences;
@@ -50,9 +49,11 @@ public class ConfigurationWidgetActivity extends Activity {
         setResult(RESULT_CANCELED, resultValue); //сформировал негативный ответ на случай выхода
 
         setContentView(R.layout.config_layout);
+
         try {
             ArrayList<Widget> widgets = findWidgetsInRepository();
             spinnerWidgetList = findViewById(R.id.config_layout_spn);
+            spinnerWidgetList.getBackground().setColorFilter(getResources().getColor(R.color.colorCyberpunkYellow), PorterDuff.Mode.SRC_ATOP);
             setSpinnerAdapter(widgets);
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,11 +87,6 @@ public class ConfigurationWidgetActivity extends Activity {
 
         setResult(RESULT_OK, resultValue); //отправил положительный ответ
         finish();
-    }
-
-    public void onClickSettings(View view) {
-        startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                Uri.parse("package:" + BuildConfig.APPLICATION_ID)));
     }
 }
 

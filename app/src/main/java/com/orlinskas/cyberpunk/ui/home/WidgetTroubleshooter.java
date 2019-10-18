@@ -60,6 +60,7 @@ public class WidgetTroubleshooter extends AppWidgetProvider {
         }
     }
 
+    @SuppressLint("UnsafeProtectedBroadcastReceiver")
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
@@ -346,6 +347,7 @@ public class WidgetTroubleshooter extends AppWidgetProvider {
 
     private void openFlashlightActivity(Context context) {
         Intent intent = new Intent(context, FlashlightActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 }

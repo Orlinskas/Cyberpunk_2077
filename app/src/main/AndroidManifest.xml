@@ -120,13 +120,17 @@
                 android:resource="@xml/widget_small_weather_metadata" />
         </receiver>
 
-        <receiver android:name=".updateWidget.TroubleshooterUpdateReceiver">
+        <receiver
+            android:name=".updateWidget.TroubleshooterUpdateReceiver"
+            android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".updateWidget.SmallWeatherUpdateReceiver">
+        <receiver
+            android:name=".updateWidget.SmallWeatherUpdateReceiver"
+            android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -141,10 +145,6 @@
         <uses-library
             android:name="android.test.mock"
             android:required="false" />
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

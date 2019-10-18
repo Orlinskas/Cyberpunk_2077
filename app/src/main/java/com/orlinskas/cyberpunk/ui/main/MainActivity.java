@@ -358,12 +358,12 @@ public class MainActivity extends AppCompatActivity {
             progressMenu.setImageResource(IC_PROGRESS_1);
             openActivity(activity);
         }
+    }
 
-        private void openActivity(final Class activityClass) {
-            Intent intent = new Intent(getApplicationContext(), activityClass);
-            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            ContextCompat.startActivity(getApplicationContext(), intent, null);
-        }
+    private void openActivity(final Class activityClass) {
+        Intent intent = new Intent(this, activityClass);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        ContextCompat.startActivity(this, intent, null);
     }
 
     @Override
