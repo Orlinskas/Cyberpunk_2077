@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_help_sv"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/im_background_3">
+    android:background="@drawable/im_background_3"
+    android:scrollbarSize="1dp"
+    android:scrollbarThumbVertical="@color/colorCyberpunkRed">
 
     <RelativeLayout
         android:id="@+id/activity_help_rl"
@@ -120,17 +121,14 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/grey_background">
 
-            <TextView
-                android:id="@+id/activity_help_widget_tv"
+            <ImageView
+                android:id="@+id/activity_help_widget_iv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="sans-serif-light"
-                android:text="@string/widget"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/colorCyberpunkRed" />
+                android:layout_height="80dp"
+                android:layout_below="@id/activity_help_rl_head_pain"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/widget_image"
+                app:srcCompat="@drawable/image_small_widget" />
 
             <RelativeLayout
                 android:id="@+id/activity_help_rl_precipitation"
@@ -145,8 +143,8 @@
                     android:layout_height="60dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="5dp"
-                    app:srcCompat="@drawable/im_percipitation_on"
-                    android:contentDescription="@string/image" />
+                    android:contentDescription="@string/image"
+                    app:srcCompat="@drawable/im_percipitation_on" />
 
                 <TextView
                     android:id="@+id/activity_help_tv_precipitation"
@@ -173,8 +171,8 @@
                     android:layout_height="60dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="5dp"
-                    app:srcCompat="@drawable/im_wind_on"
-                    android:contentDescription="@string/image" />
+                    android:contentDescription="@string/image"
+                    app:srcCompat="@drawable/im_wind_on" />
 
                 <TextView
                     android:id="@+id/activity_help_tv_wind"
@@ -201,8 +199,8 @@
                     android:layout_height="60dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="5dp"
-                    app:srcCompat="@drawable/im_wet_on"
-                    android:contentDescription="@string/image" />
+                    android:contentDescription="@string/image"
+                    app:srcCompat="@drawable/im_wet_on" />
 
                 <TextView
                     android:id="@+id/activity_help_tv_ice"
@@ -229,8 +227,8 @@
                     android:layout_height="60dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="5dp"
-                    app:srcCompat="@drawable/im_head_on"
-                    android:contentDescription="@string/image" />
+                    android:contentDescription="@string/image"
+                    app:srcCompat="@drawable/im_head_on" />
 
                 <TextView
                     android:id="@+id/activity_help_tv_head_pain"
@@ -246,14 +244,17 @@
                     android:textSize="18sp" />
             </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/activity_help_widget_iv"
+            <TextView
+                android:id="@+id/activity_help_widget_tv"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@id/activity_help_rl_head_pain"
-                android:layout_marginTop="10dp"
-                android:contentDescription="@string/widget_image"
-                app:srcCompat="@drawable/image_small_widget" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/widget"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorCyberpunkRed" />
 
             <TextView
                 android:id="@+id/activity_help_widget_desc_1"
@@ -322,8 +323,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:fontFamily="sans-serif-light"
-                android:text="@string/autor_group"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="3dp"
+                android:fontFamily="@font/cyberpunk_eng"
+                android:text="@string/orlinskas_development"
                 android:textAlignment="center"
                 android:textColor="@color/colorCyberpunkRed" />
 

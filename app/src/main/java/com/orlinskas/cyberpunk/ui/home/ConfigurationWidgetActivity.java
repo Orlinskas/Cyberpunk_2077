@@ -55,11 +55,13 @@ public class ConfigurationWidgetActivity extends Activity {
             spinnerWidgetList = findViewById(R.id.config_layout_spn);
             spinnerWidgetList.getBackground().setColorFilter(getResources().getColor(R.color.colorCyberpunkYellow), PorterDuff.Mode.SRC_ATOP);
             setSpinnerAdapter(widgets);
+            if(widgets.size() == 0) {
+                ToastBuilder.create(getBaseContext(),getString(R.string.greate_widget_in_app));
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            ToastBuilder.create(getBaseContext(),getString(R.string.greate_widget_in_app));
-            finish();
         }
+
     }
 
     private ArrayList<Widget> findWidgetsInRepository() throws Exception {
@@ -77,16 +79,21 @@ public class ConfigurationWidgetActivity extends Activity {
         final Animation buttonClickAnim = AnimationUtils.loadAnimation(this, R.anim.animation_button);
         view.startAnimation(buttonClickAnim);
 
-        Widget widget = (Widget) spinnerWidgetList.getSelectedItem();
-        int myWidgetID = widget.getId();
-        Preferences preferences = Preferences.getInstance(this, SETTINGS);
-        //запомнил соотношение - ID который дал андроид/ID моего объекта виджета
-        preferences.saveData(MY_WIDGET_ID_DEPENDS + appWidgetID, myWidgetID);
-        //и наоборот
-        preferences.saveData(APP_WIDGET_ID_DEPENDS + myWidgetID, appWidgetID);
+        if(spinnerWidgetList.getSelectedItem() == null) {
+            ToastBuilder.create(getBaseContext(),"First, create a widget in the app");
+        }
+        else {
+            Widget widget = (Widget) spinnerWidgetList.getSelectedItem();
+            int myWidgetID = widget.getId();
+            Preferences preferences = Preferences.getInstance(this, SETTINGS);
+            //запомнил соотношение - ID который дал андроид/ID моего объекта виджета
+            preferences.saveData(MY_WIDGET_ID_DEPENDS + appWidgetID, myWidgetID);
+            //и наоборот
+            preferences.saveData(APP_WIDGET_ID_DEPENDS + myWidgetID, appWidgetID);
 
-        setResult(RESULT_OK, resultValue); //отправил положительный ответ
-        finish();
+            setResult(RESULT_OK, resultValue); //отправил положительный ответ
+            finish();
+        }
     }
 }
 

@@ -47,8 +47,8 @@ public class WallpaperSetterActivity extends AppCompatActivity {
     }
 
     private void adjustGridView() {
-        gridView.setNumColumns(GridView.AUTO_FIT);
-        gridView.setColumnWidth(400);
+        gridView.setNumColumns(2);
+        gridView.setColumnWidth(300);
         gridView.setHorizontalSpacing(10);
         gridView.setVerticalSpacing(10);
         gridView.setStretchMode(GridView.STRETCH_SPACING_UNIFORM);
@@ -190,19 +190,39 @@ public class WallpaperSetterActivity extends AppCompatActivity {
         private Bitmap compressBitmap(int id) {
             try {
                 BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inJustDecodeBounds = true;
+                BitmapFactory.decodeResource(getResources(), id, options);
 
                 Point size = new Point();
                 Display display = getWindowManager().getDefaultDisplay();
                 display.getRealSize(size);
 
-                options.outWidth = size.x;
-                options.outHeight = size.y;
+                options.inJustDecodeBounds = false;
+                options.inSampleSize = calculateInSampleSize(options, size.x, size.y);
 
                 return BitmapFactory.decodeResource(getResources(), id, options);
             } catch (Exception e) {
                 e.printStackTrace();
             }
             return null;
+        }
+
+        private int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+            final int height = options.outHeight;
+            final int width = options.outWidth;
+            int inSampleSize = 1;
+
+            if (height > reqHeight || width > reqWidth) {
+
+                final int halfHeight = height / 2;
+                final int halfWidth = width / 2;
+
+                while ((halfHeight / inSampleSize) > reqHeight && (halfWidth / inSampleSize) > reqWidth) {
+                    inSampleSize *= 2;
+                }
+            }
+
+            return inSampleSize;
         }
     }
 

@@ -74,7 +74,8 @@ public class WallpaperAdapter extends BaseAdapter {
     private Bitmap compressBitmap(Resources resources, int id) {
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inSampleSize = 8;
+            options.inSampleSize = 6;
+            options.inPreferredConfig = Bitmap.Config.RGB_565;
 
             return BitmapFactory.decodeResource(resources, id, options);
         } catch (Exception e) {
