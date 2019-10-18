@@ -67,4 +67,8 @@
     <string name="config_body_descr_3">* приложение экономит заряд батареи и не делает лишних запросов</string>
     <string name="config_body_descr_4">* виджет предоставляет прогноз на несколько дней, просто тапайте по краям виджета</string>
     <string name="config_head">Выберите ваш виджет из списка</string>
+    <string name="fluctuations_in_atmospheric_pressure_headaches_are_possible">- Колебания атмосферного давления. (Возможны головные боли)</string>
+    <string name="surface_icing_possible">- Возможен гололед</string>
+    <string name="uncomfortable_rainfall">- Некомфортный уровень осадков</string>
+    <string name="uncomfortable_wind_speed">- Некомфортная скорость ветра</string>
 </resources>

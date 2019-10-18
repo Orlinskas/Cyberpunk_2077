@@ -48,7 +48,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="5dp"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/new_zelec"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/config_head"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"

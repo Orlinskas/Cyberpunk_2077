@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -13,7 +14,8 @@
         android:fontFamily="sans-serif-thin"
         android:shadowColor="@color/colorCyberpunkRed"
         android:shadowRadius="6"
-        android:text="LIGHT"
+        android:text="@string/light"
         android:textColor="@color/colorCyberpunkRed"
         android:textSize="50sp" />
+
 </RelativeLayout>

@@ -67,4 +67,8 @@
     <string name="widget_desc_4">4. The central zone updates data if it is possible.</string>
     <string name="wind_speed">Wind</string>
     <string name="yes">Yes</string>
+    <string name="fluctuations_in_atmospheric_pressure_headaches_are_possible">- Fluctuations in atmospheric pressure. (Headaches are possible)</string>
+    <string name="surface_icing_possible">- Surface icing possible</string>
+    <string name="uncomfortable_rainfall">- Uncomfortable rainfall</string>
+    <string name="uncomfortable_wind_speed">- Uncomfortable wind speed</string>
 </resources>

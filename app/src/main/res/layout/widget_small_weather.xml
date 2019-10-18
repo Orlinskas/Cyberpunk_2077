@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_widget_rl"
@@ -359,6 +360,7 @@
             android:layout_weight="1"
             android:alpha="0"
             tools:ignore="ButtonStyle" />
+
     </LinearLayout>
 
     <ProgressBar
@@ -430,7 +432,7 @@
         android:shadowRadius="6"
         android:text="@string/loading"
         android:textAlignment="center"
-        android:textColor="@color/colorCyberpunkWhite"
+        android:textColor="@color/colorCyberpunkYellow"
         android:textSize="12sp" />
 
 </RelativeLayout>

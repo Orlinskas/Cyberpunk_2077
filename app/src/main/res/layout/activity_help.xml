@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_help_sv"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -120,16 +120,6 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/grey_background">
 
-            <ImageView
-                android:id="@+id/activity_help_widget_iv"
-                android:layout_width="360dp"
-                android:layout_height="117dp"
-                android:layout_below="@id/activity_help_widget_tv"
-                android:layout_marginTop="15dp"
-                android:contentDescription="@string/widget_image"
-                app:srcCompat="@drawable/im_widget_help"
-                tools:layout_centerHorizontal="true" />
-
             <TextView
                 android:id="@+id/activity_help_widget_tv"
                 android:layout_width="match_parent"
@@ -141,6 +131,129 @@
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/colorCyberpunkRed" />
+
+            <RelativeLayout
+                android:id="@+id/activity_help_rl_precipitation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/activity_help_widget_tv"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/activity_help_iv_precipitation"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    app:srcCompat="@drawable/im_percipitation_on"
+                    android:contentDescription="@string/image" />
+
+                <TextView
+                    android:id="@+id/activity_help_tv_precipitation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@id/activity_help_iv_precipitation"
+                    android:fontFamily="sans-serif-condensed-light"
+                    android:text="@string/uncomfortable_rainfall"
+                    android:textColor="@color/colorCyberpunkRed"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/activity_help_rl_wind"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_help_rl_precipitation">
+
+                <ImageView
+                    android:id="@+id/activity_help_iv_wind"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    app:srcCompat="@drawable/im_wind_on"
+                    android:contentDescription="@string/image" />
+
+                <TextView
+                    android:id="@+id/activity_help_tv_wind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@id/activity_help_iv_wind"
+                    android:fontFamily="sans-serif-condensed-light"
+                    android:text="@string/uncomfortable_wind_speed"
+                    android:textColor="@color/colorCyberpunkRed"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/activity_help_rl_ice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_help_rl_wind">
+
+                <ImageView
+                    android:id="@+id/activity_help_iv_ice"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    app:srcCompat="@drawable/im_wet_on"
+                    android:contentDescription="@string/image" />
+
+                <TextView
+                    android:id="@+id/activity_help_tv_ice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@id/activity_help_iv_ice"
+                    android:fontFamily="sans-serif-condensed-light"
+                    android:text="@string/surface_icing_possible"
+                    android:textColor="@color/colorCyberpunkRed"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/activity_help_rl_head_pain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_help_rl_ice">
+
+                <ImageView
+                    android:id="@+id/activity_help_iv_head_pain"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    app:srcCompat="@drawable/im_head_on"
+                    android:contentDescription="@string/image" />
+
+                <TextView
+                    android:id="@+id/activity_help_tv_head_pain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@id/activity_help_iv_head_pain"
+                    android:fontFamily="sans-serif-condensed-light"
+                    android:text="@string/fluctuations_in_atmospheric_pressure_headaches_are_possible"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorCyberpunkRed"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/activity_help_widget_iv"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/activity_help_rl_head_pain"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/widget_image"
+                app:srcCompat="@drawable/image_small_widget" />
 
             <TextView
                 android:id="@+id/activity_help_widget_desc_1"

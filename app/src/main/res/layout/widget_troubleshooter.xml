@@ -38,7 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_weight="3"
-            app:srcCompat="@drawable/im_trouble_text_2" />
+            app:srcCompat="@drawable/im_trouble_text_2"
+            android:contentDescription="@string/image" />
 
         <LinearLayout
             android:id="@+id/widget_troubleshooter_ll_troubleshoter_icons"
@@ -52,28 +53,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/im_percipitation_off" />
+                app:srcCompat="@drawable/im_percipitation_off"
+                android:contentDescription="@string/image" />
 
             <ImageView
                 android:id="@+id/widget_troubleshooter_iv_wind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/im_wind_off" />
+                app:srcCompat="@drawable/im_wind_off"
+                android:contentDescription="@string/image" />
 
             <ImageView
                 android:id="@+id/widget_troubleshooter_iv_wet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/im_wet_off" />
+                app:srcCompat="@drawable/im_wet_off"
+                android:contentDescription="@string/image" />
 
             <ImageView
                 android:id="@+id/widget_troubleshooter_iv_head"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/im_head_off" />
+                app:srcCompat="@drawable/im_head_off"
+                android:contentDescription="@string/image" />
         </LinearLayout>
     </LinearLayout>
 
@@ -85,7 +90,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="7dp"
         android:layout_marginBottom="5dp"
-        app:srcCompat="@drawable/im_update_btn_off" />
+        app:srcCompat="@drawable/im_update_btn_off"
+        android:contentDescription="@string/image" />
 
     <RelativeLayout
         android:id="@+id/widget_troubleshooter_rl_clock"
@@ -105,7 +111,8 @@
             android:layout_below="@id/widget_troubleshooter_digital_clock"
             android:layout_alignParentBottom="false"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="-5dp" />
+            android:layout_marginTop="-5dp"
+            android:contentDescription="@string/image" />
 
         <ImageView
             android:id="@+id/widget_troubleshooter_iv_weather_icon"
@@ -114,7 +121,8 @@
             android:layout_below="@+id/widget_troubleshooter_tv_date"
             android:layout_marginTop="-7dp"
             android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@+id/textView2" />
+            android:layout_toStartOf="@+id/textView2"
+            android:contentDescription="@string/image" />
 
         <TextClock
             android:id="@+id/widget_troubleshooter_digital_clock"
@@ -127,7 +135,7 @@
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/colorCyberpunkWhite"
+            android:textColor="@color/colorCyberpunkYellow"
             android:textSize="36sp" />
 
         <TextView
@@ -170,8 +178,8 @@
             android:maxLength="15"
             android:shadowColor="@color/colorCyberpunkGreen"
             android:shadowRadius="6"
-            android:text="Loading..."
-            android:textColor="@color/colorCyberpunkWhite"
+            android:text="@string/loading_3"
+            android:textColor="@color/colorCyberpunkYellow"
             android:textSize="14sp" />
     </RelativeLayout>
 
@@ -195,7 +203,8 @@
         android:layout_above="@+id/widget_troubleshooter_ll_troubleshooter"
         android:layout_marginBottom="-5dp"
         android:layout_toStartOf="@+id/widget_troubleshooter_rl_console"
-        app:srcCompat="@drawable/im_btn_flashlight_off" />
+        app:srcCompat="@drawable/im_btn_flashlight_off"
+        android:contentDescription="@string/image" />
 
     <ImageView
         android:id="@+id/widget_troubleshooter_iv_wifi"
@@ -204,7 +213,8 @@
 
         android:layout_above="@+id/widget_troubleshooter_iv_flashlight"
         android:layout_toStartOf="@+id/widget_troubleshooter_rl_console"
-        app:srcCompat="@drawable/im_btn_wifi_off" />
+        app:srcCompat="@drawable/im_btn_wifi_off"
+        android:contentDescription="@string/image" />
 
     <RelativeLayout
         android:id="@+id/widget_troubleshooter_rl_console"
@@ -226,10 +236,11 @@
             android:background="@color/colorConsoleBackgroundRow"
             android:fontFamily="sans-serif-thin"
             android:maxLines="1"
-            android:text="Console."
+            android:text="@string/console"
             android:textColor="@color/colorTextBlack"
             android:textSize="10sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold|italic"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/widget_troubleshooter_tv_timezone_utc"
@@ -241,7 +252,8 @@
             android:textAlignment="viewEnd"
             android:textColor="@color/colorTextBlack"
             android:textSize="10sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold|italic"
+            tools:ignore="RelativeOverlap,SmallSp" />
 
         <TextView
             android:id="@+id/widget_troubleshooter_tv_warning"
@@ -256,7 +268,8 @@
             android:text=""
             android:textColor="@color/colorCyberpunkRed"
             android:textSize="10sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/widget_troubleshooter_tv_RAM"
@@ -271,7 +284,8 @@
             android:text=""
             android:textColor="@color/colorCyberpunkRed"
             android:textSize="10sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/widget_troubleshooter_tv_memory"
@@ -285,7 +299,8 @@
             android:maxLines="1"
             android:textColor="@color/colorCyberpunkRed"
             android:textSize="10sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/widget_troubleshooter_tv_wifi"
@@ -299,7 +314,8 @@
             android:maxLines="1"
             android:textColor="@color/colorCyberpunkRed"
             android:textSize="10sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/widget_troubleshooter_tv_precipitation"
@@ -313,7 +329,8 @@
             android:maxLines="1"
             android:textColor="@color/colorCyberpunkRed"
             android:textSize="10sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="SmallSp" />
 
     </RelativeLayout>
 

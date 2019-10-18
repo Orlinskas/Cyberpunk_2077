@@ -16,7 +16,8 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="mySpinnerItemSelectedStyle" parent="@android:style/Widget.Holo.TextView.SpinnerItem">
-        <item name="android:textColor">@color/colorCyberpunkWhite</item>
+        <item name="android:textColor">@color/colorCyberpunkYellow</item>
+        <item name="backgroundTint">@color/colorCyberpunkYellow</item>
         <item name="android:textAlignment">center</item>
     </style>
 

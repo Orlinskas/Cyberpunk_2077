@@ -205,7 +205,7 @@ public class WidgetTroubleshooter extends AppWidgetProvider {
         int ID = builder.setIcon(currentWeather);
 
         views.setTextViewText(R.id.widget_troubleshooter_tv_city_name, cityName);
-        views.setImageViewBitmap(R.id.widget_troubleshooter_tv_date, convertToImg(currentDate, tfDigit, 50, ContextCompat.getColor(context, R.color.colorCyberpunkWhite), 500, 100, ContextCompat.getColor(context, R.color.colorCyberpunkGreen)));
+        views.setImageViewBitmap(R.id.widget_troubleshooter_tv_date, convertToImg(currentDate, tfDigit, 50, ContextCompat.getColor(context, R.color.colorCyberpunkYellow), 500, 100, ContextCompat.getColor(context, R.color.colorCyberpunkGreen)));
         views.setImageViewResource(R.id.widget_troubleshooter_iv_weather_icon, ID);
         views.setTextViewText(R.id.widget_troubleshooter_tv_weather_value, temperature);
 

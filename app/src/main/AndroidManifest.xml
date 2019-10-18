@@ -91,7 +91,7 @@
 
         <receiver
             android:name=".ui.home.WidgetTroubleshooter"
-            android:icon="@drawable/logo_cyberpunk"
+            android:icon="@drawable/logo_troubleshooter"
             android:label="Troubleshooter"
             android:widgetCategory="home_screen|keyguard"
             android:resizeMode="horizontal|vertical">
@@ -107,7 +107,7 @@
 
         <receiver
             android:name=".ui.home.WidgetSmallWeather"
-            android:icon="@drawable/logo_cyberpunk"
+            android:icon="@drawable/logo_small_widget"
             android:label="WeatherSmall"
             android:widgetCategory="home_screen|keyguard"
             android:resizeMode="horizontal|vertical">

@@ -176,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
             openActivityTask = new OpenActivityTask(activity);
             openActivityTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
-
     }
 
     private class LoadWidgetsListTask extends AsyncTask<Void, Void, Void> {
@@ -209,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
             }
             do {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -229,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
             }
-            while (roundCount < 20);
+            while (roundCount < 30);
 
             return null;
         }
@@ -324,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
             int roundCount = 0;
             do {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -343,7 +342,7 @@ public class MainActivity extends AppCompatActivity {
                 if (isCancelled())
                     break;
             }
-            while (roundCount < 10);
+            while (roundCount < 8);
             return null;
         }
 

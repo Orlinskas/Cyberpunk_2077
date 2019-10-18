@@ -106,7 +106,14 @@
     <string name="orlinskas_development" translatable="false">orlinskas development</string>
     <string name="id" translatable="false">id</string>
     <string name="code" translatable="false">Code</string>
-    <string name="empty_row">-</string>
+    <string name="empty_row" translatable="false">-</string>
+    <string name="fluctuations_in_atmospheric_pressure_headaches_are_possible">- Fluctuations in atmospheric pressure. (Headaches are possible)</string>
+    <string name="surface_icing_possible">- Surface icing possible</string>
+    <string name="uncomfortable_wind_speed">- Uncomfortable wind speed</string>
+    <string name="uncomfortable_rainfall">- Uncomfortable rainfall</string>
+    <string name="light" translatable="false">LIGHT</string>
+    <string name="loading_3" translatable="false">Loading...</string>
+    <string name="console" translatable="false">Console.</string>
 
     <string-array name="spinner">
         <item>choose…</item>

@@ -250,6 +250,7 @@ public class WidgetCreatorView extends AppCompatActivity implements WidgetCreato
         if(backPressedCount == 0) {
             backPressedCount++;
             presenter.stopSearchLocation();
+            doSnackBar("Click again to exit");
         }
         else {
             backPressedCount++;
