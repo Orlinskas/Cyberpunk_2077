@@ -49,7 +49,7 @@ public class InstrumentPerformanceBuilder {
             }
         }
 
-        if(param.equals(RAIN) | param.equals(SNOW)) {
+        if(param.equals(RAIN) || param.equals(SNOW)) {
             return AveragerValue.sum(values);
         }
         return AveragerValue.average(values);

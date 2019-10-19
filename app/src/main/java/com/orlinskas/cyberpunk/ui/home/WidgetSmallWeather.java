@@ -144,7 +144,7 @@ public class WidgetSmallWeather extends AppWidgetProvider {
         if(widget != null && widget.getDaysForecast() != null){
             int dayNumber = readDayNumber(appWidgetID, context);
 
-            if(dayNumber < 0 | dayNumber > widget.getDaysForecast().size() - 1) {
+            if(dayNumber < 0 || dayNumber > widget.getDaysForecast().size() - 1) {
                 dayNumber = 0;
                 writeDayNumber(dayNumber, appWidgetID, context);
             }

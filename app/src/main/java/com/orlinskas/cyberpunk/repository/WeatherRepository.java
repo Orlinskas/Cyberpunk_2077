@@ -12,23 +12,6 @@ import com.orlinskas.cyberpunk.specification.SqlSpecification;
 import java.util.ArrayList;
 
 import static com.orlinskas.cyberpunk.data.WeatherDatabase.*;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_CITY_ID;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_CITY_NAME;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_CLOUDINESS_PERCENT;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_COUNTRY_CODE;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_CURRENT_TEMPERATURE;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_FORECAST_DATE;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_HUMIDITY_PERCENT;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_PRESSURE;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_RAIN_VOLUME;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_SNOW_VOLUME;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_TIME_OF_DATA_FORECAST;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_WEATHER_GROUP;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_WEATHER_GROUP_DESCRIPTION;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_WEATHER_ICON_ID;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_WEATHER_ID;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_WIND_SPEED;
-import static com.orlinskas.cyberpunk.data.WeatherDatabase.TABLE_WEATHER;
 
 public class WeatherRepository implements Repository<Weather> {
     private SQLiteDatabase database;

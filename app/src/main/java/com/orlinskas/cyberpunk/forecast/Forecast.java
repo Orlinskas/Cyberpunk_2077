@@ -16,15 +16,11 @@ public class Forecast implements Serializable {
         return dayDate;
     }
 
-    public void setDayDate(String dayDate) {
-        this.dayDate = dayDate;
-    }
-
     public ArrayList<Weather> getDayWeathers() {
         return dayWeathers;
     }
 
-    public void setDayWeathers(ArrayList<Weather> dayWeathers) {
+    void setDayWeathers(ArrayList<Weather> dayWeathers) {
         this.dayWeathers = dayWeathers;
     }
 }

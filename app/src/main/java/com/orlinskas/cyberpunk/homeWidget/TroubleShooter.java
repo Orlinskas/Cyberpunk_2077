@@ -19,7 +19,7 @@ public class TroubleShooter {
             double rain = weather.getRainVolume();
             double snow = weather.getSnowVolume();
 
-            if(rain > DANGEROUS_PRECIPITATION_VALUE | snow > DANGEROUS_PRECIPITATION_VALUE) {
+            if(rain > DANGEROUS_PRECIPITATION_VALUE || snow > DANGEROUS_PRECIPITATION_VALUE) {
                 return true;
             }
         }
@@ -51,7 +51,7 @@ public class TroubleShooter {
                 isPlusTemp = true;
             }
         }
-        return isMinusTemp & isPlusTemp;
+        return isMinusTemp && isPlusTemp;
     }
 
     public boolean shootHeadPain() {
