@@ -2,6 +2,7 @@ package com.orlinskas.cyberpunk.updateWidget;
 
 import android.content.Context;
 
+import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.date.DateCalculator;
 import com.orlinskas.cyberpunk.date.DateFormat;
 import com.orlinskas.cyberpunk.date.DateHelper;
@@ -55,6 +56,7 @@ public class WidgetUpdateChecker {
         try {
             widget = repository.find(widgetID);
         } catch (Exception e) {
+            ToastBuilder.create(context,"Critical error, reinstall");
             e.printStackTrace();
         }
         return widget;

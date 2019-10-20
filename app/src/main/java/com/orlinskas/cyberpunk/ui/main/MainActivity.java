@@ -202,8 +202,9 @@ public class MainActivity extends AppCompatActivity {
                 widgets = repository.query(new WidgetEmptySpecification());
             } catch (Exception e) {
                 e.printStackTrace();
+                ToastBuilder.createSnackBar(relativeLayout,"Critical error, reinstall");
             }
-            if (widgets == null || widgets.size() == 0) {
+            if (widgets.size() == 0) {
                 addEmptyWidgetElement();
             }
             do {

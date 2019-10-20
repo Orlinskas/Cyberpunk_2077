@@ -7,4 +7,5 @@ public class DateFormat {
     public final static String DD_MM_YYYY = "dd-MM-yyyy";
     public final static String MM_SS = "mm:ss";
     public final static String HH_MM_SS = "HH:mm:ss";
+    public final static String HH_MM_SS_2 = ":HH :mm :ss";
 }

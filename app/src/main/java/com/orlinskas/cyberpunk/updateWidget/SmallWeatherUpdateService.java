@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
+import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.date.DateFormat;
 import com.orlinskas.cyberpunk.date.DateHelper;
 import com.orlinskas.cyberpunk.forecast.ForecastListBuilder;
@@ -72,6 +73,7 @@ public class SmallWeatherUpdateService extends Service {
         try {
             widget = repository.find(myWidgetID);
         } catch (Exception e) {
+            ToastBuilder.create(getBaseContext(),"Critical error, reinstall");
             e.printStackTrace();
         }
         return widget;

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.orlinskas.cyberpunk.ActivityOpener;
 import com.orlinskas.cyberpunk.R;
+import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.specification.WidgetEmptySpecification;
 import com.orlinskas.cyberpunk.ui.other.HelpActivity;
 import com.orlinskas.cyberpunk.ui.other.ContactsActivity;
@@ -39,6 +40,7 @@ public class ForecastActivity extends AppCompatActivity {
             try {
                 widgets = widgetRepository.query(new WidgetEmptySpecification());
             } catch (Exception e) {
+                ToastBuilder.create(getBaseContext(),"Critical error, reinstall");
                 e.printStackTrace();
             }
             for(Widget widget : widgets) {

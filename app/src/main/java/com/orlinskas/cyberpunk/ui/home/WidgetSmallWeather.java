@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import com.orlinskas.cyberpunk.R;
+import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.updateWidget.SmallWeatherUpdateService;
 import com.orlinskas.cyberpunk.chart.WeatherIconsSelector;
 import com.orlinskas.cyberpunk.forecast.Forecast;
@@ -161,6 +162,7 @@ public class WidgetSmallWeather extends AppWidgetProvider {
         try {
             return repository.find(myWidgetID);
         } catch (Exception e) {
+            ToastBuilder.create(context,"Critical error, reinstall");
             e.printStackTrace();
         }
         return null;

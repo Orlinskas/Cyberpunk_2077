@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
+import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.date.DateFormat;
 import com.orlinskas.cyberpunk.date.DateHelper;
 import com.orlinskas.cyberpunk.forecast.ForecastListBuilder;
@@ -35,8 +36,8 @@ public class TroubleshooterUpdateService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         context = getBaseContext();
-        myWidgetID = intent.getIntExtra(MY_WIDGET_ID, 0);
-        if(myWidgetID == 0) {
+        myWidgetID = intent.getIntExtra(MY_WIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+        if(myWidgetID == AppWidgetManager.INVALID_APPWIDGET_ID) {
             stopSelf();
         }
         else {
@@ -72,6 +73,7 @@ public class TroubleshooterUpdateService extends Service {
         try {
             widget = repository.find(myWidgetID);
         } catch (Exception e) {
+            ToastBuilder.create(getBaseContext(),"Critical error, reinstall");
             e.printStackTrace();
         }
         return widget;

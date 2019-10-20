@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import com.orlinskas.cyberpunk.R;
+import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.updateWidget.TroubleshooterUpdateService;
 import com.orlinskas.cyberpunk.date.DateFormat;
 import com.orlinskas.cyberpunk.date.DateHelper;
@@ -172,6 +173,7 @@ public class WidgetTroubleshooter extends AppWidgetProvider {
         try {
             return repository.find(myWidgetID);
         } catch (Exception e) {
+            ToastBuilder.create(context,"Critical error, reinstall");
             e.printStackTrace();
         }
         return null;

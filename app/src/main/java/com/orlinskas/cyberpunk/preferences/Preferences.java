@@ -7,6 +7,7 @@ public class Preferences {
     private static Preferences preferences;
     private SharedPreferences sharedPreferences;
     public static final String SETTINGS = "settings";
+    public static final String WIDGET_SETTINGS = "settings";
     static final String APP_TEST = "test";
     public static final String MY_WIDGET_ID_DEPENDS = "dependenceIDMy-";
     public static final String APP_WIDGET_ID_DEPENDS = "dependenceIDApp-";

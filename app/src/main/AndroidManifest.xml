@@ -89,6 +89,10 @@
             android:name=".updateWidget.SmallWeatherUpdateService"
             android:enabled="true"/>
 
+        <service
+            android:name=".updateWidget.CountDownUpdateService"
+            android:enabled="true"/>
+
         <receiver
             android:name=".ui.home.WidgetTroubleshooter"
             android:icon="@drawable/logo_troubleshooter"
@@ -121,6 +125,21 @@
         </receiver>
 
         <receiver
+            android:name=".ui.home.WidgetCountDown"
+            android:icon="@drawable/logo_cyberpunk"
+            android:label="CountDown"
+            android:widgetCategory="home_screen|keyguard"
+            android:resizeMode="horizontal|vertical">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_count_down_metadata" />
+        </receiver>
+
+        <receiver
             android:name=".updateWidget.TroubleshooterUpdateReceiver"
             android:enabled="true">
             <intent-filter>
@@ -130,6 +149,14 @@
 
         <receiver
             android:name=".updateWidget.SmallWeatherUpdateReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".updateWidget.CountDownReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

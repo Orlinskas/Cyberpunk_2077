@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import com.github.mikephil.charting.charts.LineChart;
 import com.orlinskas.cyberpunk.ActivityOpener;
 import com.orlinskas.cyberpunk.R;
+import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.updateWidget.WidgetUpdateChecker;
 import com.orlinskas.cyberpunk.chart.ChartBuilder;
 import com.orlinskas.cyberpunk.chart.WeatherIconsLayoutBuilder;
@@ -55,6 +56,7 @@ public class ForecastFragmentPresenter implements ForecastContract.Presenter, Fo
         try {
             widget = repository.find(widgetID);
         } catch (Exception e) {
+            ToastBuilder.create(appContext,"Critical error, reinstall");
             e.printStackTrace();
         }
         return widget;

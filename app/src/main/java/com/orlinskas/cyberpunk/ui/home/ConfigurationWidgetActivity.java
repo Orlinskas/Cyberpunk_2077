@@ -59,6 +59,7 @@ public class ConfigurationWidgetActivity extends Activity {
                 ToastBuilder.create(getBaseContext(),getString(R.string.greate_widget_in_app));
             }
         } catch (Exception e) {
+            ToastBuilder.create(getBaseContext(),"Critical error, reinstall");
             e.printStackTrace();
         }
 
