@@ -5,5 +5,5 @@
     android:initialLayout="@layout/widget_count_down"
     android:minWidth="250dp"
     android:minHeight="40dp"
-    android:updatePeriodMillis="0">
+    android:updatePeriodMillis="100">
 </appwidget-provider>

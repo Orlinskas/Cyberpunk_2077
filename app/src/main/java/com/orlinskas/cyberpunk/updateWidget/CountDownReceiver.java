@@ -16,6 +16,7 @@ public class CountDownReceiver extends BroadcastReceiver {
             int widgetID = preferences.getData(AppWidgetManager.EXTRA_APPWIDGET_ID,0);
 
             switch (intent.getAction()) {
+                case Intent.ACTION_BOOT_COMPLETED:
                 case Intent.ACTION_SCREEN_ON:
                     if(widgetID != AppWidgetManager.INVALID_APPWIDGET_ID) {
                         Intent startIntentService = new Intent(context, CountDownUpdateService.class);

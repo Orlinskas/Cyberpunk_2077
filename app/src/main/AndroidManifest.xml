@@ -126,7 +126,7 @@
 
         <receiver
             android:name=".ui.home.WidgetCountDown"
-            android:icon="@drawable/logo_cyberpunk"
+            android:icon="@drawable/logo_count_down"
             android:label="CountDown"
             android:widgetCategory="home_screen|keyguard"
             android:resizeMode="horizontal|vertical">

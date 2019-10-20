@@ -14,6 +14,14 @@ public class WidgetCountDown extends AppWidgetProvider {
     private boolean isReceiverRegister = false;
 
     @Override
+    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
+        for (int id : appWidgetIds) {
+            createWidget(id, context);
+        }
+    }
+
+    @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
         String action = intent.getAction();
@@ -21,6 +29,8 @@ public class WidgetCountDown extends AppWidgetProvider {
 
         if (action != null) {
             switch (action){
+                case AppWidgetManager.ACTION_APPWIDGET_ENABLED:
+                case AppWidgetManager.ACTION_APPWIDGET_RESTORED:
                 case AppWidgetManager.ACTION_APPWIDGET_OPTIONS_CHANGED:
                 case AppWidgetManager.ACTION_APPWIDGET_UPDATE:
                     if(appWidgetID != AppWidgetManager.INVALID_APPWIDGET_ID){
