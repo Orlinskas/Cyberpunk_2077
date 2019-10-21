@@ -1,5 +1,6 @@
 package com.orlinskas.cyberpunk.updateWidget;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
@@ -15,6 +16,8 @@ import android.widget.RemoteViews;
 
 import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.preferences.Preferences;
+import com.orlinskas.cyberpunk.ui.home.WidgetCountDown;
+import com.orlinskas.cyberpunk.ui.home.WidgetTroubleshooter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,19 +34,16 @@ public class CountDownUpdateService extends Service {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        widgetView = new RemoteViews(getPackageName(), R.layout.widget_count_down);
-    }
-
-    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        widgetView = new RemoteViews(getPackageName(), R.layout.widget_count_down);
         int appWidgetID = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
         try {
             updateTimer(appWidgetID);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        setUpdateClickIntent(appWidgetID, widgetView);
+
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -108,6 +108,14 @@ public class CountDownUpdateService extends Service {
         canvas.drawText(text, xPos, yPos, paint);
 
         return btmText;
+    }
+
+    private void setUpdateClickIntent(int appWidgetID, RemoteViews widgetView) {
+        Intent updateClickIntent = new Intent(getApplicationContext(), WidgetCountDown.class);
+        updateClickIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        updateClickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
+        PendingIntent pUpdateIntent = PendingIntent.getBroadcast(getApplicationContext(), appWidgetID + 900, updateClickIntent, 0);
+        widgetView.setOnClickPendingIntent(R.id.widget_count_down_rl, pUpdateIntent);
     }
 
     @Override

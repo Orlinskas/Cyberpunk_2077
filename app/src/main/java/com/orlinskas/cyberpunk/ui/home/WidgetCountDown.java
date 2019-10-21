@@ -6,20 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
+import com.orlinskas.cyberpunk.homeWidget.CountDownServiceRunner;
 import com.orlinskas.cyberpunk.updateWidget.CountDownReceiver;
-import com.orlinskas.cyberpunk.updateWidget.CountDownUpdateService;
 
 public class WidgetCountDown extends AppWidgetProvider {
-    private boolean isServiceStart = false;
-    private boolean isReceiverRegister = false;
-
-    @Override
-    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        super.onUpdate(context, appWidgetManager, appWidgetIds);
-        for (int id : appWidgetIds) {
-            createWidget(id, context);
-        }
-    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -30,47 +20,30 @@ public class WidgetCountDown extends AppWidgetProvider {
         if (action != null) {
             switch (action){
                 case AppWidgetManager.ACTION_APPWIDGET_ENABLED:
+                    registerReceiver(context);
                 case AppWidgetManager.ACTION_APPWIDGET_RESTORED:
                 case AppWidgetManager.ACTION_APPWIDGET_OPTIONS_CHANGED:
                 case AppWidgetManager.ACTION_APPWIDGET_UPDATE:
                     if(appWidgetID != AppWidgetManager.INVALID_APPWIDGET_ID){
-                        createWidget(appWidgetID, context);
+                        CountDownServiceRunner.start(appWidgetID, context);
                     }
                     break;
-                case AppWidgetManager.ACTION_APPWIDGET_DELETED:
-                    if(appWidgetID != AppWidgetManager.INVALID_APPWIDGET_ID){
-                        stopServiceAndUnregisterReceiver(context);
-                    }
+                case AppWidgetManager.ACTION_APPWIDGET_DISABLED:
+                        unregisterReceiver(context);
+                        CountDownServiceRunner.stop(context);
                     break;
             }
         }
     }
 
-    private void createWidget(int appWidgetID, Context context) {
-        if(!isServiceStart){
-            Intent intentService = new Intent(context, CountDownUpdateService.class);
-            intentService.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
-            context.getApplicationContext().startService(intentService);
-            isServiceStart = true;
-        }
-        if(!isReceiverRegister){
-            IntentFilter filter = new IntentFilter();
-            filter.addAction(Intent.ACTION_SCREEN_ON);
-            filter.addAction(Intent.ACTION_SCREEN_OFF);
-            context.getApplicationContext().registerReceiver(new CountDownReceiver(), filter);
-            isReceiverRegister = true;
-        }
+    private void registerReceiver(Context context) {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_ON);
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        context.getApplicationContext().registerReceiver(new CountDownReceiver(), filter);
     }
 
-    private void stopServiceAndUnregisterReceiver(Context context) {
-        if(isServiceStart){
-            Intent stopIntentService = new Intent(context, CountDownUpdateService.class);
-            context.getApplicationContext().stopService(stopIntentService);
-            isServiceStart = false;
-        }
-        if(isReceiverRegister){
-            context.getApplicationContext().unregisterReceiver(new CountDownReceiver());
-            isReceiverRegister = false;
-        }
+    private void unregisterReceiver(Context context) {
+        context.getApplicationContext().unregisterReceiver(new CountDownReceiver());
     }
 }
