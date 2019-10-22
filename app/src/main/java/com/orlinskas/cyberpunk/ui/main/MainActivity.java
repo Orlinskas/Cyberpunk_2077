@@ -142,8 +142,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent sendIntent = new Intent();
                 sendIntent.setType("text/plain");
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT,  R.string.share_text);
-                startActivity(Intent.createChooser(sendIntent, getString(R.string.share)));
+                sendIntent.putExtra(Intent.EXTRA_TEXT,  "Well, you still need chipping. https://play.google.com/store/apps/details?id=com.orlinskas.cyberpunk");
+                startActivity(Intent.createChooser(sendIntent, "Share"));
 
                 runOnUiThread(new Runnable() {
                     @Override
