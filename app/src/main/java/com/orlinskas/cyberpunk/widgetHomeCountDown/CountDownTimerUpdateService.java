@@ -34,26 +34,21 @@ public class CountDownTimerUpdateService extends Service {
 
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                widgetView = new RemoteViews(getPackageName(), R.layout.widget_count_down);
-                Preferences preferences = Preferences.getInstance(getApplicationContext(), Preferences.WIDGET_SETTINGS);
-                int appWidgetID;
-                try {
-                    appWidgetID = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-                } catch (Exception e) {
-                    appWidgetID = preferences.getData(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-                    e.printStackTrace();
-                }
+        widgetView = new RemoteViews(getPackageName(), R.layout.widget_count_down);
+        Preferences preferences = Preferences.getInstance(getApplicationContext(), Preferences.WIDGET_SETTINGS);
+        int appWidgetID;
+        try {
+            appWidgetID = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+        } catch (Exception e) {
+            appWidgetID = preferences.getData(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+            e.printStackTrace();
+        }
 
-                if (appWidgetID != AppWidgetManager.INVALID_APPWIDGET_ID) {
-                    updateTimer(appWidgetID);
-                    setUpdateClickIntent(appWidgetID, widgetView);
-                    preferences.saveData(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
-                }
-            }
-        }).start();
+        if (appWidgetID != AppWidgetManager.INVALID_APPWIDGET_ID) {
+            updateTimer(appWidgetID);
+            setUpdateClickIntent(appWidgetID, widgetView);
+            preferences.saveData(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
+        }
 
         return Service.START_STICKY;
     }
@@ -66,9 +61,18 @@ public class CountDownTimerUpdateService extends Service {
 
             @Override
             public void onTick(final long millisUntilFinished) {
-                String timerValue = buildTimerValue(millisUntilFinished);
-                widgetView.setImageViewBitmap(R.id.widget_count_down_iv, convertToImg(timerValue));
-                AppWidgetManager.getInstance(getApplicationContext()).updateAppWidget(appWidgetID, widgetView);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            String timerValue = buildTimerValue(millisUntilFinished);
+                            widgetView.setImageViewBitmap(R.id.widget_count_down_iv, convertToImg(timerValue));
+                            AppWidgetManager.getInstance(getApplicationContext()).updateAppWidget(appWidgetID, widgetView);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }
 
             @Override
@@ -91,7 +95,7 @@ public class CountDownTimerUpdateService extends Service {
     }
 
     public Bitmap convertToImg(String text) {
-        Bitmap btmText = Bitmap.createBitmap(200, 50, Bitmap.Config.RGB_565);
+        Bitmap btmText = Bitmap.createBitmap(200, 50, Bitmap.Config.ARGB_4444);
         Canvas canvas = new Canvas(btmText);
 
         Paint paint = new Paint();
