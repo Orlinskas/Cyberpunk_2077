@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
 import android.view.animation.Animation;
@@ -199,6 +200,9 @@ public class WallpaperSetterActivity extends AppCompatActivity {
 
                 options.inJustDecodeBounds = false;
                 options.inSampleSize = calculateInSampleSize(options, size.x, size.y);
+
+                DisplayMetrics metrics = getResources().getDisplayMetrics();
+                options.inDensity = metrics.densityDpi;
 
                 return BitmapFactory.decodeResource(getResources(), id, options);
             } catch (Exception e) {

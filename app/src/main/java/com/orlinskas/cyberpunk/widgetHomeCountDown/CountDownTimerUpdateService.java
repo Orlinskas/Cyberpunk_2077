@@ -91,7 +91,7 @@ public class CountDownTimerUpdateService extends Service {
     }
 
     public Bitmap convertToImg(String text) {
-        Bitmap btmText = Bitmap.createBitmap(200, 50, Bitmap.Config.ARGB_4444);
+        Bitmap btmText = Bitmap.createBitmap(200, 50, Bitmap.Config.RGB_565);
         Canvas canvas = new Canvas(btmText);
 
         Paint paint = new Paint();
