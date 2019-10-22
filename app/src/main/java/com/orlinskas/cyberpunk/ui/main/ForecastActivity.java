@@ -12,10 +12,10 @@ import com.orlinskas.cyberpunk.ActivityOpener;
 import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.specification.WidgetEmptySpecification;
-import com.orlinskas.cyberpunk.ui.other.HelpActivity;
-import com.orlinskas.cyberpunk.ui.other.ContactsActivity;
-import com.orlinskas.cyberpunk.widget.Widget;
-import com.orlinskas.cyberpunk.widget.WidgetRepository;
+import com.orlinskas.cyberpunk.ui.app.HelpActivity;
+import com.orlinskas.cyberpunk.ui.app.ContactsActivity;
+import com.orlinskas.cyberpunk.widgetApp.Widget;
+import com.orlinskas.cyberpunk.widgetApp.WidgetRepository;
 
 import java.util.ArrayList;
 

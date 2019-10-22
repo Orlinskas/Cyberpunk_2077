@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.orlinskas.cyberpunk.repository.WeatherRepository;
 import com.orlinskas.cyberpunk.specification.WeatherWidgetSpecification;
-import com.orlinskas.cyberpunk.widget.Widget;
+import com.orlinskas.cyberpunk.widgetApp.Widget;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;

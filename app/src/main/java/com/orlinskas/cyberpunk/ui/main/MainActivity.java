@@ -28,12 +28,12 @@ import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.preferences.FirstRunVerifier;
 import com.orlinskas.cyberpunk.request.Request;
 import com.orlinskas.cyberpunk.specification.WidgetEmptySpecification;
-import com.orlinskas.cyberpunk.ui.other.HelpActivity;
-import com.orlinskas.cyberpunk.ui.other.ContactsActivity;
-import com.orlinskas.cyberpunk.ui.other.WallpaperSetterActivity;
-import com.orlinskas.cyberpunk.ui.other.WidgetCreatorView;
-import com.orlinskas.cyberpunk.widget.Widget;
-import com.orlinskas.cyberpunk.widget.WidgetRepository;
+import com.orlinskas.cyberpunk.ui.app.HelpActivity;
+import com.orlinskas.cyberpunk.ui.app.ContactsActivity;
+import com.orlinskas.cyberpunk.ui.app.WallpaperSetterActivity;
+import com.orlinskas.cyberpunk.ui.app.WidgetCreatorView;
+import com.orlinskas.cyberpunk.widgetApp.Widget;
+import com.orlinskas.cyberpunk.widgetApp.WidgetRepository;
 
 import java.util.ArrayList;
 

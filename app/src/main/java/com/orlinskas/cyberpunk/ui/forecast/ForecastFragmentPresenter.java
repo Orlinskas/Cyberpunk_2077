@@ -9,16 +9,16 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.orlinskas.cyberpunk.ActivityOpener;
 import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.ToastBuilder;
-import com.orlinskas.cyberpunk.updateWidget.WidgetUpdateChecker;
+import com.orlinskas.cyberpunk.widgetApp.WidgetUpdateChecker;
 import com.orlinskas.cyberpunk.chart.ChartBuilder;
 import com.orlinskas.cyberpunk.chart.WeatherIconsLayoutBuilder;
 import com.orlinskas.cyberpunk.forecast.Forecast;
 import com.orlinskas.cyberpunk.forecast.InstrumentPerformance;
 import com.orlinskas.cyberpunk.forecast.InstrumentPerformanceBuilder;
-import com.orlinskas.cyberpunk.ui.other.HelpActivity;
-import com.orlinskas.cyberpunk.widget.Widget;
-import com.orlinskas.cyberpunk.widget.WidgetRemover;
-import com.orlinskas.cyberpunk.widget.WidgetRepository;
+import com.orlinskas.cyberpunk.ui.app.HelpActivity;
+import com.orlinskas.cyberpunk.widgetApp.Widget;
+import com.orlinskas.cyberpunk.widgetApp.WidgetRemover;
+import com.orlinskas.cyberpunk.widgetApp.WidgetRepository;
 
 public class ForecastFragmentPresenter implements ForecastContract.Presenter, ForecastUpdateListener {
     private ForecastContract.View view;

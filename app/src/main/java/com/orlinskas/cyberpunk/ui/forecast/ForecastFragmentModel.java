@@ -9,8 +9,8 @@ import com.orlinskas.cyberpunk.date.DateHelper;
 import com.orlinskas.cyberpunk.forecast.ForecastListBuilder;
 import com.orlinskas.cyberpunk.forecast.WeatherReceiver;
 import com.orlinskas.cyberpunk.preferences.Preferences;
-import com.orlinskas.cyberpunk.widget.Widget;
-import com.orlinskas.cyberpunk.widget.WidgetRepository;
+import com.orlinskas.cyberpunk.widgetApp.Widget;
+import com.orlinskas.cyberpunk.widgetApp.WidgetRepository;
 
 import static com.orlinskas.cyberpunk.preferences.Preferences.SETTINGS;
 import static com.orlinskas.cyberpunk.preferences.Preferences.WIDGET_LAST_UPDATE;

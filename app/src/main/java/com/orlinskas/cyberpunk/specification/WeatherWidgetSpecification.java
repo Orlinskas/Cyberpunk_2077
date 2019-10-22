@@ -1,6 +1,6 @@
 package com.orlinskas.cyberpunk.specification;
 
-import com.orlinskas.cyberpunk.widget.Widget;
+import com.orlinskas.cyberpunk.widgetApp.Widget;
 
 import static com.orlinskas.cyberpunk.data.WeatherDatabase.COLUMN_CITY_ID;
 import static com.orlinskas.cyberpunk.data.WeatherDatabase.TABLE_WEATHER;

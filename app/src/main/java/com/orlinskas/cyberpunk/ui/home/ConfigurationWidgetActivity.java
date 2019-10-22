@@ -16,8 +16,9 @@ import com.orlinskas.cyberpunk.R;
 import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.preferences.Preferences;
 import com.orlinskas.cyberpunk.specification.WidgetEmptySpecification;
-import com.orlinskas.cyberpunk.widget.Widget;
-import com.orlinskas.cyberpunk.widget.WidgetRepository;
+import com.orlinskas.cyberpunk.widgetApp.Widget;
+import com.orlinskas.cyberpunk.widgetApp.WidgetRepository;
+import com.orlinskas.cyberpunk.widgetHomeTroubleshooter.TroubleshooterWidget;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,7 @@ public class ConfigurationWidgetActivity extends Activity {
 
         resultValue = new Intent();
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
-        resultValue.putExtra(WidgetTroubleshooter.ACTION, WidgetTroubleshooter.ACTION_CREATE);
+        resultValue.putExtra(TroubleshooterWidget.ACTION, TroubleshooterWidget.ACTION_CREATE);
         setResult(RESULT_CANCELED, resultValue); //сформировал негативный ответ на случай выхода
 
         setContentView(R.layout.config_layout);

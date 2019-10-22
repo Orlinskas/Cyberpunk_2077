@@ -10,8 +10,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.orlinskas.cyberpunk.ToastBuilder;
 import com.orlinskas.cyberpunk.specification.WidgetEmptySpecification;
 import com.orlinskas.cyberpunk.ui.forecast.ForecastFragmentView;
-import com.orlinskas.cyberpunk.widget.Widget;
-import com.orlinskas.cyberpunk.widget.WidgetRepository;
+import com.orlinskas.cyberpunk.widgetApp.Widget;
+import com.orlinskas.cyberpunk.widgetApp.WidgetRepository;
 
 import java.util.ArrayList;
 

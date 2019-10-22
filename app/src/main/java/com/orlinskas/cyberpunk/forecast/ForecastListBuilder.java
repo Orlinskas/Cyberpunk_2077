@@ -6,7 +6,7 @@ import com.orlinskas.cyberpunk.date.DateFormat;
 import com.orlinskas.cyberpunk.date.DateHelper;
 import com.orlinskas.cyberpunk.repository.WeatherRepository;
 import com.orlinskas.cyberpunk.specification.WeatherDaySpecification;
-import com.orlinskas.cyberpunk.widget.Widget;
+import com.orlinskas.cyberpunk.widgetApp.Widget;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-feature android:name="android.hardware.camera" />
 
     <application
@@ -42,16 +43,16 @@
         </activity>
 
         <activity
-            android:name=".ui.other.CountryListActivity"
+            android:name=".ui.app.CountryListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.other.CityListActivity"
+            android:name=".ui.app.CityListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.other.HelpActivity"
+            android:name=".ui.app.HelpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.other.ContactsActivity"
+            android:name=".ui.app.ContactsActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -59,11 +60,11 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".ui.other.WidgetCreatorView"
+            android:name=".ui.app.WidgetCreatorView"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".ui.other.WallpaperSetterActivity"
+            android:name=".ui.app.WallpaperSetterActivity"
             android:label="Set Wallpaper"
             android:screenOrientation="portrait"/>
 
@@ -82,19 +83,19 @@
             android:finishOnTaskLaunch = "true"/>
 
         <service
-            android:name=".updateWidget.TroubleshooterUpdateService"
+            android:name=".widgetHomeTroubleshooter.TroubleshooterUpdateService"
             android:enabled="true"/>
 
         <service
-            android:name=".updateWidget.SmallWeatherUpdateService"
+            android:name=".widgetHomeSmallWeather.SmallWeatherUpdateService"
             android:enabled="true"/>
 
         <service
-            android:name=".updateWidget.CountDownUpdateService"
+            android:name=".widgetHomeCountDown.CountDownTimerUpdateService"
             android:enabled="true"/>
 
         <receiver
-            android:name=".ui.home.WidgetTroubleshooter"
+            android:name=".widgetHomeTroubleshooter.TroubleshooterWidget"
             android:icon="@drawable/logo_troubleshooter"
             android:label="Troubleshooter"
             android:widgetCategory="home_screen|keyguard"
@@ -110,7 +111,7 @@
         </receiver>
 
         <receiver
-            android:name=".ui.home.WidgetSmallWeather"
+            android:name=".widgetHomeSmallWeather.SmallWeatherWidget"
             android:icon="@drawable/logo_small_widget"
             android:label="WeatherSmall"
             android:widgetCategory="home_screen|keyguard"
@@ -125,7 +126,7 @@
         </receiver>
 
         <receiver
-            android:name=".ui.home.WidgetCountDown"
+            android:name=".widgetHomeCountDown.CountDownWidget"
             android:icon="@drawable/logo_count_down"
             android:label="CountDown"
             android:widgetCategory="home_screen|keyguard"
@@ -140,7 +141,7 @@
         </receiver>
 
         <receiver
-            android:name=".updateWidget.TroubleshooterUpdateReceiver"
+            android:name=".widgetHomeTroubleshooter.TroubleshooterUpdateReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -148,15 +149,7 @@
         </receiver>
 
         <receiver
-            android:name=".updateWidget.SmallWeatherUpdateReceiver"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-
-        <receiver
-            android:name=".updateWidget.CountDownReceiver"
+            android:name=".widgetHomeSmallWeather.SmallWeatherUpdateReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
