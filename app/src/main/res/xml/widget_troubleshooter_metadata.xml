@@ -2,9 +2,12 @@
 
 <appwidget-provider
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:label="Troubleshooter"
     android:initialLayout="@layout/widget_troubleshooter"
+    android:previewImage="@drawable/logo_troubleshooter"
     android:minWidth="250dp"
-    android:minHeight="110dp"
-    android:updatePeriodMillis="1800000"
+    android:minHeight="120dp"
+    android:widgetCategory="home_screen|keyguard"
+    android:updatePeriodMillis="100"
     android:configure="com.orlinskas.cyberpunk.ui.home.ConfigurationWidgetActivity">
 </appwidget-provider>

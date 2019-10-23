@@ -80,10 +80,14 @@
             android:name=".ui.home.FlashlightActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleInstance"
-            android:finishOnTaskLaunch = "true"/>
+            android:finishOnTaskLaunch="true"/>
 
         <service
             android:name=".widgetHomeTroubleshooter.TroubleshooterUpdateService"
+            android:enabled="true"/>
+
+        <service
+            android:name=".widgetHomeTroubleshooter.SmallTroubleshooterUpdateService"
             android:enabled="true"/>
 
         <service
@@ -96,10 +100,7 @@
 
         <receiver
             android:name=".widgetHomeTroubleshooter.TroubleshooterWidget"
-            android:icon="@drawable/logo_troubleshooter"
-            android:label="Troubleshooter"
-            android:widgetCategory="home_screen|keyguard"
-            android:resizeMode="horizontal|vertical">
+            android:icon="@drawable/logo_cyberpunk">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
@@ -111,11 +112,21 @@
         </receiver>
 
         <receiver
+            android:name=".widgetHomeTroubleshooter.SmallTroubleshooterWidget"
+            android:icon="@drawable/logo_cyberpunk">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_small_troubleshooter_metadata" />
+        </receiver>
+
+        <receiver
             android:name=".widgetHomeSmallWeather.SmallWeatherWidget"
-            android:icon="@drawable/logo_small_widget"
-            android:label="WeatherSmall"
-            android:widgetCategory="home_screen|keyguard"
-            android:resizeMode="horizontal|vertical">
+            android:icon="@drawable/logo_cyberpunk">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -127,10 +138,7 @@
 
         <receiver
             android:name=".widgetHomeCountDown.CountDownWidget"
-            android:icon="@drawable/logo_count_down"
-            android:label="CountDown"
-            android:widgetCategory="home_screen|keyguard"
-            android:resizeMode="horizontal|vertical">
+            android:icon="@drawable/logo_cyberpunk">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -142,6 +150,14 @@
 
         <receiver
             android:name=".widgetHomeTroubleshooter.TroubleshooterUpdateReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".widgetHomeTroubleshooter.SmallTroubleshooterUpdateReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

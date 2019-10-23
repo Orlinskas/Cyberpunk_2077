@@ -2,8 +2,11 @@
 
 <appwidget-provider
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:label="CountDown"
     android:initialLayout="@layout/widget_count_down"
+    android:previewImage="@drawable/logo_count_down"
     android:minWidth="250dp"
     android:minHeight="40dp"
+    android:widgetCategory="home_screen|keyguard"
     android:updatePeriodMillis="100">
 </appwidget-provider>
