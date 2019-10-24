@@ -81,7 +81,7 @@
     <string name="message">Developer Relations</string>
     <string name="question">Technical issues, bugs</string>
     <string name="gmail" translatable="false">orlinskas.development@gmai.com</string>
-    <string name="my_gmail" translatable="false">orlinskaslove@gmai.com</string>
+    <string name="partner_web" translatable="false">www.matrix-creators.com</string>
     <string name="mail">Personal mail</string>
     <string name="inst" translatable="false">http://www.instagram.com/orlinskas</string>
     <string name="gmail_im" translatable="false">gmail_im</string>
@@ -114,6 +114,7 @@
     <string name="light" translatable="false">LIGHT</string>
     <string name="loading_3" translatable="false">Loading...</string>
     <string name="console" translatable="false">Console.</string>
+    <string name="our_partner">Our partner</string>
 
     <string-array name="spinner">
         <item>choose…</item>

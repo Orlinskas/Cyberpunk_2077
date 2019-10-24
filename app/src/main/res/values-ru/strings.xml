@@ -71,4 +71,5 @@
     <string name="surface_icing_possible">- Возможен гололед</string>
     <string name="uncomfortable_rainfall">- Некомфортный уровень осадков</string>
     <string name="uncomfortable_wind_speed">- Некомфортная скорость ветра</string>
+    <string name="our_partner">Наш партнер</string>
 </resources>
